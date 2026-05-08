@@ -22,8 +22,9 @@ export default function VisualImpact() {
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-neon-blue/6 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-neon-pink/5 rounded-full blur-[120px]" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: copy */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -33,7 +34,7 @@ export default function VisualImpact() {
           >
             <p className="eyebrow text-neon-blue mb-4">Our Philosophy</p>
             <div className="section-line mb-6" />
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.05] mb-6">
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.05] mb-6">
               We Don&apos;t Just Clean Cars.{" "}
               <span className="gradient-text">We Restore Them.</span>
             </h2>
@@ -135,6 +136,7 @@ export default function VisualImpact() {
             {/* Glow */}
             <div className="absolute inset-0 rounded-3xl bg-neon-blue/5 blur-2xl -z-10 scale-110" />
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

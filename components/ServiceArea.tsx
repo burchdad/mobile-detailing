@@ -29,8 +29,9 @@ export default function ServiceArea() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-green/25 to-transparent" />
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-neon-green/4 rounded-full blur-[100px]" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -40,7 +41,7 @@ export default function ServiceArea() {
           >
             <p className="eyebrow text-neon-green mb-4">Coverage Area</p>
             <div className="section-line mb-6 bg-gradient-to-r from-neon-green to-neon-blue" />
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-5">
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
               We Come <span className="gradient-text-alt">To You</span>
             </h2>
             <p className="text-white/50 text-base leading-relaxed mb-10 max-w-md">
@@ -139,6 +140,7 @@ export default function ServiceArea() {
               ))}
             </div>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

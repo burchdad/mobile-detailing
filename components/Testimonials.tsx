@@ -57,21 +57,22 @@ export default function Testimonials() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-blue/25 to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-neon-blue/4 rounded-full blur-[120px]" />
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <p className="eyebrow text-neon-blue mb-4">Client Reviews</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-3">
-            Local East Texas Drivers
-          </h2>
-          <p className="text-white/40 text-sm tracking-wide">5.0 stars &bull; 100+ verified reviews &bull; Repeat clients</p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="eyebrow text-neon-blue mb-4">Client Reviews</p>
+            <div className="section-line mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
+              Local East Texas Drivers
+            </h2>
+            <p className="text-white/40 text-sm tracking-wide">5.0 stars &bull; 100+ verified reviews &bull; Repeat clients</p>
+          </motion.div>
 
         {/* Carousel */}
         <div className="relative">
@@ -164,6 +165,7 @@ export default function Testimonials() {
               </svg>
             </motion.button>
           </div>
+        </div>
         </div>
       </div>
     </section>

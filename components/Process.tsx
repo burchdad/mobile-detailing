@@ -76,17 +76,18 @@ export default function Process() {
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-neon-pink/4 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
         >
           <p className="eyebrow text-neon-green mb-4">How It Works</p>
           <div className="section-line mx-auto mb-6 bg-gradient-to-r from-neon-green to-neon-blue" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
             From Booking to Brilliance
           </h2>
           <p className="text-white/45 max-w-md mx-auto text-base">
@@ -150,6 +151,7 @@ export default function Process() {
             </svg>
           </motion.a>
         </motion.div>
+        </div>
       </div>
     </section>
   );

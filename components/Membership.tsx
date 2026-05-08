@@ -92,31 +92,32 @@ export default function Membership() {
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-neon-pink/5 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-neon-green/4 rounded-full blur-[120px]" />
 
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <p className="eyebrow text-neon-pink mb-4">Membership Plans</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
-            Always Drive Clean
-          </h2>
-          <p className="text-white/45 max-w-xl mx-auto text-base">
-            Recurring care for drivers who want a showroom-ready vehicle without the effort. Cancel anytime.
-          </p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <p className="eyebrow text-neon-pink mb-4">Membership Plans</p>
+            <div className="section-line mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
+              Always Drive Clean
+            </h2>
+            <p className="text-white/45 max-w-2xl mx-auto text-lg">
+              Recurring care for drivers who want a showroom-ready vehicle without the effort. Cancel anytime.
+            </p>
+          </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5"
-        >
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
           {tiers.map((tier) => {
             const c = colorMap[tier.color as keyof typeof colorMap];
             return (
@@ -182,6 +183,7 @@ export default function Membership() {
         >
           No contracts. No commitment. Cancel anytime. &bull; Pricing based on standard vehicles; oversized vehicles may vary.
         </motion.p>
+        </div>
       </div>
     </section>
   );

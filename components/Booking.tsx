@@ -31,23 +31,24 @@ export default function Booking() {
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-pink/5 rounded-full blur-[140px]" />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-neon-blue/5 rounded-full blur-[140px]" />
 
-      <div className="max-w-2xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12"
-        >
-          <p className="eyebrow text-neon-pink mb-4">Book A Detail</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
-            Request Your <span className="gradient-text">Premium Detail</span>
-          </h2>
-          <p className="text-white/45 text-base max-w-md mx-auto">
-            Fill out the form below and we&apos;ll confirm your appointment within 24 hours.
-          </p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-12"
+          >
+            <p className="eyebrow text-neon-pink mb-4">Book A Detail</p>
+            <div className="section-line mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
+              Request Your <span className="gradient-text">Premium Detail</span>
+            </h2>
+            <p className="text-white/45 text-lg max-w-2xl mx-auto">
+              Fill out the form below and we&apos;ll confirm your appointment within 24 hours.
+            </p>
+          </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -219,6 +220,7 @@ export default function Booking() {
             </AnimatePresence>
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );
