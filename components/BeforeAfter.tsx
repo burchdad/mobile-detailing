@@ -138,23 +138,25 @@ export default function BeforeAfter() {
       <div className="absolute bottom-[10%] right-[5%] w-[620px] h-[360px] bg-neon-blue/8 rounded-full blur-[150px]" />
       <div className="absolute inset-0 speed-lines opacity-[0.25]" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12 md:mb-14"
-        >
-          <p className="eyebrow text-neon-blue mb-4">Proof Over Promises</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">See the Transformation</h2>
-          <p className="text-white/52 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            Drag the slider to reveal what A&amp;S Mobile Detail does to every vehicle it touches.
-          </p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className=""
+          >
+            <p className="eyebrow text-neon-blue mb-4">Proof Over Promises</p>
+            <div className="section-line mb-6" />
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl">See the Transformation</h2>
+            <p className="text-white/52 max-w-3xl text-lg md:text-xl leading-relaxed">
+              Drag the slider to reveal what A&amp;S Mobile Detail does to every vehicle it touches.
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-[1.1fr_2fr] gap-6 lg:gap-8 items-start">
+        <div className="grid lg:grid-cols-[1.1fr_2fr] gap-6 lg:gap-8 items-start w-full">
           <div className="glass-strong rounded-3xl p-5 md:p-6 border border-white/12">
             <p className="text-xs uppercase tracking-[0.2em] text-white/45 font-semibold mb-4">Transformations</p>
             <div className="flex flex-wrap lg:flex-col gap-2.5">

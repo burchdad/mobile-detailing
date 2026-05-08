@@ -19,8 +19,9 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[740px] h-28 bg-neon-pink/10 blur-[60px]" />
       <div className="absolute -bottom-12 right-[12%] w-[440px] h-[200px] bg-neon-blue/10 blur-[90px]" />
 
-      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
+      <div className="w-full px-5 md:px-8 py-20 relative z-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
           {/* Brand */}
           <div className="glass-strong rounded-3xl border border-white/12 p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -107,6 +108,7 @@ export default function Footer() {
           <p className="text-white/15 text-xs text-center">
             Elite mobile auto detailing &bull; Tyler TX &bull; Serving East Texas since 2021
           </p>
+        </div>
         </div>
       </div>
     </footer>

@@ -108,30 +108,32 @@ export default function Services() {
       <div className="absolute bottom-1/4 left-0 w-[400px] h-[600px] bg-neon-blue/4 rounded-full blur-[120px]" />
       <div className="absolute inset-0 speed-lines opacity-25" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <p className="eyebrow text-neon-pink mb-4">Service Packages</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">
-            Built for Every Driver
-          </h2>
-          <p className="text-white/52 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            From quick maintenance to full paint correction &mdash; every package delivers studio-level results at your location.
-          </p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className=""
+          >
+            <p className="eyebrow text-neon-pink mb-4">Service Packages</p>
+            <div className="section-line mb-6" />
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl">
+              Built for Every Driver
+            </h2>
+            <p className="text-white/52 max-w-3xl text-lg md:text-xl leading-relaxed">
+              From quick maintenance to full paint correction &mdash; every package delivers studio-level results at your location.
+            </p>
+          </motion.div>
+        </div>
 
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6 w-full"
         >
           {packages.map((pkg, index) => {
             const c = colorMap[pkg.color as keyof typeof colorMap];

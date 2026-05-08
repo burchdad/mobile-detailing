@@ -97,30 +97,32 @@ export default function TrustStrip() {
       <div className="absolute top-1/2 right-0 w-64 h-64 bg-neon-blue/5 rounded-full blur-[80px]" />
       <div className="absolute inset-0 speed-lines opacity-[0.18]" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <p className="eyebrow text-neon-blue mb-4">Why Choose Us</p>
-          <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight">
-            The A&amp;S Standard
-          </h2>
-          <p className="mt-4 text-white/52 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            Protection, gloss, and precision on every vehicle we touch.
-          </p>
-        </motion.div>
+      <div className="w-full px-5 md:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className=""
+          >
+            <p className="eyebrow text-neon-blue mb-4">Why Choose Us</p>
+            <div className="section-line mb-6" />
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl">
+              The A&amp;S Standard
+            </h2>
+            <p className="text-white/52 max-w-3xl text-lg md:text-xl leading-relaxed">
+              Protection, gloss, and precision on every vehicle we touch.
+            </p>
+          </motion.div>
+        </div>
 
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 w-full"
         >
           {features.map((f, index) => {
             const c = colorMap[f.color as keyof typeof colorMap];

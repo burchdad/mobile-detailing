@@ -91,26 +91,28 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 md:px-8 pb-16">
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2.5 glass-strong border border-white/20 rounded-full px-4 py-2 md:px-5 md:py-2.5"
-        >
-          <span className="w-2 h-2 rounded-full bg-neon-green animate-glow-pulse" />
-          <span className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-white/75 font-semibold">
-            Mobile Studio Detail Service Across East Texas
-          </span>
-        </motion.div>
+      <div className="relative z-10 w-full px-5 md:px-8 pb-16">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2.5 glass-strong border border-white/20 rounded-full px-4 py-2 md:px-5 md:py-2.5"
+          >
+            <span className="w-2 h-2 rounded-full bg-neon-green animate-glow-pulse" />
+            <span className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-white/75 font-semibold">
+              Mobile Studio Detail Service Across East Texas
+            </span>
+          </motion.div>
+        </div>
 
-        <div className="mt-7 md:mt-8 max-w-5xl">
+        <div className="mt-7 md:mt-8">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
-            className="lux-headline text-[clamp(2.6rem,11vw,8.2rem)] font-black"
+            className="lux-headline text-[clamp(3rem,14vw,9.5rem)] font-black leading-[0.85] max-w-7xl"
           >
             <span className="block text-white">TURN HEADS</span>
             <motion.span
@@ -129,7 +131,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             transition={{ delay: 0.45, duration: 0.7 }}
-            className="mt-5 max-w-2xl text-white/70 text-base md:text-lg leading-relaxed"
+            className="mt-6 md:mt-8 max-w-3xl text-white/70 text-lg md:text-xl leading-relaxed"
           >
             Cinematic gloss. Surgical interior restoration. Paint depth that hits different under every light.
             We bring the full premium detailing studio to your driveway.
@@ -141,17 +143,17 @@ export default function Hero() {
           initial="hidden"
           animate="show"
           transition={{ delay: 0.6, duration: 0.7 }}
-          className="mt-9 flex flex-col sm:flex-row sm:items-center gap-4"
+          className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 max-w-2xl"
         >
           <motion.a
             href="#booking"
             whileHover={{ y: -4, scale: 1.03, rotateX: 4, rotateY: -4 }}
             whileTap={{ scale: 0.97 }}
-            className="group relative isolate overflow-hidden rounded-2xl px-8 py-4 font-black text-base md:text-lg text-white bg-[linear-gradient(140deg,#ff007f,#00cfff)] shadow-[0_18px_60px_rgba(255,0,127,0.35)]"
+            className="group relative isolate overflow-hidden rounded-2xl px-9 py-5 font-black text-lg md:text-xl text-white bg-[linear-gradient(140deg,#ff007f,#00cfff)] shadow-[0_20px_70px_rgba(255,0,127,0.4)]"
           >
             <span className="relative z-10 flex items-center gap-2">
               Book Your Premium Detail
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </span>
@@ -162,7 +164,7 @@ export default function Hero() {
             href="#before-after"
             whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="group relative overflow-hidden rounded-2xl px-8 py-4 font-bold text-base text-white/90 glass border border-white/20 hover:border-neon-blue/60"
+            className="group relative overflow-hidden rounded-2xl px-9 py-5 font-bold text-lg text-white/90 glass border border-white/20 hover:border-neon-blue/60"
           >
             <span className="relative z-10">See The Transformation</span>
             <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,207,255,0.28),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -174,7 +176,7 @@ export default function Hero() {
           initial="hidden"
           animate="show"
           transition={{ delay: 0.75, duration: 0.75 }}
-          className="mt-11 md:mt-14 grid grid-cols-3 gap-3 sm:max-w-md"
+          className="mt-14 md:mt-16 grid grid-cols-3 gap-4 max-w-2xl"
         >
           {stats.map((s, i) => (
             <motion.div
@@ -182,12 +184,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85 + i * 0.1, duration: 0.5 }}
-              className="lux-panel glass-strong rounded-2xl p-3 md:p-4 text-center"
+              className="lux-panel glass-strong rounded-2xl p-4 md:p-5 text-center"
             >
-              <div className={`text-xl md:text-2xl font-black ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
+              <div className={`text-2xl md:text-3xl font-black ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
                 {s.value}
               </div>
-              <div className="mt-1 text-[10px] uppercase tracking-wide text-white/45">{s.label}</div>
+              <div className="mt-1.5 text-[11px] uppercase tracking-wide text-white/45 font-semibold">{s.label}</div>
             </motion.div>
           ))}
         </motion.div>
