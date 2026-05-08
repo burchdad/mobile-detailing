@@ -106,6 +106,7 @@ export default function Services() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-px bg-gradient-to-r from-transparent via-neon-pink/25 to-transparent" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[600px] bg-neon-pink/4 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 left-0 w-[400px] h-[600px] bg-neon-blue/4 rounded-full blur-[120px]" />
+      <div className="absolute inset-0 speed-lines opacity-25" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -117,10 +118,10 @@ export default function Services() {
         >
           <p className="eyebrow text-neon-pink mb-4">Service Packages</p>
           <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">
             Built for Every Driver
           </h2>
-          <p className="text-white/45 max-w-xl mx-auto text-base">
+          <p className="text-white/52 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             From quick maintenance to full paint correction &mdash; every package delivers studio-level results at your location.
           </p>
         </motion.div>
@@ -130,33 +131,46 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-5"
         >
-          {packages.map((pkg) => {
+          {packages.map((pkg, index) => {
             const c = colorMap[pkg.color as keyof typeof colorMap];
+            const layout =
+              index === 0
+                ? "xl:col-span-5"
+                : index === 1
+                  ? "xl:col-span-3 xl:translate-y-6"
+                  : index === 2
+                    ? "xl:col-span-4"
+                    : "xl:col-span-6 xl:-translate-y-5";
+
             return (
               <motion.div
                 key={pkg.name}
                 variants={item}
-                whileHover={{ y: -6 }}
-                className={`shine-card relative glass rounded-2xl p-6 border transition-all duration-300 flex flex-col ${c.border} ${c.hover} ${pkg.popular ? "ring-1 ring-neon-pink/40" : ""}`}
+                whileHover={{ y: -8 }}
+                className={`shine-card lux-panel relative glass rounded-3xl p-6 md:p-7 border transition-all duration-300 flex flex-col min-h-[420px] ${layout} ${c.border} ${c.hover} ${pkg.popular ? "ring-1 ring-neon-pink/40" : ""}`}
               >
+                <div className="absolute inset-0 pointer-events-none opacity-60" style={{ background: "radial-gradient(circle at 20% 0%, rgba(255,255,255,0.14), transparent 42%)" }} />
+
                 {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm whitespace-nowrap">
+                  <div className="absolute -top-3 left-6 px-4 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm whitespace-nowrap">
                     Most Popular
                   </div>
                 )}
 
+                <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${c.accent} opacity-80`} />
+
                 {/* Header */}
                 <div className="mb-5">
-                  <h3 className="text-base font-bold text-white mb-1">{pkg.name}</h3>
-                  <p className="text-xs text-white/40">{pkg.tagline}</p>
+                  <h3 className="text-lg md:text-xl font-black text-white mb-2">{pkg.name}</h3>
+                  <p className="text-sm text-white/45 max-w-[34ch]">{pkg.tagline}</p>
                 </div>
 
                 {/* Price */}
-                <div className="mb-6">
-                  <span className={`text-4xl font-black ${c.price}`}>{pkg.price}</span>
-                  <span className="text-white/35 text-sm ml-1">{pkg.per}</span>
+                <div className="mb-6 flex items-end gap-1.5">
+                  <span className={`text-5xl md:text-6xl font-black ${c.price}`}>{pkg.price}</span>
+                  <span className="text-white/35 text-sm pb-2">{pkg.per}</span>
                 </div>
 
                 {/* Features */}
@@ -173,7 +187,7 @@ export default function Services() {
 
                 {/* Note */}
                 {pkg.note && (
-                  <p className={`text-[11px] font-medium mb-4 px-3 py-1.5 rounded-lg text-center ${c.badge}`}>
+                  <p className={`text-[11px] font-semibold mb-4 px-3 py-1.5 rounded-lg text-center ${c.badge}`}>
                     {pkg.note}
                   </p>
                 )}
@@ -181,9 +195,9 @@ export default function Services() {
                 {/* CTA */}
                 <motion.a
                   href="#booking"
-                  whileHover={{ scale: 1.03 }}
+                  whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
-                  className={`block text-center py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r ${c.accent} transition-all duration-200 shadow-sm`}
+                  className={`block text-center py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r ${c.accent} transition-all duration-200 shadow-sm`}
                 >
                   {pkg.cta}
                 </motion.a>

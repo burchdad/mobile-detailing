@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const serviceLinks = [
   "Maintenance Detail",
   "Full Interior Restoration",
@@ -10,15 +12,17 @@ const serviceLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-deep-black overflow-hidden">
-      {/* Neon top border */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-neon-pink to-neon-blue to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-24 bg-neon-pink/5 blur-[40px]" />
+    <footer className="relative overflow-hidden bg-[#020205] border-t border-white/10">
+      <div className="absolute inset-0 mesh-bg opacity-80" />
+      <div className="absolute inset-0 speed-lines opacity-20" />
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-neon-pink to-neon-blue to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[740px] h-28 bg-neon-pink/10 blur-[60px]" />
+      <div className="absolute -bottom-12 right-[12%] w-[440px] h-[200px] bg-neon-blue/10 blur-[90px]" />
 
-      <div className="max-w-6xl mx-auto px-6 py-16 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
           {/* Brand */}
-          <div>
+          <div className="glass-strong rounded-3xl border border-white/12 p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-pink to-neon-blue flex items-center justify-center text-white font-black text-base shadow-neon-pink-sm">
                 A
@@ -40,7 +44,7 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="glass rounded-3xl border border-white/10 p-6">
             <h3 className="text-xs font-bold text-white/50 tracking-widest uppercase mb-5">Services</h3>
             <ul className="space-y-2.5">
               {serviceLinks.map((s) => (
@@ -54,7 +58,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="glass rounded-3xl border border-white/10 p-6">
             <h3 className="text-xs font-bold text-white/50 tracking-widest uppercase mb-5">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -80,13 +84,17 @@ export default function Footer() {
 
             {/* Ghost AI badge */}
             <div className="mt-8 pt-6 border-t border-white/5">
-              <p className="text-white/20 text-xs mb-2">Website powered by</p>
-              <div className="glass rounded-xl px-3 py-2 border border-white/7 inline-flex items-center gap-2">
+              <p className="text-white/25 text-xs mb-2 uppercase tracking-wider">Website powered by</p>
+              <motion.div
+                animate={{ boxShadow: ["0 0 0 rgba(0,207,255,0)", "0 0 18px rgba(0,207,255,0.28)", "0 0 0 rgba(0,207,255,0)"] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+                className="glass-strong rounded-xl px-3.5 py-2.5 border border-neon-blue/25 inline-flex items-center gap-2.5"
+              >
                 <div className="w-5 h-5 rounded-md bg-gradient-to-br from-neon-pink/60 to-neon-blue/60 flex items-center justify-center">
                   <span className="text-white font-black text-[9px]">G</span>
                 </div>
-                <span className="text-white/40 text-xs font-medium">Ghost AI Solutions</span>
-              </div>
+                <span className="text-white/80 text-sm font-semibold tracking-wide">Ghost AI Solutions</span>
+              </motion.div>
             </div>
           </div>
         </div>

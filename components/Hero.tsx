@@ -1,38 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-const PARTICLES = Array.from({ length: 60 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 55 }, (_, i) => ({
   id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 2.5 + 0.5,
-  dx: (Math.random() - 0.5) * 0.018,
-  dy: (Math.random() - 0.5) * 0.013,
-  opacity: Math.random() * 0.55 + 0.15,
+  x: (i * 19) % 100,
+  y: (i * 31) % 100,
+  size: (i % 6) * 0.4 + 0.8,
+  driftX: i % 2 === 0 ? 28 : -22,
+  driftY: i % 3 === 0 ? -16 : 12,
+  opacity: (i % 5) * 0.08 + 0.22,
   color: i % 3 === 0 ? "#ff007f" : i % 3 === 1 ? "#00cfff" : "#39ff14",
 }));
 
 const STREAKS = [
-  { left: "15%", delay: 0, dur: 7 },
-  { left: "55%", delay: 2.5, dur: 9 },
-  { left: "80%", delay: 5, dur: 6 },
+  { top: "16%", delay: 0, duration: 4.8, width: "44%" },
+  { top: "34%", delay: 1.1, duration: 5.3, width: "52%" },
+  { top: "63%", delay: 0.4, duration: 5.8, width: "48%" },
 ];
-
-function Particles() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {PARTICLES.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size, background: p.color, opacity: p.opacity, filter: "blur(0.5px)" }}
-          animate={{ x: [0, p.dx * 900, 0], y: [0, p.dy * 900, 0], opacity: [p.opacity, p.opacity * 1.6, p.opacity] }}
-          transition={{ duration: 9 + Math.random() * 7, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 5 }}
-        />
-      ))}
-    </div>
-  );
-}
 
 const stats = [
   { value: "500+", label: "Cars Detailed", color: "neon-pink" },
@@ -41,130 +25,174 @@ const stats = [
 ];
 
 export default function Hero() {
+  const reveal = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-deep-black">
-      {/* Deep layered background */}
-      <div className="absolute inset-0 bg-hero-gradient" />
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-neon-pink/8 rounded-full blur-[200px] -translate-x-1/2 -translate-y-1/3" />
-        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-neon-blue/10 rounded-full blur-[180px] translate-x-1/3 translate-y-1/3" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-neon-pink/4 rounded-full blur-[120px]" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-deep-black pt-24 md:pt-28">
+      <div className="absolute inset-0 mesh-bg" />
+      <div className="absolute inset-0 speed-lines opacity-40" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(255,255,255,0.08),transparent_45%)]" />
+      <div className="absolute top-[-12%] left-[-10%] w-[760px] h-[760px] rounded-full bg-neon-pink/15 blur-[180px]" />
+      <div className="absolute top-[5%] right-[-8%] w-[700px] h-[700px] rounded-full bg-neon-blue/12 blur-[170px]" />
+      <div className="absolute bottom-[-22%] left-[35%] w-[720px] h-[420px] rounded-full bg-neon-green/10 blur-[180px]" />
+
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {PARTICLES.map((p) => (
+          <motion.span
+            key={p.id}
+            className="absolute rounded-full"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size,
+              height: p.size,
+              opacity: p.opacity,
+              backgroundColor: p.color,
+            }}
+            animate={{ x: [0, p.driftX, 0], y: [0, p.driftY, 0], opacity: [p.opacity, p.opacity + 0.18, p.opacity] }}
+            transition={{ duration: 7.5 + (p.id % 6), repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
       </div>
 
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(0,207,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,207,255,1) 1px,transparent 1px)", backgroundSize: "70px 70px" }} />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {STREAKS.map((s) => (
+          <motion.div
+            key={`${s.top}-${s.delay}`}
+            className="absolute h-[1px]"
+            style={{
+              top: s.top,
+              width: s.width,
+              left: "-45%",
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(0,207,255,0.9) 35%, rgba(255,0,127,0.95) 52%, transparent 100%)",
+            }}
+            animate={{ x: ["0%", "220%"], opacity: [0, 1, 0] }}
+            transition={{ duration: s.duration, repeat: Infinity, ease: "easeInOut", delay: s.delay }}
+          />
+        ))}
+      </div>
 
-      {/* Particles */}
-      <Particles />
+      <div className="absolute inset-x-0 bottom-[10%] pointer-events-none">
+        <div className="mx-auto w-[min(1040px,92vw)] h-[220px] rounded-[50%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0)_65%)] blur-xl" />
+      </div>
 
-      {/* Light streaks */}
-      {STREAKS.map((s, i) => (
+      <div className="absolute inset-x-0 bottom-[18%] pointer-events-none px-4">
         <motion.div
-          key={i}
-          className="absolute top-0 w-px"
-          style={{ left: s.left, background: "linear-gradient(180deg,transparent,rgba(0,207,255,0.5),rgba(255,0,127,0.3),transparent)", height: "60%" }}
-          animate={{ opacity: [0, 0.8, 0], scaleY: [0.5, 1, 0.5] }}
-          transition={{ duration: s.dur, repeat: Infinity, ease: "easeInOut", delay: s.delay }}
-        />
-      ))}
+          initial={{ opacity: 0.1, y: 30 }}
+          animate={{ opacity: [0.18, 0.28, 0.18], y: [14, 0, 14] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="mx-auto w-[min(1120px,94vw)] h-[280px] md:h-[340px] rounded-[48%] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_30%,rgba(0,0,0,0.75)_100%)] shadow-[0_60px_120px_rgba(0,0,0,0.8)]"
+        >
+          <div className="w-full h-full rounded-[48%] carbon-overlay light-pass" />
+        </motion.div>
+      </div>
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-28 pb-20">
-        {/* Eyebrow badge */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 md:px-8 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.7 }}
-          className="inline-flex items-center gap-2.5 glass-strong px-5 py-2.5 rounded-full mb-10 border border-neon-blue/15"
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center gap-2.5 glass-strong border border-white/20 rounded-full px-4 py-2 md:px-5 md:py-2.5"
         >
           <span className="w-2 h-2 rounded-full bg-neon-green animate-glow-pulse" />
-          <span className="text-xs font-semibold text-white/70 tracking-[0.12em] uppercase">
-            Fully Mobile &nbsp;&bull;&nbsp; Premium Products &nbsp;&bull;&nbsp; Locally Trusted
+          <span className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-white/75 font-semibold">
+            Mobile Studio Detail Service Across East Texas
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.9, ease: "easeOut" }}
-          className="text-[clamp(3rem,10vw,7rem)] font-black leading-[0.88] tracking-[-0.02em] mb-7"
-        >
-          <span className="text-white block">Turn Heads</span>
-          <span className="gradient-text block">Before You</span>
-          <span className="text-white block">Even Drive</span>
-        </motion.h1>
+        <div className="mt-7 md:mt-8 max-w-5xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
+            className="lux-headline text-[clamp(2.6rem,11vw,8.2rem)] font-black"
+          >
+            <span className="block text-white">TURN HEADS</span>
+            <motion.span
+              className="block gradient-text"
+              initial={{ opacity: 0, filter: "blur(8px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 0.35, duration: 0.7 }}
+            >
+              BEFORE YOU
+            </motion.span>
+            <span className="block text-white">EVEN DRIVE</span>
+          </motion.h1>
 
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-lg md:text-xl text-white/55 max-w-xl mx-auto mb-12 leading-relaxed"
-        >
-          Showroom finish at your doorstep. Mobile convenience.
-          <br className="hidden sm:block" />
-          Studio-level results. Tyler, TX &amp; East Texas.
-        </motion.p>
+          <motion.p
+            variants={reveal}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.45, duration: 0.7 }}
+            className="mt-5 max-w-2xl text-white/70 text-base md:text-lg leading-relaxed"
+          >
+            Cinematic gloss. Surgical interior restoration. Paint depth that hits different under every light.
+            We bring the full premium detailing studio to your driveway.
+          </motion.p>
+        </div>
 
-        {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.6, duration: 0.7 }}
+          className="mt-9 flex flex-col sm:flex-row sm:items-center gap-4"
         >
           <motion.a
             href="#booking"
-            whileHover={{ scale: 1.06, boxShadow: "0 0 35px rgba(255,0,127,0.6), 0 0 80px rgba(255,0,127,0.2)" }}
+            whileHover={{ y: -4, scale: 1.03, rotateX: 4, rotateY: -4 }}
             whileTap={{ scale: 0.97 }}
-            className="relative overflow-hidden group px-9 py-4.5 rounded-full font-black text-lg text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink"
-            style={{ paddingTop: "1.125rem", paddingBottom: "1.125rem" }}
+            className="group relative isolate overflow-hidden rounded-2xl px-8 py-4 font-black text-base md:text-lg text-white bg-[linear-gradient(140deg,#ff007f,#00cfff)] shadow-[0_18px_60px_rgba(255,0,127,0.35)]"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Book Your Detail
+              Book Your Premium Detail
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </span>
-            <span className="absolute inset-0 -skew-x-12 translate-x-[-150%] group-hover:translate-x-[250%] transition-transform duration-700 bg-white/20 w-2/5 pointer-events-none" />
+            <span className="absolute inset-0 bg-[linear-gradient(100deg,transparent_30%,rgba(255,255,255,0.45)_50%,transparent_70%)] -translate-x-[140%] group-hover:translate-x-[180%] transition-transform duration-700" />
           </motion.a>
 
           <motion.a
             href="#before-after"
-            whileHover={{ scale: 1.04, borderColor: "rgba(0,207,255,0.5)" }}
+            whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="px-9 py-4 rounded-full font-bold text-lg text-white border border-white/15 glass hover:shadow-neon-blue-sm transition-all duration-300"
+            className="group relative overflow-hidden rounded-2xl px-8 py-4 font-bold text-base text-white/90 glass border border-white/20 hover:border-neon-blue/60"
           >
-            See The Transformation
+            <span className="relative z-10">See The Transformation</span>
+            <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,207,255,0.28),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.a>
         </motion.div>
 
-        {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="grid grid-cols-3 gap-4 max-w-sm mx-auto"
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.75, duration: 0.75 }}
+          className="mt-11 md:mt-14 grid grid-cols-3 gap-3 sm:max-w-md"
         >
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 + i * 0.12, duration: 0.6 }}
-              className="glass-strong rounded-2xl px-3 py-4 border border-white/8 text-center"
+              transition={{ delay: 0.85 + i * 0.1, duration: 0.5 }}
+              className="lux-panel glass-strong rounded-2xl p-3 md:p-4 text-center"
             >
-              <div className={`text-2xl font-black mb-0.5 ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
+              <div className={`text-xl md:text-2xl font-black ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
                 {s.value}
               </div>
-              <div className="text-[10px] text-white/35 font-medium tracking-wide uppercase">{s.label}</div>
+              <div className="mt-1 text-[10px] uppercase tracking-wide text-white/45">{s.label}</div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-deep-black to-transparent pointer-events-none" />
     </section>
   );

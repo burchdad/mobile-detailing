@@ -95,6 +95,7 @@ export default function TrustStrip() {
       {/* Orbs */}
       <div className="absolute top-1/2 left-0 w-64 h-64 bg-neon-pink/5 rounded-full blur-[80px]" />
       <div className="absolute top-1/2 right-0 w-64 h-64 bg-neon-blue/5 rounded-full blur-[80px]" />
+      <div className="absolute inset-0 speed-lines opacity-[0.18]" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -106,10 +107,10 @@ export default function TrustStrip() {
         >
           <p className="eyebrow text-neon-blue mb-4">Why Choose Us</p>
           <div className="section-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight">
             The A&amp;S Standard
           </h2>
-          <p className="mt-4 text-white/45 max-w-xl mx-auto text-base">
+          <p className="mt-4 text-white/52 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Protection, gloss, and precision on every vehicle we touch.
           </p>
         </motion.div>
@@ -119,22 +120,24 @@ export default function TrustStrip() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4"
         >
-          {features.map((f) => {
+          {features.map((f, index) => {
             const c = colorMap[f.color as keyof typeof colorMap];
+            const spanClass = index % 3 === 0 ? "lg:col-span-2" : "lg:col-span-2";
             return (
               <motion.div
                 key={f.title}
                 variants={item}
-                whileHover={{ scale: 1.03, y: -5 }}
-                className={`shine-card glass rounded-2xl p-6 border border-white/7 transition-all duration-300 cursor-default ${c.hover}`}
+                whileHover={{ scale: 1.02, y: -7, rotateX: 3 }}
+                className={`shine-card lux-panel relative glass rounded-3xl p-6 md:p-7 border border-white/10 transition-all duration-300 cursor-default ${spanClass} ${c.hover}`}
               >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 <div className={`inline-flex w-12 h-12 rounded-xl border items-center justify-center mb-5 ${c.icon}`}>
                   {f.icon}
                 </div>
-                <h3 className={`text-base font-bold mb-2 ${c.title}`}>{f.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: f.desc }} />
+                <h3 className={`text-lg font-black mb-2 ${c.title}`}>{f.title}</h3>
+                <p className="text-white/58 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: f.desc }} />
               </motion.div>
             );
           })}
