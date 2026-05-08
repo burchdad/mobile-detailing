@@ -5,110 +5,123 @@ import { motion } from "framer-motion";
 const packages = [
   {
     name: "Maintenance Detail",
-    price: "From $99",
-    popular: false,
-    color: "neon-blue",
-    gradient: "from-neon-blue/20 to-transparent",
-    border: "border-neon-blue/30 hover:border-neon-blue/70",
-    shadow: "hover:shadow-neon-blue",
+    tagline: "Keep it clean, keep it sharp.",
+    price: "$99",
+    per: "per visit",
+    color: "blue",
     features: [
-      "Full exterior hand wash & dry",
+      "Hand wash & dry",
       "Wheel & tire cleaning",
+      "Window cleaning",
       "Interior vacuum & wipe-down",
-      "Window cleaning (in & out)",
-      "Tire dressing",
+      "Air freshener",
     ],
-    desc: "Routine upkeep that keeps your vehicle looking sharp between full services.",
+    cta: "Book This Package",
+    note: null,
+    popular: false,
   },
   {
     name: "Full Interior Restoration",
-    price: "From $199",
-    popular: false,
-    color: "neon-green",
-    gradient: "from-neon-green/20 to-transparent",
-    border: "border-neon-green/30 hover:border-neon-green/70",
-    shadow: "hover:shadow-neon-green",
+    tagline: "Deep clean, top to bottom.",
+    price: "$199",
+    per: "per visit",
+    color: "pink",
     features: [
-      "Deep steam cleaning",
-      "Leather conditioning & care",
-      "Carpet extraction & deodorize",
-      "Vent & trim detailing",
-      "Headliner cleaning",
+      "Full extraction shampoo",
+      "Leather conditioning",
+      "Dashboard & trim dressing",
+      "Odor elimination",
+      "Exterior wash included",
     ],
-    desc: "Transform your cabin back to showroom condition with a complete deep clean.",
+    cta: "Book This Package",
+    note: "Add ceramic coating for $299",
+    popular: false,
   },
   {
     name: "Paint Enhancement",
-    price: "From $349",
-    popular: true,
-    color: "neon-pink",
-    gradient: "from-neon-pink/20 to-transparent",
-    border: "border-neon-pink/50 hover:border-neon-pink",
-    shadow: "hover:shadow-neon-pink",
+    tagline: "For drivers who care how it shows up.",
+    price: "$349",
+    per: "per visit",
+    color: "pink",
     features: [
-      "Full wash & iron decontamination",
-      "Clay bar treatment",
-      "1-step paint correction",
-      "Gloss enhancement polish",
-      "Sealant protection layer",
+      "1-stage machine polish",
+      "Swirl & scratch removal",
+      "Gloss enhancement",
+      "Full interior restoration",
+      "Paint sealant application",
     ],
-    desc: "Restore the depth and gloss of your paint with professional enhancement.",
+    cta: "Book This Package",
+    note: "Most booked premium service",
+    popular: true,
   },
   {
     name: "Ceramic Coating",
-    price: "From $699",
-    popular: false,
-    color: "neon-blue",
-    gradient: "from-neon-blue/20 to-transparent",
-    border: "border-neon-blue/30 hover:border-neon-blue/70",
-    shadow: "hover:shadow-neon-blue",
+    tagline: "Permanent protection. Liquid glass finish.",
+    price: "$699",
+    per: "starting",
+    color: "green",
     features: [
-      "Full paint correction included",
+      "Full paint decontamination",
+      "1–2 stage paint correction",
       "Professional ceramic application",
       "2–5 year protection warranty",
-      "Hydrophobic self-cleaning effect",
-      "UV & chemical resistance",
+      "Hydrophobic water-repel coating",
     ],
-    desc: "The pinnacle of paint protection. A permanent glass-like shield for your vehicle.",
+    cta: "Get a Custom Quote",
+    note: "Price varies by vehicle size",
+    popular: false,
   },
 ];
 
-const colorMap: Record<string, string> = {
-  "neon-pink": "text-neon-pink",
-  "neon-blue": "text-neon-blue",
-  "neon-green": "text-neon-green",
+const colorMap = {
+  pink: {
+    accent: "from-neon-pink to-neon-blue",
+    border: "border-neon-pink/30",
+    hover: "hover:border-neon-pink/50 hover:shadow-neon-pink-sm",
+    badge: "bg-neon-pink/15 text-neon-pink border border-neon-pink/30",
+    price: "gradient-text",
+  },
+  blue: {
+    accent: "from-neon-blue to-neon-pink",
+    border: "border-neon-blue/20",
+    hover: "hover:border-neon-blue/40 hover:shadow-neon-blue-sm",
+    badge: "bg-neon-blue/15 text-neon-blue border border-neon-blue/30",
+    price: "neon-blue-text",
+  },
+  green: {
+    accent: "from-neon-green to-neon-blue",
+    border: "border-neon-green/20",
+    hover: "hover:border-neon-green/40 hover:shadow-neon-green-sm",
+    badge: "bg-neon-green/15 text-neon-green border border-neon-green/30",
+    price: "neon-green-text",
+  },
 };
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+const item = { hidden: { opacity: 0, y: 36 }, show: { opacity: 1, y: 0 } };
 
 export default function Services() {
   return (
-    <section id="services" className="section-pad bg-charcoal relative overflow-hidden">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent" />
+    <section id="services" className="section-pad bg-deep-black relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-px bg-gradient-to-r from-transparent via-neon-pink/25 to-transparent" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[600px] bg-neon-pink/4 rounded-full blur-[120px]" />
+      <div className="absolute bottom-1/4 left-0 w-[400px] h-[600px] bg-neon-blue/4 rounded-full blur-[120px]" />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="text-neon-green text-sm font-semibold tracking-widest uppercase mb-3">
-            Our Services
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Choose Your Experience
+          <p className="eyebrow text-neon-pink mb-4">Service Packages</p>
+          <div className="section-line mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Built for Every Driver
           </h2>
-          <p className="text-white/50 max-w-xl mx-auto">
-            Every package is delivered with the same obsessive attention to detail — because your vehicle deserves nothing less.
+          <p className="text-white/45 max-w-xl mx-auto text-base">
+            From quick maintenance to full paint correction &mdash; every package delivers studio-level results at your location.
           </p>
         </motion.div>
 
@@ -117,61 +130,78 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5"
         >
-          {packages.map((pkg) => (
-            <motion.div
-              key={pkg.name}
-              variants={item}
-              whileHover={{ scale: 1.03, y: -6 }}
-              className={`relative glass rounded-2xl p-6 border transition-all duration-300 flex flex-col ${pkg.border} ${pkg.shadow}`}
-            >
-              {/* Most popular badge */}
-              {pkg.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-neon-pink whitespace-nowrap">
-                  ★ Most Popular
+          {packages.map((pkg) => {
+            const c = colorMap[pkg.color as keyof typeof colorMap];
+            return (
+              <motion.div
+                key={pkg.name}
+                variants={item}
+                whileHover={{ y: -6 }}
+                className={`shine-card relative glass rounded-2xl p-6 border transition-all duration-300 flex flex-col ${c.border} ${c.hover} ${pkg.popular ? "ring-1 ring-neon-pink/40" : ""}`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm whitespace-nowrap">
+                    Most Popular
+                  </div>
+                )}
+
+                {/* Header */}
+                <div className="mb-5">
+                  <h3 className="text-base font-bold text-white mb-1">{pkg.name}</h3>
+                  <p className="text-xs text-white/40">{pkg.tagline}</p>
                 </div>
-              )}
 
-              {/* Gradient accent */}
-              <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${pkg.gradient} opacity-30 pointer-events-none`}
-              />
+                {/* Price */}
+                <div className="mb-6">
+                  <span className={`text-4xl font-black ${c.price}`}>{pkg.price}</span>
+                  <span className="text-white/35 text-sm ml-1">{pkg.per}</span>
+                </div>
 
-              <div className="relative z-10 flex flex-col flex-1">
-                <h3 className={`text-lg font-bold mb-1 ${colorMap[pkg.color]}`}>
-                  {pkg.name}
-                </h3>
-                <p className="text-3xl font-black text-white mb-3">{pkg.price}</p>
-                <p className="text-white/50 text-sm mb-5 leading-relaxed">
-                  {pkg.desc}
-                </p>
-
-                <ul className="space-y-2 mb-6 flex-1">
+                {/* Features */}
+                <ul className="flex-1 space-y-2.5 mb-6">
                   {pkg.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-white/70">
-                      <span className={`mt-0.5 text-xs ${colorMap[pkg.color]}`}>✓</span>
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-white/65">
+                      <svg className="w-4 h-4 text-neon-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
                       {f}
                     </li>
                   ))}
                 </ul>
 
+                {/* Note */}
+                {pkg.note && (
+                  <p className={`text-[11px] font-medium mb-4 px-3 py-1.5 rounded-lg text-center ${c.badge}`}>
+                    {pkg.note}
+                  </p>
+                )}
+
+                {/* CTA */}
                 <motion.a
                   href="#booking"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className={`block text-center py-3 rounded-xl font-bold text-sm border transition-all duration-300 ${
-                    pkg.popular
-                      ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white border-transparent shadow-neon-pink"
-                      : `border-current ${colorMap[pkg.color]} hover:bg-white/5`
-                  }`}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`block text-center py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r ${c.accent} transition-all duration-200 shadow-sm`}
                 >
-                  Book This Package
+                  {pkg.cta}
                 </motion.a>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
+
+        {/* Bottom note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-center text-white/30 text-sm mt-10"
+        >
+          Not sure which to choose? <a href="#booking" className="text-neon-blue hover:underline">Book a consultation</a> &mdash; we&apos;ll recommend the right package for your vehicle.
+        </motion.p>
       </div>
     </section>
   );

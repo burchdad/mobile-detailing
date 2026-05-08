@@ -4,94 +4,152 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    num: "01",
+    number: "01",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    ),
     title: "Book Online",
-    desc: "Select your service, preferred date, and location in minutes.",
-    icon: "📱",
+    desc: "Choose your service, pick a date, tell us where you are. Done in under 2 minutes.",
+    color: "pink",
   },
   {
-    num: "02",
+    number: "02",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
     title: "We Come To You",
-    desc: "Our fully equipped team arrives at your home, office, or anywhere.",
-    icon: "🚚",
+    desc: "Our team arrives at your home, office, or any location in East Texas.",
+    color: "blue",
   },
   {
-    num: "03",
+    number: "03",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
     title: "Vehicle Inspection",
-    desc: "We assess your vehicle and confirm all service details with you.",
-    icon: "🔍",
+    desc: "We assess your vehicle&apos;s condition and customize the service to get the best result.",
+    color: "green",
   },
   {
-    num: "04",
-    title: "Premium Detail Service",
-    desc: "Our technicians get to work with professional products and precision.",
-    icon: "✨",
+    number: "04",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    ),
+    title: "Premium Detail",
+    desc: "We execute the full treatment using professional products and proven techniques.",
+    color: "pink",
   },
   {
-    num: "05",
+    number: "05",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     title: "Final Walkthrough",
-    desc: "We inspect every inch together. You approve before we leave.",
-    icon: "🎯",
+    desc: "We walk through every detail with you. You&apos;re not satisfied until we&apos;re done.",
+    color: "blue",
   },
 ];
 
+const colorMap = {
+  pink: { num: "text-neon-pink", icon: "bg-neon-pink/10 text-neon-pink border-neon-pink/20", line: "from-neon-pink" },
+  blue: { num: "text-neon-blue", icon: "bg-neon-blue/10 text-neon-blue border-neon-blue/20", line: "from-neon-blue" },
+  green: { num: "text-neon-green", icon: "bg-neon-green/10 text-neon-green border-neon-green/20", line: "from-neon-green" },
+};
+
 export default function Process() {
   return (
-    <section className="section-pad bg-charcoal relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-neon-blue/6 rounded-full blur-[120px]" />
+    <section className="section-pad bg-surface relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-green/25 to-transparent" />
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-neon-green/4 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-neon-pink/4 rounded-full blur-[100px]" />
+      </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <p className="eyebrow text-neon-green mb-4">How It Works</p>
+          <div className="section-line mx-auto mb-6 bg-gradient-to-r from-neon-green to-neon-blue" />
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            From Booking to Brilliance
+          </h2>
+          <p className="text-white/45 max-w-md mx-auto text-base">
+            Five steps. Zero effort on your end. Studio-level finish every time.
+          </p>
+        </motion.div>
+
+        {/* Steps — desktop: horizontal with connecting line */}
+        <div className="relative">
+          {/* Connecting track */}
+          <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-px bg-gradient-to-r from-neon-pink/30 via-neon-blue/50 to-neon-green/30" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {steps.map((step, i) => {
+              const c = colorMap[step.color as keyof typeof colorMap];
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12, duration: 0.65, ease: "easeOut" }}
+                  className="relative flex flex-col items-center text-center lg:items-center"
+                >
+                  {/* Icon circle */}
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className={`relative w-[68px] h-[68px] rounded-2xl border flex items-center justify-center mb-4 z-10 ${c.icon}`}
+                  >
+                    {step.icon}
+                    <span className={`absolute -top-2 -right-2 text-[10px] font-black ${c.num} bg-deep-black px-1 rounded`}>
+                      {step.number}
+                    </span>
+                  </motion.div>
+
+                  <h3 className="text-sm font-bold text-white mb-2">{step.title}</h3>
+                  <p className="text-white/45 text-xs leading-relaxed" dangerouslySetInnerHTML={{ __html: step.desc }} />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="text-center mt-14"
         >
-          <p className="text-neon-blue text-sm font-semibold tracking-widest uppercase mb-3">
-            How It Works
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black text-white">
-            Simple. Seamless. Superior.
-          </h2>
+          <motion.a
+            href="#booking"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm"
+          >
+            Start Your Experience
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </motion.a>
         </motion.div>
-
-        {/* Steps */}
-        <div className="relative">
-          {/* Connecting line */}
-          <div className="hidden lg:block absolute top-12 left-[calc(10%+2rem)] right-[calc(10%+2rem)] h-px bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.6 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="relative flex flex-col items-center text-center"
-              >
-                {/* Number circle */}
-                <div className="relative z-10 w-16 h-16 mb-5 rounded-full bg-gradient-to-br from-neon-pink to-neon-blue flex items-center justify-center shadow-neon-pink">
-                  <span className="text-xl font-black text-white">{step.icon}</span>
-                </div>
-
-                {/* Card */}
-                <div className="glass rounded-2xl p-5 border border-white/8 hover:border-neon-blue/30 transition-all duration-300 w-full">
-                  <div className="text-neon-pink text-xs font-bold mb-1">
-                    Step {step.num}
-                  </div>
-                  <h3 className="text-white font-bold text-base mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/50 text-xs leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

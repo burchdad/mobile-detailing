@@ -1,168 +1,187 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useCallback } from "react";
 
-const categories = ["Exterior", "Interior", "Paint Correction", "Ceramic"];
-
-const pairs = [
+const categories = [
   {
-    category: "Exterior",
-    beforeBg: "from-stone-800 to-stone-600",
-    afterBg: "from-slate-900 to-slate-700",
-    beforeLabel: "Oxidized & Dirty",
-    afterLabel: "Mirror Shine",
+    id: "exterior",
+    label: "Exterior Wash",
+    before: { bg: "from-stone-700 via-stone-600 to-stone-800", label: "Dirt & Grime" },
+    after: { bg: "from-slate-900 via-slate-800 to-deep-black", label: "Showroom Shine" },
   },
   {
-    category: "Interior",
-    beforeBg: "from-yellow-900 to-stone-700",
-    afterBg: "from-slate-800 to-slate-600",
-    beforeLabel: "Stained & Worn",
-    afterLabel: "Restored & Fresh",
+    id: "interior",
+    label: "Interior Detail",
+    before: { bg: "from-amber-900 via-stone-800 to-stone-900", label: "Stains & Odors" },
+    after: { bg: "from-slate-800 via-slate-900 to-deep-black", label: "Factory Fresh" },
   },
   {
-    category: "Paint Correction",
-    beforeBg: "from-zinc-700 to-zinc-500",
-    afterBg: "from-zinc-900 to-zinc-800",
-    beforeLabel: "Swirls & Scratches",
-    afterLabel: "Flawless Clarity",
+    id: "paint",
+    label: "Paint Correction",
+    before: { bg: "from-zinc-600 via-zinc-700 to-zinc-800", label: "Swirls & Scratches" },
+    after: { bg: "from-slate-700 via-indigo-950 to-deep-black", label: "Mirror Clarity" },
   },
   {
-    category: "Ceramic",
-    beforeBg: "from-neutral-700 to-neutral-500",
-    afterBg: "from-sky-900 to-sky-800",
-    beforeLabel: "Unprotected",
-    afterLabel: "Ceramic Sealed",
+    id: "ceramic",
+    label: "Ceramic Coating",
+    before: { bg: "from-neutral-700 via-neutral-800 to-zinc-900", label: "Oxidized Paint" },
+    after: { bg: "from-blue-950 via-slate-900 to-deep-black", label: "Glass Shield" },
   },
 ];
 
-function SliderComparison({
-  pair,
-}: {
-  pair: (typeof pairs)[0];
-}) {
-  const [sliderX, setSliderX] = useState(50);
+function Slider({ category }: { category: typeof categories[0] }) {
+  const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
+  const dragging = useRef(false);
 
-  const handleMove = (clientX: number) => {
+  const update = useCallback((clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
-    setSliderX(Math.max(5, Math.min(95, pct)));
-  };
+    const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    setPosition(pct);
+  }, []);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden cursor-col-resize select-none border border-white/10"
-      onMouseDown={() => (isDragging.current = true)}
-      onMouseUp={() => (isDragging.current = false)}
-      onMouseLeave={() => (isDragging.current = false)}
-      onMouseMove={(e) => isDragging.current && handleMove(e.clientX)}
-      onTouchMove={(e) => handleMove(e.touches[0].clientX)}
+      className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden cursor-ew-resize select-none touch-none"
+      onMouseDown={(e) => { dragging.current = true; update(e.clientX); }}
+      onMouseMove={(e) => { if (dragging.current) update(e.clientX); }}
+      onMouseUp={() => { dragging.current = false; }}
+      onMouseLeave={() => { dragging.current = false; }}
+      onTouchStart={(e) => { dragging.current = true; update(e.touches[0].clientX); }}
+      onTouchMove={(e) => { if (dragging.current) update(e.touches[0].clientX); }}
+      onTouchEnd={() => { dragging.current = false; }}
     >
-      {/* After (right side — full width) */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${pair.afterBg} flex items-end p-5`}
-      >
-        {/* Simulated clean car gloss */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
-        <div className="absolute top-1/3 left-1/4 w-32 h-1 bg-white/30 blur-sm rounded-full rotate-12" />
-        <div className="absolute top-1/2 right-1/3 w-20 h-0.5 bg-neon-blue/40 blur-sm rounded-full -rotate-6" />
-        <span className="relative z-10 text-xs font-bold text-neon-blue/90 bg-black/40 px-3 py-1 rounded-full">
-          AFTER — {pair.afterLabel}
-        </span>
-      </div>
-
-      {/* Before (left side — clipped) */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${pair.beforeBg} flex items-end p-5`}
-        style={{ clipPath: `inset(0 ${100 - sliderX}% 0 0)` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-transparent" />
-        <span className="relative z-10 text-xs font-bold text-white/80 bg-black/40 px-3 py-1 rounded-full">
-          BEFORE — {pair.beforeLabel}
-        </span>
-      </div>
-
-      {/* Slider handle */}
-      <div
-        className="absolute top-0 bottom-0 w-0.5 bg-white/80 shadow-glow-sm z-20"
-        style={{ left: `${sliderX}%` }}
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-neon-blue flex items-center justify-center">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M5 8H1M11 8h4M5 5L2 8l3 3M11 5l3 3-3 3" stroke="#050508" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+      {/* Before */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${category.before.bg}`}>
+        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 40% 40%, rgba(80,50,10,0.8) 0%, transparent 60%)" }} />
+        <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-1.5 text-xs font-bold text-white/50 border border-white/10 uppercase tracking-wide">
+          Before &bull; {category.before.label}
         </div>
+      </div>
+
+      {/* After — clipped */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${category.after.bg}`}
+        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+      >
+        {/* Gloss sweep */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ x: ["-100%", "200%"] }}
+          transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
+          style={{ background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.07) 50%, transparent 65%)" }}
+        />
+        <div className="absolute bottom-4 right-4 glass rounded-xl px-3 py-1.5 text-xs font-bold text-neon-blue/80 border border-neon-blue/20 uppercase tracking-wide">
+          After &bull; {category.after.label}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div
+        className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-pink via-neon-blue to-neon-green shadow-neon-blue-sm pointer-events-none"
+        style={{ left: `${position}%`, transform: "translateX(-50%)" }}
+      />
+
+      {/* Handle */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-deep-black border-2 border-neon-pink/70 shadow-neon-pink-sm flex items-center justify-center pointer-events-none z-20"
+        style={{ left: `${position}%`, transform: "translate(-50%, -50%)" }}
+      >
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+        </svg>
       </div>
     </div>
   );
 }
 
 export default function BeforeAfter() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState("exterior");
+  const category = categories.find((c) => c.id === active) ?? categories[0];
 
   return (
-    <section
-      id="before-after"
-      className="section-pad bg-deep-black relative overflow-hidden"
-    >
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-neon-pink/8 rounded-full blur-[100px] -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-72 h-72 bg-neon-blue/8 rounded-full blur-[100px] -translate-y-1/2" />
+    <section id="before-after" className="section-pad bg-surface relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-neon-blue/4 rounded-full blur-[120px]" />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <p className="text-neon-pink text-sm font-semibold tracking-widest uppercase mb-3">
-            The Proof
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            See The Difference
+          <p className="eyebrow text-neon-blue mb-4">Proof Over Promises</p>
+          <div className="section-line mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            See the Transformation
           </h2>
-          <p className="text-white/50 max-w-xl mx-auto">
-            Drag the slider to reveal the transformation. Every vehicle deserves
-            this level of care.
+          <p className="text-white/45 max-w-md mx-auto text-base">
+            Drag the slider to reveal what A&amp;S Mobile Detail does to every vehicle it touches.
           </p>
         </motion.div>
 
         {/* Category tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {categories.map((cat, i) => (
-            <motion.button
-              key={cat}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActive(i)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                active === i
-                  ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-neon-pink"
-                  : "glass border border-white/10 text-white/60 hover:text-white"
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActive(cat.id)}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                active === cat.id
+                  ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-neon-pink-sm"
+                  : "glass border border-white/10 text-white/50 hover:text-white hover:border-white/20"
               }`}
             >
-              {cat}
-            </motion.button>
+              {cat.label}
+            </button>
           ))}
         </div>
 
         {/* Slider */}
         <motion.div
-          key={active}
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="glass-strong rounded-3xl p-4 md:p-6 border border-white/8"
         >
-          <SliderComparison pair={pairs[active]} />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.35 }}
+            >
+              <Slider category={category} />
+            </motion.div>
+          </AnimatePresence>
+
+          <p className="text-center text-white/25 text-xs mt-4">
+            Drag left &harr; right &bull; Touch supported
+          </p>
         </motion.div>
 
-        <p className="text-center text-white/30 text-xs mt-4">
-          ← Drag slider to compare →
-        </p>
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="text-center mt-10"
+        >
+          <a href="#booking" className="inline-flex items-center gap-2 text-neon-blue text-sm font-bold hover:text-white transition-colors duration-200 group">
+            Ready for your transformation?
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

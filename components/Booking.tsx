@@ -1,231 +1,224 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-type FormData = {
-  name: string;
-  phone: string;
-  email: string;
-  vehicle: string;
-  service: string;
-  address: string;
-  date: string;
-  notes: string;
-};
-
 const services = [
-  "Maintenance Detail",
-  "Full Interior Restoration",
-  "Paint Enhancement",
-  "Ceramic Coating",
-  "Custom Quote",
+  "Maintenance Detail — $99",
+  "Full Interior Restoration — $199",
+  "Paint Enhancement — $349",
+  "Ceramic Coating — $699+",
+  "Monthly Membership",
+  "Other / Not Sure",
 ];
 
 export default function Booking() {
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    phone: "",
-    email: "",
-    vehicle: "",
-    service: "",
-    address: "",
-    date: "",
-    notes: "",
-  });
   const [submitted, setSubmitted] = useState(false);
-
-  const update = (field: keyof FormData, value: string) =>
-    setForm((f) => ({ ...f, [field]: value }));
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 1200);
   };
 
-  const inputClass =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm outline-none transition-all duration-300 focus:border-neon-blue/60 focus:shadow-[0_0_0_2px_rgba(0,207,255,0.15)] focus:bg-white/8";
-
   return (
-    <section
-      id="booking"
-      className="section-pad bg-charcoal relative overflow-hidden"
-    >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-radial from-neon-pink/8 via-transparent to-transparent pointer-events-none" />
+    <section id="booking" className="section-pad bg-deep-black relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent" />
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-pink/5 rounded-full blur-[140px]" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-neon-blue/5 rounded-full blur-[140px]" />
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <p className="text-neon-pink text-sm font-semibold tracking-widest uppercase mb-3">
-            Get Started
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Ready To Transform
-            <br />
-            <span className="gradient-text">Your Vehicle?</span>
+          <p className="eyebrow text-neon-pink mb-4">Book A Detail</p>
+          <div className="section-line mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Request Your <span className="gradient-text">Premium Detail</span>
           </h2>
-          <p className="text-white/50">
-            Book your premium mobile detail today. We&apos;ll confirm within 2 hours.
+          <p className="text-white/45 text-base max-w-md mx-auto">
+            Fill out the form below and we&apos;ll confirm your appointment within 24 hours.
           </p>
         </motion.div>
 
-        {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="glass rounded-3xl p-12 border border-neon-green/40 text-center shadow-neon-green"
-          >
-            <div className="text-6xl mb-5">✅</div>
-            <h3 className="text-2xl font-black text-white mb-3">
-              Booking Received!
-            </h3>
-            <p className="text-white/60">
-              We&apos;ll reach out within 2 hours to confirm your appointment.
-              Get ready for a showroom-level detail.
-            </p>
-          </motion.div>
-        ) : (
-          <motion.form
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            onSubmit={handleSubmit}
-            className="glass rounded-3xl p-8 md:p-10 border border-white/10"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Full Name *
-                </label>
-                <input
-                  required
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => update("name", e.target.value)}
-                  placeholder="John Smith"
-                  className={inputClass}
-                />
-              </div>
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Phone *
-                </label>
-                <input
-                  required
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => update("phone", e.target.value)}
-                  placeholder="(903) 555-0000"
-                  className={inputClass}
-                />
-              </div>
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Email *
-                </label>
-                <input
-                  required
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => update("email", e.target.value)}
-                  placeholder="you@email.com"
-                  className={inputClass}
-                />
-              </div>
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Vehicle *
-                </label>
-                <input
-                  required
-                  type="text"
-                  value={form.vehicle}
-                  onChange={(e) => update("vehicle", e.target.value)}
-                  placeholder="2022 Ford F-150"
-                  className={inputClass}
-                />
-              </div>
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Service *
-                </label>
-                <select
-                  required
-                  value={form.service}
-                  onChange={(e) => update("service", e.target.value)}
-                  className={inputClass + " cursor-pointer"}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="glass-strong rounded-3xl border border-white/8 overflow-hidden"
+        >
+          {/* Top bar */}
+          <div className="h-1 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green" />
+
+          <div className="p-8 md:p-10">
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-center py-12"
                 >
-                  <option value="" className="bg-slate-900">
-                    Select a service
-                  </option>
-                  {services.map((s) => (
-                    <option key={s} value={s} className="bg-slate-900">
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Preferred Date *
-                </label>
-                <input
-                  required
-                  type="date"
-                  value={form.date}
-                  onChange={(e) => update("date", e.target.value)}
-                  className={inputClass + " [color-scheme:dark]"}
-                />
-              </div>
-            </div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="w-20 h-20 rounded-full bg-gradient-to-br from-neon-green/20 to-neon-blue/20 border border-neon-green/40 flex items-center justify-center mx-auto mb-6"
+                  >
+                    <svg className="w-10 h-10 text-neon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </motion.div>
+                  <h3 className="text-2xl font-black text-white mb-3">Request Received!</h3>
+                  <p className="text-white/55 max-w-sm mx-auto text-sm leading-relaxed">
+                    We&apos;ll confirm your appointment within 24 hours. Check your phone for a text from us. We can&apos;t wait to transform your ride.
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
+                  {/* Personal info */}
+                  <div>
+                    <p className="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Your Info</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="group">
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Full Name *</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="John Smith"
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Phone *</label>
+                        <input
+                          required
+                          type="tel"
+                          placeholder="(903) 555-0000"
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-            <div className="mb-4">
-              <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                Service Address *
-              </label>
-              <input
-                required
-                type="text"
-                value={form.address}
-                onChange={(e) => update("address", e.target.value)}
-                placeholder="123 Main St, Tyler, TX 75701"
-                className={inputClass}
-              />
-            </div>
+                  {/* Vehicle info */}
+                  <div>
+                    <p className="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Vehicle &amp; Service</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Vehicle *</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="2022 Ford F-150"
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Service *</label>
+                        <select
+                          required
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200 appearance-none"
+                          style={{ colorScheme: "dark" }}
+                        >
+                          <option value="" className="bg-[#0c0c18]">Select a service...</option>
+                          {services.map((s) => (
+                            <option key={s} value={s} className="bg-[#0c0c18]">{s}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
-            <div className="mb-8">
-              <label className="block text-white/50 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                Additional Notes
-              </label>
-              <textarea
-                rows={3}
-                value={form.notes}
-                onChange={(e) => update("notes", e.target.value)}
-                placeholder="Any specific concerns, requests, or details about your vehicle..."
-                className={inputClass + " resize-none"}
-              />
-            </div>
+                  {/* Scheduling */}
+                  <div>
+                    <p className="text-xs font-semibold text-white/30 uppercase tracking-wider mb-4">Scheduling</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Preferred Date *</label>
+                        <input
+                          required
+                          type="date"
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200"
+                          style={{ colorScheme: "dark" }}
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-white/50 mb-1.5 block">Service Location *</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Tyler, TX (address or area)"
+                          className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative overflow-hidden w-full py-4 rounded-2xl font-bold text-lg text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink group"
-            >
-              <span className="relative z-10">Book My Premium Detail →</span>
-              <span className="absolute inset-0 -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700 bg-white/20 w-1/3" />
-            </motion.button>
+                  {/* Notes */}
+                  <div>
+                    <label className="text-xs font-semibold text-white/50 mb-1.5 block">Additional Notes</label>
+                    <textarea
+                      rows={3}
+                      placeholder="Anything else we should know about your vehicle..."
+                      className="w-full bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-neon-blue/50 focus:shadow-neon-blue-sm transition-all duration-200 resize-none"
+                    />
+                  </div>
 
-            <p className="text-center text-white/25 text-xs mt-4">
-              No payment required to book. We&apos;ll contact you to confirm.
-            </p>
-          </motion.form>
-        )}
+                  {/* Trust line */}
+                  <div className="flex items-center gap-2 py-1">
+                    <svg className="w-4 h-4 text-neon-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span className="text-white/35 text-xs">No payment required &mdash; we confirm availability before scheduling.</span>
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    disabled={loading}
+                    whileHover={{ scale: loading ? 1 : 1.02 }}
+                    whileTap={{ scale: loading ? 1 : 0.98 }}
+                    className="relative w-full overflow-hidden group py-4 rounded-xl font-black text-base text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-200"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {loading ? (
+                        <>
+                          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          Sending Request...
+                        </>
+                      ) : (
+                        <>
+                          Request My Premium Detail
+                          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </>
+                      )}
+                    </span>
+                    <span className="absolute inset-0 -skew-x-12 translate-x-[-150%] group-hover:translate-x-[250%] transition-transform duration-700 bg-white/15 w-2/5 pointer-events-none" />
+                  </motion.button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
