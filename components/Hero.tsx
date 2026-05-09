@@ -35,12 +35,12 @@ const trustBadges = [
 
 function HeroCarShowpiece() {
   return (
-    <div className="pointer-events-none absolute right-[-8vw] top-[12%] hidden lg:flex w-[min(78vw,1100px)] items-start justify-end z-[1]">
+    <div className="pointer-events-none absolute right-[-10vw] top-[18%] hidden lg:flex w-[min(76vw,1000px)] items-start justify-end z-[1]">
       <motion.div
-        initial={{ opacity: 0, x: 160, scale: 0.88 }}
-        animate={{ opacity: 1, x: [110, 0, 18, 0], y: [18, 0, -8, 0], scale: [0.92, 1, 1.015, 1] }}
-        transition={{ duration: 2.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-[1040px]"
+        initial={{ opacity: 0, x: 140, scale: 0.90 }}
+        animate={{ opacity: 1, x: [80, 0, 12, 0], y: [12, 0, -6, 0], scale: [0.94, 1, 1.008, 1] }}
+        transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-[950px]"
       >
         <motion.div
           className="absolute bottom-[10%] left-[18%] right-[10%] h-20 rounded-full bg-neon-blue/20 blur-[62px]"
@@ -107,12 +107,22 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-deep-black pt-24 md:pt-28">
-      <div className="absolute inset-0 mesh-bg" />
-      <div className="absolute inset-0 speed-lines opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(255,255,255,0.08),transparent_45%)]" />
-      <div className="absolute top-[-12%] left-[-10%] w-[760px] h-[760px] rounded-full bg-neon-pink/15 blur-[180px]" />
-      <div className="absolute top-[5%] right-[-8%] w-[700px] h-[700px] rounded-full bg-neon-blue/12 blur-[170px]" />
-      <div className="absolute bottom-[-22%] left-[35%] w-[720px] h-[420px] rounded-full bg-neon-green/10 blur-[180px]" />
+      <div className="absolute inset-0 mesh-bg opacity-50" />
+      <div className="absolute inset-0 speed-lines opacity-30" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,207,255,0.08)_0%,transparent_70%)]" />
+      
+      {/* Cinematic light atmosphere */}
+      <div className="absolute top-[-12%] left-[-10%] w-[760px] h-[760px] rounded-full bg-neon-pink/12 blur-[200px] opacity-70" />
+      <div className="absolute top-[5%] right-[-8%] w-[700px] h-[700px] rounded-full bg-neon-blue/10 blur-[180px] opacity-60" />
+      <div className="absolute bottom-[-22%] left-[35%] w-[720px] h-[420px] rounded-full bg-neon-green/8 blur-[200px] opacity-50" />
+      <div className="absolute top-[25%] right-[15%] w-[500px] h-[500px] rounded-full bg-neon-pink/8 blur-[180px] opacity-40" />
+      
+      {/* Cinematic fog and depth */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {PARTICLES.map((p) => (
@@ -158,9 +168,9 @@ export default function Hero() {
       <div className="absolute inset-x-0 bottom-[18%] pointer-events-none px-4">
         <motion.div
           initial={{ opacity: 0.1, y: 30 }}
-          animate={{ opacity: [0.18, 0.28, 0.18], y: [14, 0, 14] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="mx-auto w-[min(1120px,94vw)] h-[280px] md:h-[340px] rounded-[48%] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_30%,rgba(0,0,0,0.75)_100%)] shadow-[0_60px_120px_rgba(0,0,0,0.8)]"
+          animate={{ opacity: [0.12, 0.22, 0.12], y: [18, 0, 18] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="mx-auto w-[min(1120px,94vw)] h-[280px] md:h-[340px] rounded-[48%] border border-white/10 bg-[linear-gradient(180deg,rgba(0,207,255,0.08),rgba(255,0,127,0.03)_35%,rgba(0,0,0,0.85)_100%)] shadow-[0_80px_140px_rgba(0,0,0,0.85),0_0_0_1px_rgba(0,207,255,0.1)]"
         >
           <div className="w-full h-full rounded-[48%] carbon-overlay light-pass" />
         </motion.div>
@@ -169,7 +179,7 @@ export default function Hero() {
       <HeroCarShowpiece />
 
       <div className="relative z-10 w-full px-5 md:px-8 pb-16">
-        <div className="mx-auto max-w-6xl lg:pr-[20rem] xl:pr-[22rem]">
+        <div className="mx-auto max-w-7xl lg:pr-[18rem] xl:pr-[20rem]">
           <motion.div
             variants={reveal}
             initial="hidden"
@@ -193,7 +203,7 @@ export default function Hero() {
           >
             <span className="block text-white">LUXURY MOBILE</span>
             <motion.span
-              className="block bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green bg-clip-text text-transparent"
+              className="block bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(0,207,255,0.4)]"
               initial={{ opacity: 0, filter: "blur(8px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ delay: 0.3, duration: 0.7 }}
@@ -218,7 +228,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + i * 0.08, duration: 0.5 }}
-              className="glass rounded-xl px-4 py-2.5 border border-white/10 flex items-center gap-2.5"
+              className="bg-black/30 backdrop-blur-md rounded-xl px-4 py-2.5 border border-white/12 hover:border-neon-pink/30 transition-all duration-300 flex items-center gap-2.5 hover:bg-black/40"
             >
               <span className="text-xl">{badge.icon}</span>
               <div>
@@ -256,7 +266,7 @@ export default function Hero() {
             href="sms:+19035550000"
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.96 }}
-            className="relative overflow-hidden rounded-2xl px-6 py-5 font-bold text-white/80 glass border border-white/10 hover:border-neon-green/40 transition-all duration-300 hidden sm:flex items-center justify-center gap-2"
+            className="relative overflow-hidden rounded-2xl px-6 py-5 font-bold text-white/85 bg-black/30 backdrop-blur-md border border-white/12 hover:border-neon-green/40 transition-all duration-300 hidden sm:flex items-center justify-center gap-2 hover:bg-black/40 hover:text-white/95"
           >
             <svg className="w-4 h-4 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -279,7 +289,7 @@ export default function Hero() {
                 hidden: { opacity: 0, y: 20 },
                 show: { opacity: 1, y: 0 },
               }}
-              className="group glass-strong rounded-2xl p-5 md:p-6 border border-white/15 hover:border-white/30 transition-all duration-300 cursor-default"
+              className="group bg-black/40 backdrop-blur-md rounded-2xl p-5 md:p-6 border border-white/12 hover:border-white/25 transition-all duration-300 cursor-default hover:bg-black/50 hover:shadow-[0_0_40px_rgba(0,207,255,0.15)]"
             >
               <div className={`text-3xl md:text-4xl font-black mb-2 ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
                 {s.value}
