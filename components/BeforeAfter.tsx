@@ -205,31 +205,23 @@ export default function BeforeAfter() {
         </div>
 
         <div className="grid lg:grid-cols-[1.05fr_2fr] gap-6 lg:gap-8 items-start">
-          <div className="glass-strong rounded-3xl p-5 md:p-6 border border-white/12">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/45 font-semibold mb-4">Transformation Types</p>
-            <div className="flex flex-wrap lg:flex-col gap-2.5">
-              {categories.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActive(item.id)}
-                  className={`text-left px-4 py-3 rounded-xl text-xs md:text-sm font-bold transition-all duration-250 flex items-center gap-3 ${
-                    active === item.id
-                      ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-neon-pink-sm"
-                      : "glass border border-white/10 text-white/60 hover:text-white hover:border-neon-blue/30"
-                  }`}
-                >
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-white/10 text-[10px] tracking-wider font-black">{item.icon}</span>
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-5 rounded-2xl p-4 bg-white/[0.03] border border-white/8">
-              <p className="text-[11px] text-white/40 uppercase tracking-wider">Conversion Signal</p>
-              <p className="mt-2 text-sm text-white/65 leading-relaxed">
-                Shoppers trust visible outcomes. This section helps prospects feel the difference before they request a quote.
-              </p>
-            </div>
+          <div className="flex flex-col gap-3">
+            {categories.map((item) => (
+              <motion.button
+                key={item.id}
+                whileHover={{ scale: 1.02, x: 4 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => setActive(item.id)}
+                className={`text-left px-5 py-3.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-250 flex items-center gap-3 ${
+                  active === item.id
+                    ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-[0_0_30px_rgba(255,0,127,0.4)]"
+                    : "bg-black/30 backdrop-blur-md border border-white/15 text-white/70 hover:text-white hover:border-neon-blue/40 hover:bg-black/50"
+                }`}
+              >
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-[10px] tracking-wider font-black">{item.icon}</span>
+                <span>{item.label}</span>
+              </motion.button>
+            ))}
           </div>
 
           <div className="glass-strong rounded-[2rem] p-3 md:p-5 border border-white/12">
