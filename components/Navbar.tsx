@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import logoImage from "../logo.png";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -36,17 +38,14 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-neon-pink via-neon-pink/80 to-neon-blue flex items-center justify-center shadow-neon-pink-sm">
-            <span className="text-white font-black text-base leading-none">A</span>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-black text-white text-base tracking-tight">
-              A&amp;S <span className="gradient-text">Mobile</span>
-            </span>
-            <span className="text-[9px] text-white/30 tracking-[0.15em] uppercase font-medium">
-              Detail &middot; Tyler TX
-            </span>
+        <Link href="/" className="group relative shrink-0">
+          <div className="relative w-[170px] lg:w-[190px] rounded-xl border border-white/10 bg-black/25 p-1.5 lg:p-2 backdrop-blur-sm transition-all duration-300 group-hover:border-neon-pink/45 group-hover:shadow-neon-pink-sm">
+            <Image
+              src={logoImage}
+              alt="A&S Mobile Detail logo"
+              className="h-auto w-full"
+              priority
+            />
           </div>
         </Link>
 
