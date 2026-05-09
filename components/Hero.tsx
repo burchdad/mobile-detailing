@@ -30,6 +30,201 @@ const trustBadges = [
   { icon: "⚡", text: "Mobile Service", sub: "We Come To You" },
 ];
 
+function HeroCarShowpiece() {
+  return (
+    <div className="pointer-events-none absolute right-[-8vw] top-[17%] hidden lg:flex w-[min(76vw,1040px)] items-start justify-end z-[1]">
+      <motion.div
+        initial={{ opacity: 0, x: 160, scale: 0.88 }}
+        animate={{ opacity: 1, x: [110, 0, 18, 0], y: [18, 0, -8, 0], scale: [0.92, 1, 1.015, 1] }}
+        transition={{ duration: 2.1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-[980px]"
+      >
+        <motion.div
+          className="absolute bottom-[13%] left-[16%] right-[7%] h-16 rounded-full bg-neon-blue/24 blur-[54px]"
+          animate={{ opacity: [0.2, 0.38, 0.24], scaleX: [0.9, 1.08, 1] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.svg
+          viewBox="0 0 1040 520"
+          className="w-full h-auto overflow-visible drop-shadow-[0_24px_120px_rgba(0,0,0,0.75)]"
+          animate={{ x: [0, -10, 0], y: [0, -4, 0] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="carBody" x1="0%" y1="0%" x2="100%" y2="70%">
+              <stop offset="0%" stopColor="#0d1725" />
+              <stop offset="18%" stopColor="#19304a" />
+              <stop offset="52%" stopColor="#22476b" />
+              <stop offset="76%" stopColor="#0b1522" />
+              <stop offset="100%" stopColor="#04060b" />
+            </linearGradient>
+            <linearGradient id="carHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ff007f" stopOpacity="0.9" />
+              <stop offset="48%" stopColor="#70caff" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#00cfff" stopOpacity="0.35" />
+            </linearGradient>
+            <linearGradient id="windowTint" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0b2034" />
+              <stop offset="100%" stopColor="#050b13" />
+            </linearGradient>
+            <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#8fd9ff" stopOpacity="0.45" />
+              <stop offset="65%" stopColor="#00cfff" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#00cfff" stopOpacity="0" />
+            </radialGradient>
+            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <ellipse cx="585" cy="420" rx="360" ry="24" fill="rgba(3,7,16,0.72)" />
+
+          <motion.g
+            animate={{ x: [0, -10, 0], y: [0, -6, 0] }}
+            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ellipse cx="354" cy="378" rx="88" ry="88" fill="url(#wheelGlow)" />
+            <ellipse cx="776" cy="378" rx="90" ry="90" fill="url(#wheelGlow)" />
+
+            <path
+              d="M102 330C145 326 194 312 242 272C292 230 354 178 436 152C541 118 650 124 752 170C836 208 906 256 952 320C970 346 968 364 940 365H840C823 365 810 358 802 343C780 302 740 276 690 276H442C390 276 344 304 318 346C310 359 296 365 279 365H122C92 365 82 346 102 330Z"
+              fill="url(#carBody)"
+            />
+            <path
+              d="M196 300C240 286 279 260 336 211C388 168 492 132 646 144C723 150 799 185 875 248C901 270 919 288 932 302"
+              fill="none"
+              stroke="url(#carHighlight)"
+              strokeWidth="5"
+              strokeLinecap="round"
+              filter="url(#softGlow)"
+            />
+            <path
+              d="M348 257C417 226 492 211 598 211C709 211 795 229 882 267"
+              fill="none"
+              stroke="rgba(255,255,255,0.12)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M286 269C329 231 378 193 436 168C496 141 587 134 668 146C720 154 779 177 838 223L716 226C686 226 661 216 644 198L605 157C598 149 587 145 576 146C514 149 463 162 423 186C388 206 355 231 322 262L286 269Z"
+              fill="url(#windowTint)"
+              opacity="0.96"
+            />
+            <path
+              d="M362 210C412 177 486 158 574 156"
+              fill="none"
+              stroke="rgba(255,255,255,0.14)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M506 157L577 157C589 157 599 161 608 170L646 205C658 216 674 222 692 222H741"
+              fill="none"
+              stroke="rgba(255,255,255,0.18)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M194 318H318C344 318 363 303 373 280L386 252"
+              fill="none"
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M819 273C859 287 896 310 930 345"
+              fill="none"
+              stroke="rgba(255,255,255,0.12)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M130 339H263C283 339 299 326 305 307L310 293"
+              fill="none"
+              stroke="#ff007f"
+              strokeOpacity="0.55"
+              strokeWidth="4"
+              strokeLinecap="round"
+              filter="url(#softGlow)"
+            />
+            <path
+              d="M901 332L954 345"
+              fill="none"
+              stroke="#00cfff"
+              strokeOpacity="0.82"
+              strokeWidth="4"
+              strokeLinecap="round"
+              filter="url(#softGlow)"
+            />
+            <path
+              d="M316 349C352 302 395 279 453 279H684C738 279 779 298 806 339"
+              fill="none"
+              stroke="rgba(255,255,255,0.09)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M438 278C418 323 403 352 394 365"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M700 278C716 319 733 347 748 362"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+
+            <g>
+              <circle cx="354" cy="378" r="64" fill="#070b12" />
+              <circle cx="354" cy="378" r="50" fill="#0d1725" stroke="rgba(255,255,255,0.16)" strokeWidth="2" />
+              <circle cx="354" cy="378" r="22" fill="#121e2d" stroke="#6ecbff" strokeOpacity="0.45" strokeWidth="3" />
+              <path d="M354 324V432M300 378H408M316 340L392 416M392 340L316 416" stroke="rgba(255,255,255,0.18)" strokeWidth="5" strokeLinecap="round" />
+            </g>
+
+            <g>
+              <circle cx="776" cy="378" r="66" fill="#070b12" />
+              <circle cx="776" cy="378" r="51" fill="#0d1725" stroke="rgba(255,255,255,0.16)" strokeWidth="2" />
+              <circle cx="776" cy="378" r="22" fill="#121e2d" stroke="#6ecbff" strokeOpacity="0.45" strokeWidth="3" />
+              <path d="M776 322V434M720 378H832M736 340L816 416M816 340L736 416" stroke="rgba(255,255,255,0.18)" strokeWidth="5" strokeLinecap="round" />
+            </g>
+
+            <motion.path
+              d="M218 324C243 315 267 307 292 304"
+              fill="none"
+              stroke="#fff2f7"
+              strokeWidth="4"
+              strokeLinecap="round"
+              animate={{ opacity: [0.42, 1, 0.42] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+              filter="url(#softGlow)"
+            />
+            <motion.path
+              d="M882 310C906 314 926 320 945 330"
+              fill="none"
+              stroke="#6fd6ff"
+              strokeWidth="4"
+              strokeLinecap="round"
+              animate={{ opacity: [0.35, 0.92, 0.35] }}
+              transition={{ duration: 2.9, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              filter="url(#softGlow)"
+            />
+          </motion.g>
+        </motion.svg>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const reveal = {
     hidden: { opacity: 0, y: 30 },
@@ -97,8 +292,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      <HeroCarShowpiece />
+
       <div className="relative z-10 w-full px-5 md:px-8 pb-16">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl lg:pr-[20rem] xl:pr-[22rem]">
           <motion.div
             variants={reveal}
             initial="hidden"
@@ -118,7 +315,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
-            className="text-[clamp(2.8rem,13vw,9rem)] font-black leading-[0.9] tracking-tight max-w-full"
+            className="relative z-20 text-[clamp(2.8rem,13vw,9rem)] font-black leading-[0.9] tracking-tight max-w-full"
           >
             <span className="block text-white">LUXURY MOBILE</span>
             <motion.span
@@ -131,18 +328,6 @@ export default function Hero() {
             </motion.span>
             <span className="block text-white">FOR PREMIUM DRIVERS</span>
           </motion.h1>
-
-          <motion.p
-            variants={reveal}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-7 md:mt-10 max-w-3xl text-white/65 text-base md:text-lg leading-relaxed font-light"
-          >
-            Showroom-level detailing. Ceramic protection. Paint restoration. Professional interior recovery.
-            <br className="hidden md:block" />
-            <span className="text-white/80 font-medium">Your vehicle deserves elite treatment.</span>
-          </motion.p>
         </div>
 
         {/* Trust Badges */}
@@ -191,21 +376,6 @@ export default function Hero() {
               Book Now
             </span>
             <span className="absolute inset-0 bg-white/20 -translate-x-[110%] group-hover:translate-x-[120%] transition-transform duration-700" />
-          </motion.a>
-
-          <motion.a
-            href="#before-after"
-            whileHover={{ y: -3, scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
-            className="group relative overflow-hidden rounded-2xl px-9 py-5 font-bold text-base md:text-lg text-white glass border border-white/20 hover:border-neon-blue/50 transition-all duration-300"
-          >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              View Transformations
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </span>
-            <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,207,255,0.2),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.a>
 
           <motion.a
