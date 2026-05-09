@@ -19,9 +19,15 @@ const STREAKS = [
 ];
 
 const stats = [
-  { value: "500+", label: "Cars Detailed", color: "neon-pink" },
-  { value: "5.0★", label: "Average Rating", color: "neon-blue" },
-  { value: "100%", label: "Satisfaction", color: "neon-green" },
+  { value: "500+", label: "Vehicles Transformed", color: "neon-pink" },
+  { value: "5.0★", label: "Elite Rated", color: "neon-blue" },
+  { value: "100%", label: "Satisfaction Rate", color: "neon-green" },
+];
+
+const trustBadges = [
+  { icon: "🛡️", text: "Fully Insured", sub: "Professional Protection" },
+  { icon: "✓", text: "Premium Products", sub: "Only The Best" },
+  { icon: "⚡", text: "Mobile Service", sub: "We Come To You" },
 ];
 
 export default function Hero() {
@@ -112,84 +118,129 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
-            className="lux-headline text-[clamp(3rem,14vw,9.5rem)] font-black leading-[0.85] max-w-7xl"
+            className="text-[clamp(2.8rem,13vw,9rem)] font-black leading-[0.9] tracking-tight max-w-full"
           >
-            <span className="block text-white">TURN HEADS</span>
+            <span className="block text-white">LUXURY MOBILE</span>
             <motion.span
-              className="block gradient-text"
+              className="block bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green bg-clip-text text-transparent"
               initial={{ opacity: 0, filter: "blur(8px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ delay: 0.35, duration: 0.7 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
             >
-              BEFORE YOU
+              DETAILING
             </motion.span>
-            <span className="block text-white">EVEN DRIVE</span>
+            <span className="block text-white">FOR PREMIUM DRIVERS</span>
           </motion.h1>
 
           <motion.p
             variants={reveal}
             initial="hidden"
             animate="show"
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="mt-6 md:mt-8 max-w-3xl text-white/70 text-lg md:text-xl leading-relaxed"
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="mt-7 md:mt-10 max-w-3xl text-white/65 text-base md:text-lg leading-relaxed font-light"
           >
-            Cinematic gloss. Surgical interior restoration. Paint depth that hits different under every light.
-            We bring the full premium detailing studio to your driveway.
+            Showroom-level detailing. Ceramic protection. Paint restoration. Professional interior recovery.
+            <br className="hidden md:block" />
+            <span className="text-white/80 font-medium">Your vehicle deserves elite treatment.</span>
           </motion.p>
         </div>
 
+        {/* Trust Badges */}
         <motion.div
           variants={reveal}
           initial="hidden"
           animate="show"
-          transition={{ delay: 0.6, duration: 0.7 }}
-          className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 max-w-2xl"
+          transition={{ delay: 0.65, duration: 0.7 }}
+          className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl"
+        >
+          {trustBadges.map((badge, i) => (
+            <motion.div
+              key={badge.text}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 + i * 0.08, duration: 0.5 }}
+              className="glass rounded-xl px-4 py-2.5 border border-white/10 flex items-center gap-2.5"
+            >
+              <span className="text-xl">{badge.icon}</span>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-wide text-white">{badge.text}</div>
+                <div className="text-[10px] text-white/40">{badge.sub}</div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Primary CTA Row */}
+        <motion.div
+          variants={reveal}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.8, duration: 0.7 }}
+          className="mt-12 md:mt-16 flex flex-col sm:flex-row sm:items-center gap-3 max-w-2xl"
         >
           <motion.a
             href="#booking"
-            whileHover={{ y: -4, scale: 1.03, rotateX: 4, rotateY: -4 }}
-            whileTap={{ scale: 0.97 }}
-            className="group relative isolate overflow-hidden rounded-2xl px-9 py-5 font-black text-lg md:text-xl text-white bg-[linear-gradient(140deg,#ff007f,#00cfff)] shadow-[0_20px_70px_rgba(255,0,127,0.4)]"
+            whileHover={{ y: -3, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            className="group relative isolate overflow-hidden rounded-2xl px-9 py-5 font-black text-base md:text-lg text-white bg-[linear-gradient(135deg,#ff007f_0%,#00cfff_100%)] shadow-[0_25px_80px_rgba(255,0,127,0.35)] hover:shadow-[0_30px_100px_rgba(255,0,127,0.45)] transition-shadow duration-300"
           >
-            <span className="relative z-10 flex items-center gap-2">
-              Book Your Premium Detail
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <span className="relative z-10 flex items-center justify-center gap-2 uppercase tracking-wider">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
+              Book Now
             </span>
-            <span className="absolute inset-0 bg-[linear-gradient(100deg,transparent_30%,rgba(255,255,255,0.45)_50%,transparent_70%)] -translate-x-[140%] group-hover:translate-x-[180%] transition-transform duration-700" />
+            <span className="absolute inset-0 bg-white/20 -translate-x-[110%] group-hover:translate-x-[120%] transition-transform duration-700" />
           </motion.a>
 
           <motion.a
             href="#before-after"
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="group relative overflow-hidden rounded-2xl px-9 py-5 font-bold text-lg text-white/90 glass border border-white/20 hover:border-neon-blue/60"
+            whileHover={{ y: -3, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            className="group relative overflow-hidden rounded-2xl px-9 py-5 font-bold text-base md:text-lg text-white glass border border-white/20 hover:border-neon-blue/50 transition-all duration-300"
           >
-            <span className="relative z-10">See The Transformation</span>
-            <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,207,255,0.28),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              View Transformations
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+            <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,207,255,0.2),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </motion.a>
+
+          <motion.a
+            href="tel:+19035550000"
+            whileHover={{ y: -3, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            className="relative overflow-hidden rounded-2xl px-6 py-5 font-bold text-white/80 glass border border-white/10 hover:border-neon-green/40 transition-all duration-300 hidden sm:flex items-center justify-center gap-2"
+          >
+            <svg className="w-4 h-4 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            Call
           </motion.a>
         </motion.div>
 
+        {/* Premium Stats Row */}
         <motion.div
-          variants={reveal}
           initial="hidden"
           animate="show"
-          transition={{ delay: 0.75, duration: 0.75 }}
-          className="mt-14 md:mt-16 grid grid-cols-3 gap-4 max-w-2xl"
+          transition={{ delay: 0.95, duration: 0.6, staggerChildren: 0.08 }}
+          className="mt-16 md:mt-20 grid grid-cols-3 gap-4 max-w-2xl"
         >
-          {stats.map((s, i) => (
+          {stats.map((s) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85 + i * 0.1, duration: 0.5 }}
-              className="lux-panel glass-strong rounded-2xl p-4 md:p-5 text-center"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 },
+              }}
+              className="group glass-strong rounded-2xl p-5 md:p-6 border border-white/15 hover:border-white/30 transition-all duration-300 cursor-default"
             >
-              <div className={`text-2xl md:text-3xl font-black ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
+              <div className={`text-3xl md:text-4xl font-black mb-2 ${s.color === "neon-pink" ? "neon-pink-text" : s.color === "neon-blue" ? "neon-blue-text" : "neon-green-text"}`}>
                 {s.value}
               </div>
-              <div className="mt-1.5 text-[11px] uppercase tracking-wide text-white/45 font-semibold">{s.label}</div>
+              <div className="text-xs uppercase tracking-widest text-white/50 font-semibold">{s.label}</div>
             </motion.div>
           ))}
         </motion.div>

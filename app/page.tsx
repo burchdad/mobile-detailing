@@ -10,6 +10,7 @@ import Membership from "@/components/Membership";
 import ServiceArea from "@/components/ServiceArea";
 import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
+import MobileCtaBar from "@/components/MobileCtaBar";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
       <ServiceArea />
       <Booking />
       <Footer />
+      <MobileCtaBar />
     </main>
   );
 }
