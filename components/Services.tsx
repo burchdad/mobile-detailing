@@ -2,77 +2,105 @@
 
 import { motion } from "framer-motion";
 
-const packages = [
+const services = [
   {
-    name: "Maintenance Detail",
-    tagline: "Keep it clean, keep it sharp.",
-    price: "$99",
-    per: "per visit",
+    name: "Exterior Detail",
+    tagline: "Deep gloss reset with wheel and trim recovery.",
+    start: "Starting at $129",
     color: "blue",
-    icon: "🧼",
+    icon: "EX",
     features: [
-      "Hand wash & dry",
-      "Wheel & tire cleaning",
-      "Window cleaning",
-      "Interior vacuum & wipe-down",
-      "Air freshener",
+      "Foam pre-wash and hand decontamination",
+      "Wheel faces, barrels, and tire restore",
+      "Trim, glass, and finish enhancer",
     ],
-    cta: "Book This Package",
-    note: null,
+    cta: "Book Exterior",
     popular: false,
   },
   {
-    name: "Full Interior Restoration",
-    tagline: "Deep clean, top to bottom.",
-    price: "$199",
-    per: "per visit",
+    name: "Interior Deep Clean",
+    tagline: "Extraction-level interior restoration.",
+    start: "Starting at $189",
     color: "pink",
-    icon: "🪑",
+    icon: "IN",
     features: [
-      "Full extraction shampoo",
-      "Leather conditioning",
-      "Dashboard & trim dressing",
-      "Odor elimination",
-      "Exterior wash included",
+      "Seat and carpet extraction",
+      "Leather, plastics, and trim conditioning",
+      "Odor neutralization and cabin reset",
     ],
-    cta: "Book This Package",
-    note: "Add ceramic coating for $299",
+    cta: "Book Interior",
     popular: false,
   },
   {
-    name: "Paint Enhancement",
-    tagline: "For drivers who care how it shows up.",
-    price: "$349",
-    per: "per visit",
+    name: "Full Detail",
+    tagline: "Complete in-and-out transformation package.",
+    start: "Starting at $259",
     color: "pink",
-    icon: "✨",
+    icon: "FD",
     features: [
-      "1-stage machine polish",
-      "Swirl & scratch removal",
-      "Gloss enhancement",
-      "Full interior restoration",
-      "Paint sealant application",
+      "Interior deep clean + exterior detail",
+      "Paint-safe contact wash and finishing",
+      "Mobile showroom-level final inspection",
     ],
-    cta: "Book This Package",
+    cta: "Book Full Detail",
     note: "Most booked premium service",
     popular: true,
   },
   {
-    name: "Ceramic Coating",
-    tagline: "Permanent protection. Liquid glass finish.",
-    price: "$699",
-    per: "starting",
-    color: "green",
-    icon: "🛡️",
+    name: "Paint Correction",
+    tagline: "Remove swirl marks and recover mirror depth.",
+    start: "Starting at $349",
+    color: "blue",
+    icon: "PC",
     features: [
-      "Full paint decontamination",
-      "1–2 stage paint correction",
-      "Professional ceramic application",
-      "2–5 year protection warranty",
-      "Hydrophobic water-repel coating",
+      "Single or multi-stage machine correction",
+      "Swirl, haze, and oxidation reduction",
+      "Gloss and clarity optimization",
     ],
-    cta: "Get a Custom Quote",
-    note: "Price varies by vehicle size",
+    cta: "Book Correction",
+    popular: false,
+  },
+  {
+    name: "Ceramic Coating",
+    tagline: "Long-term hydrophobic paint protection.",
+    start: "Starting at $699",
+    color: "green",
+    icon: "CC",
+    features: [
+      "Paint prep and surface decontamination",
+      "Professional ceramic application",
+      "2-5 year protection options",
+    ],
+    cta: "Get Ceramic Quote",
+    note: "Best paired with paint correction",
+    popular: false,
+  },
+  {
+    name: "Fleet Detailing",
+    tagline: "Consistent brand-clean vehicles at scale.",
+    start: "Custom fleet pricing",
+    color: "blue",
+    icon: "FL",
+    features: [
+      "Recurring multi-vehicle scheduling",
+      "Standardized quality checklist",
+      "Business-friendly time windows",
+    ],
+    cta: "Request Fleet Plan",
+    popular: false,
+  },
+  {
+    name: "Maintenance Plans",
+    tagline: "Never let your finish fall off again.",
+    start: "From $79/mo",
+    color: "green",
+    icon: "MP",
+    features: [
+      "Monthly or bi-weekly upkeep options",
+      "Priority scheduling and member rates",
+      "Consistent gloss and interior freshness",
+    ],
+    cta: "View Membership",
     popular: false,
   },
 ];
@@ -83,21 +111,21 @@ const colorMap = {
     border: "border-neon-pink/30",
     hover: "hover:border-neon-pink/50 hover:shadow-neon-pink-sm",
     badge: "bg-neon-pink/15 text-neon-pink border border-neon-pink/30",
-    price: "gradient-text",
+    heading: "gradient-text",
   },
   blue: {
     accent: "from-neon-blue to-neon-pink",
     border: "border-neon-blue/20",
     hover: "hover:border-neon-blue/40 hover:shadow-neon-blue-sm",
     badge: "bg-neon-blue/15 text-neon-blue border border-neon-blue/30",
-    price: "neon-blue-text",
+    heading: "neon-blue-text",
   },
   green: {
     accent: "from-neon-green to-neon-blue",
     border: "border-neon-green/20",
     hover: "hover:border-neon-green/40 hover:shadow-neon-green-sm",
     badge: "bg-neon-green/15 text-neon-green border border-neon-green/30",
-    price: "neon-green-text",
+    heading: "neon-green-text",
   },
 };
 
@@ -124,10 +152,10 @@ export default function Services() {
             <p className="eyebrow text-neon-pink mb-4">Service Packages</p>
             <div className="section-line mb-6" />
             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl">
-              Built for Every Driver
+              Premium Service Menu
             </h2>
             <p className="text-white/52 max-w-3xl text-lg md:text-xl leading-relaxed">
-              From quick maintenance to full paint correction &mdash; every package delivers studio-level results at your location.
+              Seven elite service tracks engineered for drivers who demand finish quality, convenience, and repeatable results.
             </p>
           </motion.div>
         </div>
@@ -137,25 +165,17 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6 w-full"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full"
         >
-          {packages.map((pkg, index) => {
-            const c = colorMap[pkg.color as keyof typeof colorMap];
-            const layout =
-              index === 0
-                ? "xl:col-span-5"
-                : index === 1
-                  ? "xl:col-span-3 xl:translate-y-6"
-                  : index === 2
-                    ? "xl:col-span-4"
-                    : "xl:col-span-6 xl:-translate-y-5";
+          {services.map((service) => {
+            const c = colorMap[service.color as keyof typeof colorMap];
 
             return (
               <motion.div
-                key={pkg.name}
+                key={service.name}
                 variants={item}
                 whileHover={{ y: -12, scale: 1.02 }}
-                className={`shine-card relative overflow-hidden rounded-3xl border transition-all duration-300 flex flex-col min-h-[420px] group ${layout} ${c.border} ${c.hover}`}
+                className={`shine-card relative overflow-hidden rounded-3xl border transition-all duration-300 flex flex-col min-h-[370px] group ${c.border} ${c.hover}`}
               >
                 {/* Premium glassmorphism background */}
                 <div className="absolute inset-0 glass-strong" />
@@ -164,10 +184,10 @@ export default function Services() {
                 <div className="absolute inset-0 opacity-40 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
                 
                 {/* Color-specific glow on hover */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 ${pkg.popular ? 'bg-gradient-to-br from-neon-pink/20 to-transparent' : pkg.color === 'blue' ? 'bg-gradient-to-br from-neon-blue/20 to-transparent' : 'bg-gradient-to-br from-neon-green/20 to-transparent'}`} />
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 ${service.popular ? "bg-gradient-to-br from-neon-pink/20 to-transparent" : service.color === "blue" ? "bg-gradient-to-br from-neon-blue/20 to-transparent" : "bg-gradient-to-br from-neon-green/20 to-transparent"}`} />
 
                 {/* Popular badge */}
-                {pkg.popular && (
+                {service.popular && (
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -184,21 +204,21 @@ export default function Services() {
                 {/* Content */}
                 <div className="relative z-10 p-6 md:p-7 flex flex-col h-full">
                   {/* Icon and header */}
-                  <div className="mb-6">
-                    <div className="text-4xl mb-3">{pkg.icon}</div>
-                    <h3 className="text-xl md:text-2xl font-black text-white mb-2 leading-tight">{pkg.name}</h3>
-                    <p className="text-sm text-white/50 max-w-[34ch]">{pkg.tagline}</p>
+                  <div className="mb-4">
+                    <div className="inline-flex w-11 h-11 rounded-xl bg-white/10 border border-white/15 items-center justify-center text-[11px] tracking-[0.16em] font-black text-white/80 mb-3">
+                      {service.icon}
+                    </div>
+                    <h3 className={`text-xl md:text-2xl font-black mb-2 leading-tight ${c.heading}`}>{service.name}</h3>
+                    <p className="text-sm text-white/50 max-w-[34ch]">{service.tagline}</p>
                   </div>
 
-                  {/* Price */}
-                  <div className="mb-7 flex items-end gap-2">
-                    <span className={`text-5xl md:text-6xl font-black tracking-tight ${c.price}`}>{pkg.price}</span>
-                    <span className="text-white/40 text-xs pb-2 font-semibold">{pkg.per}</span>
+                  <div className="mb-5">
+                    <span className="text-xs uppercase tracking-[0.18em] text-white/40 font-semibold">{service.start}</span>
                   </div>
 
                   {/* Features */}
-                  <ul className="flex-1 space-y-3 mb-6">
-                    {pkg.features.map((f) => (
+                  <ul className="flex-1 space-y-2.5 mb-5">
+                    {service.features.map((f) => (
                       <li key={f} className="flex items-start gap-3 text-sm text-white/70">
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${c.badge}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -211,9 +231,9 @@ export default function Services() {
                   </ul>
 
                   {/* Note */}
-                  {pkg.note && (
+                  {service.note && (
                     <p className={`text-xs font-bold mb-5 px-3 py-2 rounded-xl text-center ${c.badge}`}>
-                      {pkg.note}
+                      {service.note}
                     </p>
                   )}
 
@@ -224,7 +244,7 @@ export default function Services() {
                     whileTap={{ scale: 0.95 }}
                     className={`block text-center py-4 px-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r ${c.accent} shadow-[0_15px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-300 uppercase tracking-wide`}
                   >
-                    {pkg.cta}
+                    {service.cta}
                   </motion.a>
                 </div>
               </motion.div>
@@ -240,7 +260,7 @@ export default function Services() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="text-center text-white/30 text-sm mt-10"
         >
-          Not sure which to choose? <a href="#booking" className="text-neon-blue hover:underline">Book a consultation</a> &mdash; we&apos;ll recommend the right package for your vehicle.
+          Not sure where to start? <a href="#booking" className="text-neon-blue hover:underline">Request a guided quote</a> and we&apos;ll map the right service path for your vehicle.
         </motion.p>
       </div>
     </section>

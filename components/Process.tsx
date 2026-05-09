@@ -10,8 +10,8 @@ const steps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
-    title: "Book Online",
-    desc: "Choose your service, pick a date, tell us where you are. Done in under 2 minutes.",
+    title: "Schedule",
+    desc: "Pick a package, date, and location in under two minutes.",
     color: "pink",
   },
   {
@@ -22,8 +22,8 @@ const steps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    title: "We Come To You",
-    desc: "Our team arrives at your home, office, or any location in East Texas.",
+    title: "Arrival",
+    desc: "Our mobile team arrives at your driveway, office, or garage.",
     color: "blue",
   },
   {
@@ -33,8 +33,8 @@ const steps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
       </svg>
     ),
-    title: "Vehicle Inspection",
-    desc: "We assess your vehicle&apos;s condition and customize the service to get the best result.",
+    title: "Inspection",
+    desc: "We evaluate paint, trim, and interior condition before starting.",
     color: "green",
   },
   {
@@ -44,8 +44,8 @@ const steps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
     ),
-    title: "Premium Detail",
-    desc: "We execute the full treatment using professional products and proven techniques.",
+    title: "Restoration",
+    desc: "Deep-cleaning, correction, and precision detailing bring everything back.",
     color: "pink",
   },
   {
@@ -55,8 +55,19 @@ const steps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
+    title: "Protection",
+    desc: "Sealants or ceramic layers lock in gloss and defend your finish.",
+    color: "blue",
+  },
+  {
+    number: "06",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     title: "Final Walkthrough",
-    desc: "We walk through every detail with you. You&apos;re not satisfied until we&apos;re done.",
+    desc: "We review the finish with you and confirm every detail is right.",
     color: "blue",
   },
 ];
@@ -91,16 +102,16 @@ export default function Process() {
             From Booking to Brilliance
           </h2>
           <p className="text-white/45 max-w-md mx-auto text-base">
-            Five steps. Zero effort on your end. Studio-level finish every time.
+            Six steps. Zero hassle. Studio-level results delivered at your location.
           </p>
         </motion.div>
 
         {/* Steps — desktop: horizontal with connecting line */}
         <div className="relative">
           {/* Connecting track */}
-          <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-px bg-gradient-to-r from-neon-pink/30 via-neon-blue/50 to-neon-green/30" />
+          <div className="hidden xl:block absolute top-[52px] left-[7%] right-[7%] h-px bg-gradient-to-r from-neon-pink/30 via-neon-blue/55 to-neon-green/30" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-6">
             {steps.map((step, i) => {
               const c = colorMap[step.color as keyof typeof colorMap];
               return (

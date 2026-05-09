@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const serviceLinks = [
-  "Maintenance Detail",
-  "Full Interior Restoration",
-  "Paint Enhancement",
-  "Ceramic Coating",
-  "Monthly Membership",
+  { label: "Exterior Detail", href: "#services" },
+  { label: "Interior Deep Clean", href: "#services" },
+  { label: "Paint Correction", href: "#services" },
+  { label: "Ceramic Coating Page", href: "/ceramic-coating" },
+  { label: "Fleet Detailing Page", href: "/fleet-detailing" },
 ];
 
 export default function Footer() {
@@ -48,10 +48,10 @@ export default function Footer() {
           <div className="glass rounded-3xl border border-white/10 p-6">
             <h3 className="text-xs font-bold text-white/50 tracking-widest uppercase mb-5">Services</h3>
             <ul className="space-y-2.5">
-              {serviceLinks.map((s) => (
-                <li key={s}>
-                  <a href="#services" className="text-white/45 text-sm hover:text-white hover:text-neon-blue transition-colors duration-200">
-                    {s}
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-white/45 text-sm hover:text-white hover:text-neon-blue transition-colors duration-200">
+                    {link.label}
                   </a>
                 </li>
               ))}
