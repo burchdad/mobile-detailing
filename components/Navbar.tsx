@@ -28,10 +28,10 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 pt-3 md:pt-4"
+      className="fixed top-0 left-0 right-0 z-50 px-0 pt-3 md:pt-4"
     >
       <div
-        className={`max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-2 md:py-3 rounded-2xl transition-all duration-500 ${
+        className={`w-full flex items-center justify-between px-4 md:px-6 lg:px-8 py-2 md:py-3 rounded-none transition-all duration-500 ${
           scrolled
             ? "bg-black/40 backdrop-blur-md border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.6),0_0_0_1px_rgba(0,207,255,0.08),0_0_60px_rgba(0,207,255,0.15)]"
             : "bg-black/20 backdrop-blur-sm border border-white/5"
@@ -119,7 +119,7 @@ export default function Navbar() {
         initial={false}
         animate={{ height: menuOpen ? "auto" : 0, opacity: menuOpen ? 1 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden max-w-7xl mx-auto mt-2 px-4 md:px-6"
+        className="md:hidden overflow-hidden w-full mt-2 px-4 md:px-6"
       >
         <div className="bg-black/40 backdrop-blur-md rounded-2xl px-4 py-4 border border-white/8 flex flex-col gap-1">
           {navLinks.map((link) => (

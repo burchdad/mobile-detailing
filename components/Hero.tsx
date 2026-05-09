@@ -107,7 +107,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-deep-black pt-24 md:pt-28">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-deep-black pt-32 md:pt-36">
       <div className="absolute inset-0 mesh-bg opacity-50" />
       <div className="absolute inset-0 speed-lines opacity-30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,207,255,0.08)_0%,transparent_70%)]" />
