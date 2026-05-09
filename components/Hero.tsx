@@ -8,11 +8,12 @@ const PARTICLES = Array.from({ length: 55 }, (_, i) => ({
   id: i,
   x: (i * 19) % 100,
   y: (i * 31) % 100,
-  size: (i % 6) * 0.4 + 0.8,
-  driftX: i % 2 === 0 ? 28 : -22,
-  driftY: i % 3 === 0 ? -16 : 12,
-  opacity: (i % 5) * 0.08 + 0.22,
+  size: (i % 6) * 0.4 + 0.6,
+  driftX: i % 2 === 0 ? 32 : -28,
+  driftY: i % 3 === 0 ? -20 : 16,
+  opacity: (i % 5) * 0.06 + 0.16,
   color: i % 3 === 0 ? "#ff007f" : i % 3 === 1 ? "#00cfff" : "#39ff14",
+  duration: 8 + (i % 4),
 }));
 
 const STREAKS = [
@@ -137,8 +138,8 @@ export default function Hero() {
               opacity: p.opacity,
               backgroundColor: p.color,
             }}
-            animate={{ x: [0, p.driftX, 0], y: [0, p.driftY, 0], opacity: [p.opacity, p.opacity + 0.18, p.opacity] }}
-            transition={{ duration: 7.5 + (p.id % 6), repeat: Infinity, ease: "easeInOut" }}
+            animate={{ x: [0, p.driftX, 0], y: [0, p.driftY, 0], opacity: [p.opacity, p.opacity + 0.14, p.opacity] }}
+            transition={{ duration: p.duration, repeat: Infinity, ease: "easeInOut" }}
           />
         ))}
       </div>
@@ -249,17 +250,21 @@ export default function Hero() {
         >
           <motion.a
             href="#booking"
-            whileHover={{ y: -3, scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
-            className="group relative isolate overflow-hidden rounded-2xl px-9 py-5 font-black text-base md:text-lg text-white bg-[linear-gradient(135deg,#ff007f_0%,#00cfff_100%)] shadow-[0_25px_80px_rgba(255,0,127,0.35)] hover:shadow-[0_30px_100px_rgba(255,0,127,0.45)] transition-shadow duration-300"
+            whileHover={{ y: -4, scale: 1.03 }}
+            whileTap={{ scale: 0.94 }}
+            className="group relative isolate overflow-hidden rounded-2xl px-8 md:px-10 py-4 md:py-5 font-black text-base md:text-lg text-white bg-[linear-gradient(135deg,#ff007f_0%,#00cfff_100%)] shadow-[0_25px_80px_rgba(255,0,127,0.35)] hover:shadow-[0_32px_120px_rgba(255,0,127,0.48)] transition-shadow duration-300"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2 uppercase tracking-wider">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="relative z-10 flex items-center justify-center gap-2.5 uppercase tracking-wider">
+              <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               Book Now
             </span>
-            <span className="absolute inset-0 bg-white/20 -translate-x-[110%] group-hover:translate-x-[120%] transition-transform duration-700" />
+            <motion.span
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-25"
+              animate={{ x: ["-120%", "120%"] }}
+              transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
+            />
           </motion.a>
 
           <motion.a
