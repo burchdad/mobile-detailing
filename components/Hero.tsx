@@ -179,8 +179,8 @@ export default function Hero() {
 
       <HeroCarShowpiece />
 
-      <div className="relative z-10 w-full px-5 md:px-8 pb-16">
-        <div className="mx-auto max-w-7xl lg:pr-[18rem] xl:pr-[20rem]">
+      <div className="relative z-10 w-full px-3 md:px-5 lg:px-6 pb-16">
+        <div className="w-full lg:pr-[18rem] xl:pr-[20rem]">
           <div className="mt-7 md:mt-8">
             <motion.h1
             initial={{ opacity: 0, y: 40 }}
