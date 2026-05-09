@@ -181,22 +181,8 @@ export default function Hero() {
 
       <div className="relative z-10 w-full px-5 md:px-8 pb-16">
         <div className="mx-auto max-w-7xl lg:pr-[18rem] xl:pr-[20rem]">
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            animate="show"
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2.5 glass-strong border border-white/20 rounded-full px-4 py-2 md:px-5 md:py-2.5"
-          >
-            <span className="w-2 h-2 rounded-full bg-neon-green animate-glow-pulse" />
-            <span className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-white/75 font-semibold">
-              Mobile Studio Detail Service Across East Texas
-            </span>
-          </motion.div>
-        </div>
-
-        <div className="mt-7 md:mt-8">
-          <motion.h1
+          <div className="mt-7 md:mt-8">
+            <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
@@ -213,7 +199,7 @@ export default function Hero() {
             </motion.span>
             <span className="block text-white">FOR PREMIUM DRIVERS</span>
           </motion.h1>
-        </div>
+          </div>
 
         {/* Trust Badges */}
         <motion.div
@@ -303,6 +289,7 @@ export default function Hero() {
             </motion.div>
           ))}
         </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-deep-black to-transparent pointer-events-none" />
