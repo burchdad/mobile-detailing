@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import carImage from "../car.png";
-import logoImage from "../logo.png";
 
 const particles = Array.from({ length: 34 }, (_, i) => ({
   id: i,
@@ -63,17 +62,6 @@ function HeroShowpiece() {
         ))}
 
         <motion.div
-          className="absolute right-[22%] top-[2%] z-20 w-[210px] xl:w-[250px]"
-          animate={{ y: [0, -9, 0], rotate: [0, 1.2, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="absolute inset-0 rounded-full bg-neon-pink/15 blur-[48px]" />
-          <div className="panel-edge relative overflow-hidden rounded-[1.5rem] border border-white/12 bg-black/40 p-3 backdrop-blur-md">
-            <Image src={logoImage} alt="A&S Mobile Detail logo" className="h-auto w-full" priority />
-          </div>
-        </motion.div>
-
-        <motion.div
           className="relative z-10"
           animate={{ x: [0, -7, 0], y: [0, -5, 0] }}
           transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
@@ -99,7 +87,7 @@ function HeroShowpiece() {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-deep-black pt-32 md:pt-36">
+    <section className="relative flex min-h-[112vh] items-center overflow-hidden bg-deep-black pt-44 md:pt-48">
       <div className="absolute inset-0 mesh-bg opacity-55" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.66)_42%,rgba(0,0,0,0.18)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-deep-black to-transparent" />
@@ -120,7 +108,7 @@ export default function Hero() {
 
       <HeroShowpiece />
 
-      <div className="relative z-10 w-full px-4 pb-16 md:px-6 lg:px-8">
+      <div className="relative z-10 w-full px-5 pb-20 md:px-8">
         <div className="max-w-[920px] lg:max-w-[760px] xl:max-w-[860px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -134,7 +122,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.9, ease: "easeOut" }}
-            className="text-[clamp(3.1rem,10vw,8.8rem)] font-black leading-[0.88] tracking-tight text-white"
+            className="max-w-5xl text-[clamp(3.5rem,9.4vw,8.7rem)] font-black leading-[0.88] tracking-tight text-white"
           >
             Automotive Care <span className="gradient-text block">Without</span> Compromise
           </motion.h1>
@@ -142,7 +130,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.75 }}
-            className="mt-7 max-w-2xl text-base leading-relaxed text-white/66 md:text-xl"
+            className="mt-8 max-w-2xl text-base leading-relaxed text-white/66 md:text-xl"
           >
             Professional mobile detailing, paint correction, ceramic coatings, and long-term appearance management for owners who expect their vehicle to be treated like an investment.
           </motion.p>
@@ -168,13 +156,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.58, duration: 0.65 }}
-            className="mt-10 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-12 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center"
           >
             <motion.a
               href="/assessment"
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.96 }}
-              className="group relative isolate overflow-hidden rounded-xl bg-gradient-to-r from-neon-pink to-neon-blue px-7 py-4 text-center text-sm font-black uppercase tracking-[0.14em] text-white shadow-neon-pink-sm"
+              className="group relative isolate overflow-hidden rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-7 py-4 text-center text-sm font-black uppercase tracking-[0.14em] text-white shadow-neon-pink-sm"
             >
               Get Your Vehicle Assessment
               <span className="absolute inset-0 -skew-x-12 translate-x-[-150%] bg-white/18 transition-transform duration-700 group-hover:translate-x-[250%]" />
@@ -183,7 +171,7 @@ export default function Hero() {
               href="#before-after"
               whileHover={{ y: -3, scale: 1.015 }}
               whileTap={{ scale: 0.97 }}
-              className="rounded-xl border border-white/14 bg-black/32 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white/78 backdrop-blur-md transition-colors hover:border-neon-pink/38 hover:text-white"
+              className="rounded-[6px] border border-white/12 bg-black/24 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white/72 backdrop-blur-md transition-colors hover:border-neon-pink/30 hover:text-white"
             >
               Explore Our Work
             </motion.a>
