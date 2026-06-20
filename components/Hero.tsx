@@ -171,7 +171,7 @@ export default function Hero() {
             className="mt-10 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center"
           >
             <motion.a
-              href="#booking"
+              href="/assessment"
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.96 }}
               className="group relative isolate overflow-hidden rounded-xl bg-gradient-to-r from-neon-pink to-neon-blue px-7 py-4 text-center text-sm font-black uppercase tracking-[0.14em] text-white shadow-neon-pink-sm"

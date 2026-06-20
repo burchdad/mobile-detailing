@@ -72,7 +72,7 @@ export default function ServiceArea() {
             </div>
 
             <motion.a
-              href="#booking"
+              href="/assessment"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-neon-green to-neon-blue shadow-neon-green-sm text-sm"

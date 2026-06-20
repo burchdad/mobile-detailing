@@ -86,7 +86,7 @@ export default function Membership() {
                   </ul>
 
                   <a
-                    href="#booking"
+                    href="/assessment"
                     className={`mt-8 inline-flex w-full justify-center rounded-xl bg-gradient-to-r ${tier.accent} px-5 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white`}
                   >
                     Discuss This Plan

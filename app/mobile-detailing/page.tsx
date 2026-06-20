@@ -63,10 +63,10 @@ export default function MobileDetailingIndexPage() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
-                href="/#booking"
+                href="/assessment"
                 className="px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm"
               >
-                Book Mobile Detail
+                Request Assessment
               </a>
               <a
                 href="/#services"

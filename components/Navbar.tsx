@@ -7,11 +7,12 @@ import { useState, useEffect } from "react";
 import logoImage from "../logo.png";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Results", href: "#before-after" },
-  { label: "Membership", href: "#membership" },
-  { label: "Journal", href: "#journal" },
-  { label: "Area", href: "#service-area" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Results", href: "/results" },
+  { label: "Membership", href: "/membership" },
+  { label: "Journal", href: "/journal" },
+  { label: "Area", href: "/service-area" },
 ];
 
 export default function Navbar() {
@@ -84,7 +85,7 @@ export default function Navbar() {
           </motion.a>
 
           <motion.a
-            href="#booking"
+            href="/assessment"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             className="relative overflow-hidden group px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold text-xs md:text-sm text-white bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink shadow-[0_0_20px_rgba(255,0,127,0.3)] hover:shadow-[0_0_40px_rgba(255,0,127,0.5)] transition-all duration-500"
@@ -135,7 +136,7 @@ export default function Navbar() {
             </motion.a>
           ))}
           <motion.a
-            href="#booking"
+            href="/assessment"
             onClick={() => setMenuOpen(false)}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.96 }}

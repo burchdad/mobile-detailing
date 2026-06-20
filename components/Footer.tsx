@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const serviceLinks = [
-  { label: "Signature Detail", href: "#services" },
-  { label: "Interior Preservation", href: "#services" },
-  { label: "Paint Correction", href: "#services" },
-  { label: "Ceramic Coating Page", href: "/ceramic-coating" },
-  { label: "Fleet Detailing Page", href: "/fleet-detailing" },
+  { label: "Mobile Detailing", href: "/services/mobile-detailing" },
+  { label: "Interior Restoration", href: "/services/interior-restoration" },
+  { label: "Paint Correction", href: "/services/paint-correction" },
+  { label: "Ceramic Coatings", href: "/services/ceramic-coatings" },
+  { label: "Fleet Care", href: "/services/fleet-care" },
 ];
 
 export default function Footer() {
@@ -56,6 +56,18 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <div className="mt-6 border-t border-white/5 pt-5">
+              {[
+                ["About Steve", "/about"],
+                ["Results", "/results"],
+                ["Journal", "/journal"],
+                ["FAQ", "/faq"],
+              ].map(([label, href]) => (
+                <a key={href} href={href} className="mb-2 block text-sm text-white/36 transition-colors hover:text-white">
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Contact */}

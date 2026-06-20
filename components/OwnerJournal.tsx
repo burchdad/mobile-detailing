@@ -55,7 +55,7 @@ export default function OwnerJournal() {
               {journal.map((title, index) => (
                 <motion.a
                   key={title}
-                  href="#booking"
+                  href="/journal"
                   whileHover={{ x: 6 }}
                   className="flex items-center justify-between rounded-xl border border-white/10 bg-black/30 p-5 text-white/78 backdrop-blur transition-colors hover:border-neon-pink/35 hover:text-white"
                 >

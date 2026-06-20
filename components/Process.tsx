@@ -151,7 +151,7 @@ export default function Process() {
           className="text-center mt-14"
         >
           <motion.a
-            href="#booking"
+            href="/assessment"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm"

@@ -9,11 +9,9 @@ import OwnerJournal from "@/components/OwnerJournal";
 import Testimonials from "@/components/Testimonials";
 import Membership from "@/components/Membership";
 import ServiceArea from "@/components/ServiceArea";
-import CityCoverage from "@/components/CityCoverage";
-import Booking from "@/components/Booking";
-import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import MobileCtaBar from "@/components/MobileCtaBar";
+import { FinalLuxuryCta } from "@/components/BrandPlatform";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -74,9 +72,7 @@ export default function Home() {
       <Testimonials />
       <Membership />
       <ServiceArea />
-      <CityCoverage />
-      <Booking />
-      <Faq />
+      <FinalLuxuryCta />
       <Footer />
       <MobileCtaBar />
     </main>

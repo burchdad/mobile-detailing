@@ -45,7 +45,7 @@ export default function MobileCtaBar() {
 
           {/* Book - Primary CTA */}
           <motion.a
-            href="#booking"
+            href="/assessment"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.92 }}
             className="flex-1 flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl font-bold text-[10px] text-white bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink shadow-[0_0_20px_rgba(255,0,127,0.3)] hover:shadow-[0_0_32px_rgba(255,0,127,0.5)] uppercase tracking-wide transition-shadow duration-300"

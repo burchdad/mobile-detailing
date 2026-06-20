@@ -138,7 +138,7 @@ export default function Services() {
                 </ul>
 
                 <a
-                  href="#booking"
+                  href="/assessment"
                   className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-r ${service.accent} px-5 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition-transform hover:-translate-y-0.5`}
                 >
                   Request Assessment
