@@ -21,12 +21,20 @@ const faqs = [
     a: "If you want long-term gloss, easier maintenance, and better resistance against contaminants, ceramic coating is one of the highest-value upgrades for your vehicle finish.",
   },
   {
+    q: "What makes A&S different from a car wash?",
+    a: "A car wash is built for speed. A&S is built around inspection, paint-safe methods, interior preservation, finish protection, and a final walkthrough. The goal is to preserve the vehicle, not simply clean it.",
+  },
+  {
+    q: "Do you work on luxury, classic, lifted, or performance vehicles?",
+    a: "Yes. The service path is adjusted to the vehicle, finish condition, owner goals, and how the vehicle is stored and driven. Premium vehicles often benefit from correction, coating, and ongoing preservation planning.",
+  },
+  {
     q: "Do I have to pay when I submit a booking request?",
     a: "No. Booking requests are confirmation-first. We verify service details and availability with you before finalizing payment.",
   },
   {
     q: "Can I set up recurring maintenance?",
-    a: "Absolutely. Our membership plans keep your vehicle consistently clean and protected with priority scheduling and preferred pricing.",
+    a: "Absolutely. Vehicle Preservation Plans keep your vehicle consistently clean and protected with priority scheduling, ceramic-safe maintenance, and seasonal protection guidance.",
   },
 ];
 
@@ -50,7 +58,7 @@ export default function Faq() {
           >
             <p className="eyebrow text-neon-blue mb-4">Common Questions</p>
             <div className="section-line mx-auto mb-6" />
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">Everything Before You Book</h2>
+            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">Everything Before Your Assessment</h2>
             <p className="text-white/50 max-w-2xl mx-auto text-base md:text-lg">
               Quick answers about service timing, mobile setup, ceramic coating, and what to expect from your appointment.
             </p>

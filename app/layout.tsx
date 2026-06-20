@@ -11,21 +11,21 @@ const geistSans = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "A&S Mobile Detail | Elite Mobile Auto Detailing Tyler TX",
+  title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
   description:
-    "Premium mobile auto detailing in Tyler TX and East Texas. Ceramic coating, paint correction, interior restoration — delivered to your door. Book online today.",
+    "Luxury mobile detailing, paint correction, ceramic coatings, and vehicle preservation services for Tyler TX and East Texas owners who expect excellence.",
   keywords: [
     "mobile auto detailing Tyler TX",
     "car detailing Tyler TX",
     "ceramic coating Tyler TX",
-    "interior car detailing Tyler TX",
     "paint correction Tyler TX",
+    "vehicle preservation Tyler TX",
     "mobile detailing East Texas",
   ],
   openGraph: {
-    title: "A&S Mobile Detail | Elite Mobile Auto Detailing Tyler TX",
+    title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
     description:
-      "Showroom finish delivered to your door. Ceramic coating, paint correction & full detailing across East Texas.",
+      "Professional mobile detailing, paint correction, ceramic coatings, and long-term vehicle care across East Texas.",
     url: siteUrl,
     siteName: "A&S Mobile Detail",
     type: "website",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "A&S Mobile Detail | Elite Mobile Auto Detailing Tyler TX",
+    title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
     description:
-      "Premium mobile detailing in East Texas. Ceramic coating, paint correction, and interior restoration delivered to your driveway.",
+      "Luxury mobile detailing, ceramic coatings, paint correction, and vehicle preservation services in East Texas.",
   },
   robots: {
     index: true,
@@ -57,9 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${geistSans.variable} antialiased`}>{children}</body>
     </html>
   );
 }

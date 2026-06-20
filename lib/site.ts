@@ -1,4 +1,4 @@
-export const siteUrl = "https://mobile-detailing-sigma.vercel.app";
+export const siteUrl = "https://asdetailing.org";
 
 export const staticMarketingRoutes = [
   "/",

@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const serviceLinks = [
-  { label: "Exterior Detail", href: "#services" },
-  { label: "Interior Deep Clean", href: "#services" },
+  { label: "Signature Detail", href: "#services" },
+  { label: "Interior Preservation", href: "#services" },
   { label: "Paint Correction", href: "#services" },
   { label: "Ceramic Coating Page", href: "/ceramic-coating" },
   { label: "Fleet Detailing Page", href: "/fleet-detailing" },
@@ -30,13 +30,13 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-black text-white text-base leading-none">
-                  A&amp;S <span className="gradient-text">Mobile</span>
+              A&amp;S <span className="gradient-text">Detail</span>
                 </div>
                 <div className="text-[10px] text-white/30 tracking-[0.12em] uppercase mt-0.5">Detail &middot; Tyler TX</div>
               </div>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs mb-5">
-              Elite mobile auto detailing serving Tyler, TX and surrounding East Texas communities. Protection, gloss, and precision on every vehicle.
+              Premium mobile detailing and vehicle preservation serving Tyler, TX and surrounding East Texas communities. Protection, gloss, and precision on every vehicle.
             </p>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-neon-green animate-glow-pulse" />
@@ -94,7 +94,7 @@ export default function Footer() {
                 <div className="w-5 h-5 rounded-md bg-gradient-to-br from-neon-pink/60 to-neon-blue/60 flex items-center justify-center">
                   <span className="text-white font-black text-[9px]">G</span>
                 </div>
-                <span className="text-white/80 text-sm font-semibold tracking-wide">Ghost AI Solutions</span>
+                <span className="text-white/80 text-sm font-semibold tracking-wide">Ghost AI Partners</span>
               </motion.div>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} A&amp;S Mobile Detail. All rights reserved.
           </p>
           <p className="text-white/15 text-xs text-center">
-            Elite mobile auto detailing &bull; Tyler TX &bull; Serving East Texas since 2021
+            Premium vehicle preservation &bull; Tyler TX &bull; Serving East Texas since 2021
           </p>
         </div>
         </div>

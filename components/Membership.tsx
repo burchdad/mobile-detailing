@@ -4,185 +4,101 @@ import { motion } from "framer-motion";
 
 const tiers = [
   {
-    name: "Bronze",
-    tagline: "For daily drivers",
-    price: "$79",
-    period: "/mo",
-    color: "blue",
-    perks: [
-      "1 maintenance detail/month",
-      "Exterior wash & dry",
-      "Interior vacuum",
-      "Window cleaning",
-      "Priority scheduling",
-    ],
-    cta: "Start Bronze",
-    best: false,
+    name: "Silver Plan",
+    audience: "Daily-driver preservation",
+    price: "$99",
+    perks: ["Monthly maintenance detail", "Paint-safe wash process", "Interior touchpoint reset", "Priority seasonal scheduling"],
+    accent: "from-neon-blue to-neon-pink",
   },
   {
-    name: "Silver",
-    tagline: "For family vehicles",
-    price: "$139",
-    period: "/mo",
-    color: "pink",
-    perks: [
-      "2 details/month",
-      "Full interior & exterior",
-      "Leather conditioning",
-      "Tire dressing",
-      "10% off add-ons",
-      "First priority booking",
-    ],
-    cta: "Start Silver — Best Value",
-    best: true,
+    name: "Gold Plan",
+    audience: "Premium family and performance vehicles",
+    price: "$179",
+    perks: ["Two visits per month", "Ceramic-safe maintenance", "Leather and trim conditioning", "10% preferred-client add-on pricing", "First access appointment windows"],
+    accent: "from-neon-pink to-neon-blue",
+    featured: true,
   },
   {
-    name: "Gold",
-    tagline: "For premium vehicle owners",
-    price: "$249",
-    period: "/mo",
-    color: "green",
-    perks: [
-      "4 details/month",
-      "Full interior restoration",
-      "Monthly paint inspection",
-      "Ceramic coating touch-ups",
-      "20% off all services",
-      "Dedicated account manager",
-    ],
-    cta: "Start Gold",
-    best: false,
+    name: "Black Label Plan",
+    audience: "Collectors, show vehicles, and high-value finishes",
+    price: "$299",
+    perks: ["Weekly or custom cadence", "Monthly finish inspection", "Ceramic maintenance boosters", "Seasonal protection plan", "Dedicated vehicle care records"],
+    accent: "from-neon-pink to-neon-green",
   },
 ];
 
-const colorMap = {
-  blue: {
-    gradient: "from-neon-blue/15 to-transparent",
-    border: "border-neon-blue/25",
-    hover: "hover:border-neon-blue/50 hover:shadow-neon-blue-sm",
-    badge: "bg-neon-blue/10 text-neon-blue",
-    cta: "from-neon-blue to-neon-pink",
-    price: "neon-blue-text",
-  },
-  pink: {
-    gradient: "from-neon-pink/15 to-transparent",
-    border: "border-neon-pink/35",
-    hover: "hover:border-neon-pink/60",
-    badge: "bg-neon-pink/10 text-neon-pink",
-    cta: "from-neon-pink to-neon-blue",
-    price: "gradient-text",
-  },
-  green: {
-    gradient: "from-neon-green/10 to-transparent",
-    border: "border-neon-green/25",
-    hover: "hover:border-neon-green/50 hover:shadow-neon-green-sm",
-    badge: "bg-neon-green/10 text-neon-green",
-    cta: "from-neon-green to-neon-blue",
-    price: "neon-green-text",
-  },
-};
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
-const item = { hidden: { opacity: 0, y: 36 }, show: { opacity: 1, y: 0 } };
-
 export default function Membership() {
   return (
-    <section id="membership" className="section-pad bg-deep-black relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-neon-pink/25 to-transparent" />
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-neon-pink/5 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-neon-green/4 rounded-full blur-[120px]" />
+    <section id="membership" className="section-pad relative overflow-hidden bg-deep-black">
+      <div className="absolute left-1/2 top-0 h-px w-[900px] -translate-x-1/2 bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent" />
+      <div className="absolute left-[8%] top-[20%] h-[520px] w-[520px] rounded-full bg-neon-pink/6 blur-[150px]" />
+      <div className="absolute right-[10%] bottom-[12%] h-[420px] w-[420px] rounded-full bg-neon-blue/7 blur-[140px]" />
 
-      <div className="w-full px-5 md:px-8 relative z-10">
-        <div className="mx-auto max-w-6xl">
+      <div className="relative z-10 w-full px-5 md:px-8">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-center mb-16"
+            className="mb-14 max-w-4xl"
           >
-            <p className="eyebrow text-neon-pink mb-4">Membership Plans</p>
-            <div className="section-line mx-auto mb-6" />
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">
-              Always Drive Clean
-            </h2>
-            <p className="text-white/45 max-w-2xl mx-auto text-lg">
-              Recurring care for drivers who want a showroom-ready vehicle without the effort. Cancel anytime.
+            <p className="eyebrow mb-4 text-neon-pink">Vehicle Preservation Plans</p>
+            <div className="section-line mb-6" />
+            <h2 className="text-5xl font-black tracking-tight text-white md:text-7xl">A Vehicle That Stays Ready</h2>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/56">
+              Memberships are not subscriptions. They are managed care plans for owners who want priority scheduling, consistent protection, and a vehicle that never slides backward.
             </p>
           </motion.div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-          {tiers.map((tier) => {
-            const c = colorMap[tier.color as keyof typeof colorMap];
-            return (
-              <motion.div
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {tiers.map((tier, index) => (
+              <motion.article
                 key={tier.name}
-                variants={item}
-                whileHover={{ y: -6 }}
-                className={`shine-card relative glass rounded-2xl border transition-all duration-300 flex flex-col overflow-hidden ${c.border} ${c.hover} ${tier.best ? "ring-1 ring-neon-pink/40" : ""}`}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                className={`panel-edge shine-card relative overflow-hidden rounded-2xl border bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.018))] ${tier.featured ? "border-neon-pink/45 ring-1 ring-neon-pink/35" : "border-white/10"}`}
               >
-                {/* Gradient top accent */}
-                <div className={`h-1 w-full bg-gradient-to-r ${c.cta}`} />
-
-                {tier.best && (
-                  <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full text-[10px] font-bold text-white bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-pink-sm">
-                    Best Value
+                <div className={`h-1 bg-gradient-to-r ${tier.accent}`} />
+                {tier.featured ? (
+                  <div className="absolute right-5 top-5 rounded-full bg-neon-pink/12 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-neon-pink">
+                    Recommended
                   </div>
-                )}
+                ) : null}
 
-                <div className="p-7 flex-1 flex flex-col">
-                  {/* Header */}
-                  <div className="mb-6">
-                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${c.badge} mb-3 inline-block`}>
-                      {tier.name}
-                    </span>
-                    <div className={`text-3xl font-black mt-2 ${c.price}`}>
-                      {tier.price}<span className="text-white/30 text-base font-medium">{tier.period}</span>
-                    </div>
-                    <p className="text-white/40 text-xs mt-1">{tier.tagline}</p>
+                <div className="p-7">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neon-blue">{tier.audience}</p>
+                  <h3 className="mt-3 text-3xl font-black text-white">{tier.name}</h3>
+                  <div className="mt-5 text-5xl font-black text-neon-pink">
+                    {tier.price}<span className="text-base font-medium text-white/35">/mo</span>
                   </div>
 
-                  {/* Perks */}
-                  <ul className="flex-1 space-y-3 mb-8">
+                  <ul className="mt-8 min-h-[210px] space-y-3">
                     {tier.perks.map((perk) => (
-                      <li key={perk} className="flex items-start gap-2.5 text-sm text-white/65">
-                        <svg className="w-4 h-4 text-neon-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
+                      <li key={perk} className="flex gap-3 text-sm leading-relaxed text-white/68">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
                         {perk}
                       </li>
                     ))}
                   </ul>
 
-                  <motion.a
+                  <a
                     href="#booking"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`block text-center py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r ${c.cta} transition-all duration-200`}
+                    className={`mt-8 inline-flex w-full justify-center rounded-xl bg-gradient-to-r ${tier.accent} px-5 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white`}
                   >
-                    {tier.cta}
-                  </motion.a>
+                    Discuss This Plan
+                  </a>
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              </motion.article>
+            ))}
+          </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center text-white/25 text-xs mt-8"
-        >
-          No contracts. No commitment. Cancel anytime. &bull; Pricing based on standard vehicles; oversized vehicles may vary.
-        </motion.p>
+          <p className="mt-8 text-center text-xs text-white/32">
+            Plans are tailored after vehicle condition, coating status, parking environment, and driving habits are reviewed.
+          </p>
         </div>
       </div>
     </section>

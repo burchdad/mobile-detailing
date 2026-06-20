@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #040409;
+  --background: #030303;
   --foreground: #ffffff;
-  --neon-pink: #ff007f;
-  --neon-blue: #00cfff;
-  --neon-green: #39ff14;
-  --lux-violet: #521a77;
-  --lux-cyan: #0f4f78;
+  --neon-pink: #c8a96a;
+  --neon-blue: #8aa4ad;
+  --neon-green: #93a27a;
+  --lux-violet: #231d16;
+  --lux-cyan: #1f3034;
 }
 
 * {
@@ -27,10 +27,10 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(circle at 12% 10%, rgba(255, 0, 127, 0.12), transparent 32%),
-    radial-gradient(circle at 80% 20%, rgba(0, 207, 255, 0.12), transparent 30%),
-    radial-gradient(circle at 50% 70%, rgba(82, 26, 119, 0.22), transparent 45%),
-    linear-gradient(180deg, #030308 0%, #050610 55%, #030308 100%);
+    radial-gradient(circle at 12% 10%, rgba(200, 169, 106, 0.12), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(138, 164, 173, 0.10), transparent 30%),
+    radial-gradient(circle at 50% 70%, rgba(36, 31, 24, 0.45), transparent 45%),
+    linear-gradient(180deg, #030303 0%, #090908 55%, #030303 100%);
 }
 
 body::before {
@@ -41,7 +41,7 @@ body::before {
   z-index: -2;
   background:
     radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 45%),
-    radial-gradient(circle at 70% 70%, rgba(0, 207, 255, 0.08) 0%, rgba(0, 207, 255, 0) 52%);
+    radial-gradient(circle at 70% 70%, rgba(200, 169, 106, 0.08) 0%, rgba(200, 169, 106, 0) 52%);
   filter: blur(28px);
   animation: ambient-drift 16s ease-in-out infinite alternate;
 }
@@ -60,9 +60,9 @@ body::after {
 
 /* Premium scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #03030a; }
+::-webkit-scrollbar-track { background: #030303; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff007f, #00cfff);
+  background: linear-gradient(180deg, #c8a96a, #8aa4ad);
   border-radius: 2px;
 }
 
@@ -85,27 +85,27 @@ body::after {
 
 /* Neon text */
 .neon-pink-text {
-  color: #ff007f;
-  text-shadow: 0 0 12px rgba(255,0,127,0.9), 0 0 40px rgba(255,0,127,0.4);
+  color: #c8a96a;
+  text-shadow: 0 0 18px rgba(200,169,106,0.42), 0 0 46px rgba(200,169,106,0.18);
 }
 .neon-blue-text {
-  color: #00cfff;
-  text-shadow: 0 0 12px rgba(0,207,255,0.9), 0 0 40px rgba(0,207,255,0.4);
+  color: #8aa4ad;
+  text-shadow: 0 0 18px rgba(138,164,173,0.4), 0 0 42px rgba(138,164,173,0.14);
 }
 .neon-green-text {
-  color: #39ff14;
-  text-shadow: 0 0 12px rgba(57,255,20,0.9), 0 0 40px rgba(57,255,20,0.4);
+  color: #93a27a;
+  text-shadow: 0 0 18px rgba(147,162,122,0.34), 0 0 40px rgba(147,162,122,0.14);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #ff007f 0%, #00cfff 100%);
+  background: linear-gradient(135deg, #f2dfad 0%, #c8a96a 48%, #8aa4ad 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-text-alt {
-  background: linear-gradient(135deg, #00cfff 0%, #39ff14 100%);
+  background: linear-gradient(135deg, #8aa4ad 0%, #e1c37d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -138,9 +138,9 @@ body::after {
 
 .mesh-bg {
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(255, 0, 127, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 15%, rgba(0, 207, 255, 0.14) 0%, transparent 36%),
-    radial-gradient(circle at 50% 70%, rgba(57, 255, 20, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 20% 20%, rgba(200, 169, 106, 0.14) 0%, transparent 40%),
+    radial-gradient(circle at 80% 15%, rgba(138, 164, 173, 0.12) 0%, transparent 36%),
+    radial-gradient(circle at 50% 70%, rgba(147, 162, 122, 0.08) 0%, transparent 40%);
 }
 
 .carbon-overlay::before {
@@ -165,10 +165,10 @@ body::after {
     112deg,
     transparent 0,
     transparent 30px,
-    rgba(0, 207, 255, 0.14) 31px,
+    rgba(200, 169, 106, 0.12) 31px,
     transparent 34px,
     transparent 68px,
-    rgba(255, 0, 127, 0.12) 69px,
+    rgba(138, 164, 173, 0.10) 69px,
     transparent 72px
   );
 }
@@ -243,9 +243,25 @@ body::after {
 .section-line {
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, #ff007f, #00cfff);
+  background: linear-gradient(90deg, #c8a96a, #8aa4ad);
   border-radius: 1px;
-  box-shadow: 0 0 10px rgba(0,207,255,0.5);
+  box-shadow: 0 0 10px rgba(200,169,106,0.36);
+}
+
+.preserve-3d {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.preserve-3d * {
+  transform-style: preserve-3d;
+}
+
+.panel-edge {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.35),
+    0 28px 90px rgba(0,0,0,0.48);
 }
 
 .light-pass {

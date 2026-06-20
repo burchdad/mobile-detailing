@@ -11,6 +11,8 @@ const categories = [
     before: { bg: "from-zinc-700 via-zinc-800 to-black", label: "Swirls + Haze" },
     after: { bg: "from-slate-900 via-slate-800 to-black", label: "Mirror Clarity" },
     result: "95% surface clarity recovered",
+    vehicle: "Black performance sedan",
+    time: "6 hours invested",
   },
   {
     id: "interior-reset",
@@ -19,6 +21,8 @@ const categories = [
     before: { bg: "from-amber-900 via-stone-800 to-black", label: "Stains + Odors" },
     after: { bg: "from-slate-800 via-slate-900 to-black", label: "Factory Fresh" },
     result: "Deep extraction with odor elimination",
+    vehicle: "Family SUV",
+    time: "4 hours invested",
   },
   {
     id: "ceramic-shine",
@@ -27,6 +31,8 @@ const categories = [
     before: { bg: "from-neutral-700 via-zinc-800 to-black", label: "Unprotected Paint" },
     after: { bg: "from-blue-950 via-slate-900 to-black", label: "Hydrophobic Shield" },
     result: "Long-term gloss and protection layer",
+    vehicle: "Lifted truck",
+    time: "1 day invested",
   },
   {
     id: "wheel-restore",
@@ -35,6 +41,8 @@ const categories = [
     before: { bg: "from-stone-700 via-zinc-700 to-black", label: "Brake Dust Build-Up" },
     after: { bg: "from-slate-900 via-zinc-900 to-black", label: "Deep Satin Finish" },
     result: "Wheels and tires reset to premium finish",
+    vehicle: "Luxury daily driver",
+    time: "2 hours invested",
   },
 ];
 
@@ -168,9 +176,14 @@ function Slider({ category }: { category: Category }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.12, duration: 0.5 }}
-        className="glass rounded-2xl border border-neon-pink/30 px-4 py-3 text-center"
+        className="glass rounded-2xl border border-neon-pink/30 px-4 py-4"
       >
-        <p className="text-xs md:text-sm text-neon-pink uppercase tracking-[0.14em] font-black">{category.result}</p>
+        <div className="grid gap-3 text-center md:grid-cols-3">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-neon-pink">{category.vehicle}</p>
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-white/62">{category.label}</p>
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-neon-blue">{category.time}</p>
+        </div>
+        <p className="mt-3 text-center text-xs font-black uppercase tracking-[0.14em] text-white/70 md:text-sm">{category.result}</p>
       </motion.div>
     </motion.div>
   );

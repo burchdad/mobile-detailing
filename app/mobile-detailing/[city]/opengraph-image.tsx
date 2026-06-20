@@ -60,7 +60,7 @@ export default function Image({ params }: Props) {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ fontSize: 18, opacity: 0.8 }}>Ceramic Coating • Paint Correction • Full Detail</div>
-          <div style={{ fontSize: 18, color: "#00cfff" }}>mobile-detailing-sigma.vercel.app</div>
+          <div style={{ fontSize: 18, color: "#8aa4ad" }}>asdetailing.org</div>
         </div>
       </div>
     ),

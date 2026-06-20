@@ -5,6 +5,7 @@ import BeforeAfter from "@/components/BeforeAfter";
 import Services from "@/components/Services";
 import VisualImpact from "@/components/VisualImpact";
 import Process from "@/components/Process";
+import OwnerJournal from "@/components/OwnerJournal";
 import Testimonials from "@/components/Testimonials";
 import Membership from "@/components/Membership";
 import ServiceArea from "@/components/ServiceArea";
@@ -22,7 +23,7 @@ const localBusinessSchema = {
     "Premium mobile auto detailing in Tyler TX and East Texas. Ceramic coating, paint correction, interior restoration and fleet detailing.",
   areaServed: ["Tyler TX", "Whitehouse TX", "Lindale TX", "Longview TX"],
   telephone: "+1-903-555-0000",
-  url: "https://mobile-detailing-sigma.vercel.app",
+  url: "https://asdetailing.org",
   serviceType: [
     "Exterior Detail",
     "Interior Deep Clean",
@@ -38,11 +39,11 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   itemListElement: [
-    { "@type": "Service", name: "Exterior Detail", url: "https://mobile-detailing-sigma.vercel.app/#services" },
-    { "@type": "Service", name: "Interior Deep Clean", url: "https://mobile-detailing-sigma.vercel.app/#services" },
-    { "@type": "Service", name: "Paint Correction", url: "https://mobile-detailing-sigma.vercel.app/#services" },
-    { "@type": "Service", name: "Ceramic Coating", url: "https://mobile-detailing-sigma.vercel.app/ceramic-coating" },
-    { "@type": "Service", name: "Fleet Detailing", url: "https://mobile-detailing-sigma.vercel.app/fleet-detailing" },
+    { "@type": "Service", name: "Signature Detail", url: "https://asdetailing.org/#services" },
+    { "@type": "Service", name: "Interior Preservation", url: "https://asdetailing.org/#services" },
+    { "@type": "Service", name: "Paint Correction", url: "https://asdetailing.org/#services" },
+    { "@type": "Service", name: "Ceramic Coating", url: "https://asdetailing.org/ceramic-coating" },
+    { "@type": "Service", name: "Fleet Care Programs", url: "https://asdetailing.org/fleet-detailing" },
   ],
 };
 
@@ -58,7 +59,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,0,127,0.14),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(0,207,255,0.14),transparent_32%),radial-gradient(circle_at_50%_80%,rgba(82,26,119,0.25),transparent_45%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(200,169,106,0.13),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(138,164,173,0.11),transparent_32%),radial-gradient(circle_at_50%_80%,rgba(33,30,24,0.5),transparent_45%)]" />
         <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
       </div>
 
@@ -69,6 +70,7 @@ export default function Home() {
       <Services />
       <VisualImpact />
       <Process />
+      <OwnerJournal />
       <Testimonials />
       <Membership />
       <ServiceArea />

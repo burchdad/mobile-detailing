@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Results", href: "#before-after" },
   { label: "Membership", href: "#membership" },
+  { label: "Journal", href: "#journal" },
   { label: "Area", href: "#service-area" },
 ];
 
@@ -92,7 +93,7 @@ export default function Navbar() {
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              Book Now
+              Assessment
             </span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
@@ -140,7 +141,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.96 }}
             className="mt-3 px-4 py-3 text-center text-sm font-bold text-white bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink rounded-lg shadow-[0_0_20px_rgba(255,0,127,0.3)]"
           >
-            Book Now
+            Request Assessment
           </motion.a>
         </div>
       </motion.div>
