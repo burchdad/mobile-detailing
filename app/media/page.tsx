@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BrandHero, FinalLuxuryCta } from "@/components/BrandPlatform";
 import { facebookEmbedUrl, facebookReels } from "@/lib/media";
+import { galleryImages } from "@/lib/projectMedia";
 
 export const metadata: Metadata = {
   title: "Media | A&S Detailing",
@@ -29,7 +31,7 @@ export default function MediaPage() {
               </h2>
             </div>
             <p className="max-w-2xl text-xl leading-relaxed text-white/56">
-              These embeds use Facebook&apos;s player so the videos can be watched directly from the site. If Facebook blocks an individual embed, the in-frame action still opens the original reel.
+              Reels show the work in motion. Project photos show the standard after the tools are put away.
             </p>
           </div>
 
@@ -66,6 +68,31 @@ export default function MediaPage() {
                 <div className="mt-5 text-center">
                   <p className="text-[10px] font-black uppercase tracking-[0.18em] text-neon-pink">Reel {String(index + 1).padStart(2, "0")}</p>
                   <p className="mt-2 text-sm font-semibold text-white/58">A&S mobile detail process clip</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#11110f] px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 max-w-4xl">
+            <p className="eyebrow mb-5 text-neon-blue">Project Photo Library</p>
+            <h2 className="text-5xl font-black leading-tight tracking-tight text-white md:text-6xl">
+              Actual Vehicles. Actual Surfaces. Actual Proof.
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {galleryImages.slice(0, 8).map((item) => (
+              <article key={item.title} className="group">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] bg-black">
+                  <Image src={item.image} alt={item.title} fill className="object-cover opacity-[0.84] transition-transform duration-700 group-hover:scale-[1.035]" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_38%,rgba(0,0,0,0.76))]" />
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-neon-pink">{item.category}</p>
+                    <h3 className="mt-2 text-2xl font-black leading-tight text-white">{item.title}</h3>
+                  </div>
                 </div>
               </article>
             ))}

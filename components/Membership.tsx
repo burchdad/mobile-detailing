@@ -3,21 +3,22 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { projectImages } from "@/lib/projectMedia";
 
 const collection = [
   {
     name: "Silver Preservation",
-    image: "/media/as-suv-interior.png",
+    image: projectImages.hondaExterior,
     body: "For daily drivers that need consistent interior order, gentle exterior maintenance, and enough protection to keep the vehicle from sliding backward between seasons.",
   },
   {
     name: "Gold Preservation",
-    image: "/media/as-client-collage.png",
+    image: projectImages.genesisSide,
     body: "For family vehicles, premium SUVs, and performance cars that need a more deliberate cadence: finish-safe washing, cabin conditioning, and priority care.",
   },
   {
     name: "Black Label",
-    image: "/media/as-service-guide.jpg",
+    image: projectImages.fordCabinWide,
     body: "For owners who want the vehicle treated as an asset: finish inspections, ceramic maintenance, seasonal protection decisions, and a direct relationship with Steve.",
   },
 ];

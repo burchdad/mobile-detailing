@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { projectImages } from "@/lib/projectMedia";
 
 export default function VisualImpact() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-black">
       <Image
-        src="/media/as-client-collage.png"
+        src={projectImages.genesisSide}
         alt="A&S detailing transformation work"
         fill
         priority={false}

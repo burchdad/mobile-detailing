@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { projectImages } from "@/lib/projectMedia";
 
 const stories = [
   {
@@ -58,7 +59,7 @@ export default function Testimonials() {
             transition={{ duration: 0.75 }}
             className="relative min-h-[640px] overflow-hidden rounded-[8px] bg-black"
           >
-            <Image src="/media/as-suv-interior.png" alt="Restored A&S client vehicle interior" fill className="object-cover opacity-[0.8]" sizes="(min-width: 1024px) 48vw, 100vw" />
+            <Image src={projectImages.reviewJesus} alt="A&S client review proof" fill className="object-cover opacity-[0.8]" sizes="(min-width: 1024px) 48vw, 100vw" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.74))]" />
             <div className="absolute bottom-8 left-8 right-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-neon-pink">Real Vehicles</p>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { projectImages } from "@/lib/projectMedia";
 
 export default function OwnerPresence() {
   return (
@@ -39,7 +40,7 @@ export default function OwnerPresence() {
           transition={{ duration: 0.7, delay: 0.08 }}
           className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-black shadow-[0_40px_120px_rgba(0,0,0,0.22)]"
         >
-          <Image src="/media/as-service-guide.jpg" alt="A&S Mobile Detail owner and service standard" fill className="object-cover opacity-[0.88]" sizes="(min-width: 1024px) 52vw, 100vw" />
+          <Image src={projectImages.fordTruckFront} alt="A&S Mobile Detail owner-led project proof" fill className="object-cover opacity-[0.88]" sizes="(min-width: 1024px) 52vw, 100vw" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.6))]" />
           <div className="absolute bottom-7 left-7 right-7 text-white">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-neon-pink">Steve Sarmiento</p>

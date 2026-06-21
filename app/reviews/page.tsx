@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BrandHero, FinalLuxuryCta } from "@/components/BrandPlatform";
+import { reviewProof } from "@/lib/projectMedia";
 
 export const metadata: Metadata = {
   title: "Reviews | A&S Detailing",
@@ -57,6 +59,20 @@ export default function ReviewsPage() {
                   <p className="mt-3 text-white/42">{review.location}</p>
                 </div>
                 <p className="text-3xl font-black leading-tight tracking-tight text-white md:text-6xl">&ldquo;{review.quote}&rdquo;</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-20 grid gap-8 lg:grid-cols-2">
+            {reviewProof.map((proof) => (
+              <article key={proof.name} className="overflow-hidden rounded-[8px] border border-white/10 bg-white/[0.03]">
+                <div className="relative aspect-[16/9] bg-black">
+                  <Image src={proof.image} alt={`${proof.name} review proof`} fill className="object-contain p-4" sizes="(min-width: 1024px) 50vw, 100vw" />
+                </div>
+                <div className="border-t border-white/10 p-6">
+                  <p className="text-lg font-black text-white">{proof.name}</p>
+                  <p className="mt-1 text-xs font-black uppercase tracking-[0.18em] text-neon-blue">{proof.detail}</p>
+                  <p className="mt-4 text-white/58">{proof.quote}</p>
+                </div>
               </article>
             ))}
           </div>

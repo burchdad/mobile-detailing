@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { projectImages } from "@/lib/projectMedia";
 
 const journal = [
   "Protecting paint in East Texas heat",
@@ -40,7 +41,7 @@ export default function OwnerJournal() {
           className="space-y-8"
         >
           <div className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-black">
-            <Image src="/media/as-service-guide.jpg" alt="A&S Mobile Detail service guide" fill className="object-cover opacity-[0.72]" sizes="(min-width: 1024px) 42vw, 100vw" />
+            <Image src={projectImages.fordLeatherFront} alt="A&S leather cabin preservation proof" fill className="object-cover opacity-[0.72]" sizes="(min-width: 1024px) 42vw, 100vw" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.68))]" />
             <div className="absolute bottom-8 left-8 right-8">
               <p className="text-xs font-black uppercase tracking-[0.22em] text-neon-blue">Owner-Led Standard</p>

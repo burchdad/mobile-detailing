@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { projectImages } from "@/lib/projectMedia";
 
 const services = [
   {
@@ -10,7 +11,7 @@ const services = [
     eyebrow: "Ownership Care",
     description:
       "A mobile preservation cadence for owners who want their vehicle to stay presentable, protected, and easy to maintain without surrendering a day to a shop.",
-    image: "/media/as-client-collage.png",
+    image: projectImages.hondaExterior,
     href: "/services/mobile-detailing",
   },
   {
@@ -18,7 +19,7 @@ const services = [
     eyebrow: "Finish Clarity",
     description:
       "Correction-minded polishing and surface refinement for paint that deserves depth, reflection, and a cleaner foundation before protection.",
-    image: "/media/as-service-guide.jpg",
+    image: projectImages.mazdaSide,
     href: "/services/paint-correction",
   },
   {
@@ -26,7 +27,7 @@ const services = [
     eyebrow: "Long-Term Defense",
     description:
       "Hydrophobic protection, easier washing, gloss retention, and climate defense for owners who want their investment to age with intention.",
-    image: "/media/as-suv-interior.png",
+    image: projectImages.genesisFront,
     href: "/services/ceramic-coatings",
   },
 ];

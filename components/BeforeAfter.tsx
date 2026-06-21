@@ -3,29 +3,30 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { facebookEmbedUrl, homepageReels } from "@/lib/media";
+import { featuredProjects, projectImages } from "@/lib/projectMedia";
 
 const projects = [
   {
     label: "Interior Restoration",
-    vehicle: "Premium SUV Cabin",
+    vehicle: "King Ranch Leather Cabin",
     time: "Leather, console, carpets, touchpoints",
-    outcome: "Warm leather cabin restored with a cleaner, more cared-for ownership feel.",
-    image: "/media/as-suv-interior.png",
+    outcome: "Warm leather and high-touch cabin areas restored with a cleaner, more cared-for ownership feel.",
+    image: projectImages.fordCabinWide,
     featured: true,
   },
   {
-    label: "Client Media",
-    vehicle: "Genesis + GMC Detail Set",
-    time: "Interior and exterior documentation",
-    outcome: "Real client-photo proof from multiple surfaces, wheels, trim, seats, and cabin areas.",
-    image: "/media/as-client-collage.png",
+    label: featuredProjects[0].category,
+    vehicle: featuredProjects[0].vehicle,
+    time: featuredProjects[0].title,
+    outcome: featuredProjects[0].description,
+    image: featuredProjects[0].image,
   },
   {
-    label: "Service Guide",
-    vehicle: "Current A&S Package Reference",
-    time: "Express and executive tiers",
-    outcome: "Client-provided package collateral preserved as a reference, not the visual brand direction.",
-    image: "/media/as-service-guide.jpg",
+    label: featuredProjects[1].category,
+    vehicle: featuredProjects[1].vehicle,
+    time: featuredProjects[1].title,
+    outcome: featuredProjects[1].description,
+    image: featuredProjects[1].image,
   },
 ];
 
