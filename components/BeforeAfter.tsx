@@ -37,6 +37,45 @@ const reels = [
   "https://www.facebook.com/reel/1945697012821238",
 ];
 
+function facebookEmbedUrl(url: string) {
+  return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&width=360&t=0`;
+}
+
+function ReelFrame({ href, index }: { href: string; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 34, rotate: index === 0 ? -4 : 4 }}
+      whileInView={{ opacity: 1, y: 0, rotate: index === 0 ? -3 : 3 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.12, duration: 0.7, ease: "easeOut" }}
+      className="relative mx-auto w-full max-w-[310px]"
+    >
+      <div className="absolute inset-0 translate-y-8 rounded-[30px] bg-black/70 blur-2xl" />
+      <div className="relative overflow-hidden rounded-[24px] border-[10px] border-[#141414] bg-black shadow-[0_30px_90px_rgba(0,0,0,0.62)]">
+        <div className="absolute left-1/2 top-2 z-20 h-1.5 w-16 -translate-x-1/2 rounded-full bg-white/12" />
+        <div className="relative aspect-[9/16] overflow-hidden bg-black">
+          <iframe
+            title={`A&S Detailing Facebook reel ${index + 1}`}
+            src={facebookEmbedUrl(href)}
+            className="absolute inset-0 h-full w-full"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-4 block text-center text-[10px] font-black uppercase tracking-[0.18em] text-white/42 transition-colors hover:text-neon-pink"
+      >
+        Open reel on Facebook
+      </a>
+    </motion.div>
+  );
+}
+
 export default function BeforeAfter() {
   return (
     <section id="before-after" className="relative overflow-hidden bg-surface px-5 py-28 md:px-8 md:py-36">
@@ -120,17 +159,35 @@ export default function BeforeAfter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mt-16 border-t border-white/8 pt-10"
+          className="mt-16 border-t border-white/8 pt-16"
         >
-          <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[0.38fr_0.62fr] lg:items-center">
             <div>
               <p className="eyebrow text-neon-pink">Watch The Work</p>
-              <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/52">
-                Facebook reels are linked as live social proof. Native hosted clips can replace these once the video files are available in Blob.
+              <h3 className="mt-5 max-w-xl text-4xl font-black leading-[0.96] tracking-tight text-white md:text-6xl">
+                See The Process In Motion
+              </h3>
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-white/52">
+                The reels can play directly on the page using Facebook&apos;s embedded player. Once the source files are uploaded to Vercel Blob, these same frames can switch to native HTML video for faster playback and cleaner controls.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={reels[0]} target="_blank" rel="noreferrer" className="rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white">
+                  Watch Owner Reel
+                </a>
+                <a href="/results" className="rounded-[6px] border border-white/12 bg-white/[0.03] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white/72">
+                  View Media Library
+                </a>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-              {reels.map((href, index) => (
+            <div className="grid gap-7 sm:grid-cols-2">
+              {reels.slice(0, 2).map((href, index) => (
+                <ReelFrame key={href} href={href} index={index} />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {reels.slice(2).map((href, index) => (
                 <a
                   key={href}
                   href={href}
@@ -138,11 +195,10 @@ export default function BeforeAfter() {
                   rel="noreferrer"
                   className="group rounded-[6px] border border-white/10 bg-white/[0.025] px-4 py-5 transition-colors hover:border-neon-pink/35 hover:bg-white/[0.045]"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/36">Reel {String(index + 1).padStart(2, "0")}</span>
-                  <span className="mt-3 block text-sm font-black uppercase tracking-[0.12em] text-white group-hover:text-neon-pink">Open Facebook Reel</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/36">More Reel {String(index + 3).padStart(2, "0")}</span>
+                <span className="mt-3 block text-sm font-black uppercase tracking-[0.12em] text-white group-hover:text-neon-pink">Open Clip</span>
                 </a>
               ))}
-            </div>
           </div>
         </motion.div>
       </div>
