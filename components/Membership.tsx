@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 
 const tiers = [
   {
-    name: "Silver Plan",
+    name: "Silver Preservation",
     audience: "Daily-driver preservation",
     price: "$99",
     perks: ["Monthly maintenance detail", "Paint-safe wash process", "Interior touchpoint reset", "Priority seasonal scheduling"],
     accent: "from-neon-blue to-neon-pink",
   },
   {
-    name: "Gold Plan",
+    name: "Gold Preservation",
     audience: "Premium family and performance vehicles",
     price: "$179",
     perks: ["Two visits per month", "Ceramic-safe maintenance", "Leather and trim conditioning", "10% preferred-client add-on pricing", "First access appointment windows"],
@@ -19,7 +19,7 @@ const tiers = [
     featured: true,
   },
   {
-    name: "Black Label Plan",
+    name: "Black Label Preservation",
     audience: "Collectors, show vehicles, and high-value finishes",
     price: "$299",
     perks: ["Weekly or custom cadence", "Monthly finish inspection", "Ceramic maintenance boosters", "Seasonal protection plan", "Dedicated vehicle care records"],

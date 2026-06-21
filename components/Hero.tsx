@@ -13,18 +13,18 @@ const particles = Array.from({ length: 34 }, (_, i) => ({
 }));
 
 const stats = [
-  { value: "500+", label: "Vehicles Preserved" },
-  { value: "5.0", label: "Google Reputation" },
-  { value: "100%", label: "Final Walkthrough" },
+  { value: "500+", label: "Vehicles Protected" },
+  { value: "100+", label: "Returning Clients" },
+  { value: "5.0", label: "Google Rating" },
 ];
 
 const trustBadges = [
-  { id: "01", text: "Fully Insured", sub: "Professional protection" },
-  { id: "02", text: "Premium Systems", sub: "Paint-safe products" },
+  { id: "01", text: "Protection First", sub: "Finish-safe process" },
+  { id: "02", text: "Certified Mindset", sub: "Specialist-level care" },
   { id: "03", text: "Mobile Concierge", sub: "Home, office, or garage" },
 ];
 
-const orbitLabels = ["Paint Correction", "Ceramic Coating", "Interior Reset", "Preservation Plans"];
+const orbitLabels = ["Paint Enhancement", "Ceramic Protection", "Interior Restoration", "Preservation Programs"];
 
 function HeroShowpiece() {
   return (
@@ -116,7 +116,7 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="eyebrow mb-5 text-neon-pink"
           >
-            East Texas Vehicle Preservation Concierge
+            East Texas Vehicle Preservation
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 36 }}
@@ -124,7 +124,7 @@ export default function Hero() {
             transition={{ delay: 0.08, duration: 0.9, ease: "easeOut" }}
             className="max-w-5xl text-[clamp(3.5rem,9.4vw,8.7rem)] font-black leading-[0.88] tracking-tight text-white"
           >
-            Automotive Care <span className="gradient-text block">Without</span> Compromise
+            Protecting Vehicles. <span className="gradient-text block">Preserving</span> Value.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -132,7 +132,7 @@ export default function Hero() {
             transition={{ delay: 0.28, duration: 0.75 }}
             className="mt-8 max-w-2xl text-base leading-relaxed text-white/66 md:text-xl"
           >
-            Professional mobile detailing, paint correction, ceramic coatings, and long-term appearance management for owners who expect their vehicle to be treated like an investment.
+            Specialist mobile vehicle preservation for owners who care about protection, appearance, convenience, and long-term pride of ownership.
           </motion.p>
 
           <motion.div

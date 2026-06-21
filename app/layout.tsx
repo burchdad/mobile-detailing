@@ -11,21 +11,21 @@ const geistSans = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
+  title: "A&S Detailing | East Texas Vehicle Preservation",
   description:
-    "Luxury mobile detailing, paint correction, ceramic coatings, and vehicle preservation services for Tyler TX and East Texas owners who expect excellence.",
+    "East Texas vehicle preservation, ceramic protection, paint enhancement, interior restoration, and concierge maintenance for owners who expect specialist care.",
   keywords: [
     "mobile auto detailing Tyler TX",
     "car detailing Tyler TX",
     "ceramic coating Tyler TX",
     "paint correction Tyler TX",
-    "vehicle preservation Tyler TX",
+    "East Texas vehicle preservation",
     "mobile detailing East Texas",
   ],
   openGraph: {
-    title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
+    title: "A&S Detailing | East Texas Vehicle Preservation",
     description:
-      "Professional mobile detailing, paint correction, ceramic coatings, and long-term vehicle care across East Texas.",
+      "Protection-led vehicle preservation, ceramic protection, paint enhancement, and long-term vehicle care across East Texas.",
     url: siteUrl,
     siteName: "A&S Mobile Detail",
     type: "website",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "A&S Mobile Detail | Premium Vehicle Preservation Tyler TX",
+    title: "A&S Detailing | East Texas Vehicle Preservation",
     description:
-      "Luxury mobile detailing, ceramic coatings, paint correction, and vehicle preservation services in East Texas.",
+      "Specialist vehicle preservation, ceramic protection, paint enhancement, and concierge maintenance in East Texas.",
   },
   robots: {
     index: true,

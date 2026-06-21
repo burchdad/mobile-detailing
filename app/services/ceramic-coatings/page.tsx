@@ -6,7 +6,7 @@ import { siteUrl } from "@/lib/site";
 const service = servicePages["ceramic-coatings"];
 
 export const metadata: Metadata = {
-  title: "Ceramic Coatings | A&S Detailing",
+  title: "Ceramic Protection | A&S Detailing",
   description: service.intro,
   alternates: { canonical: "/services/ceramic-coatings" },
 };
@@ -32,7 +32,7 @@ export default function CeramicCoatingsPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Ceramic Coatings",
+    name: "Ceramic Protection",
     provider: { "@type": "AutoDetailing", name: "A&S Detailing", url: siteUrl },
     url: `${siteUrl}/services/ceramic-coatings`,
     areaServed: "East Texas",

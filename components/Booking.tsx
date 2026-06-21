@@ -5,8 +5,8 @@ import { useState } from "react";
 
 const services = [
   "Signature Detail",
-  "Paint Correction",
-  "Ceramic Coating",
+  "Paint Enhancement",
+  "Ceramic Protection",
   "Interior Preservation",
   "Vehicle Preservation Plan",
   "Fleet Care Program",

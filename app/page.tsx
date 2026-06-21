@@ -23,13 +23,12 @@ const localBusinessSchema = {
   telephone: "+1-903-555-0000",
   url: "https://asdetailing.org",
   serviceType: [
-    "Exterior Detail",
-    "Interior Deep Clean",
-    "Full Detail",
-    "Paint Correction",
-    "Ceramic Coating",
-    "Fleet Detailing",
-    "Maintenance Plans",
+    "Concierge Maintenance",
+    "Interior Restoration",
+    "Paint Enhancement",
+    "Ceramic Protection",
+    "Fleet Preservation",
+    "Vehicle Preservation Programs",
   ],
 };
 
@@ -37,11 +36,11 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   itemListElement: [
-    { "@type": "Service", name: "Signature Detail", url: "https://asdetailing.org/#services" },
-    { "@type": "Service", name: "Interior Preservation", url: "https://asdetailing.org/#services" },
-    { "@type": "Service", name: "Paint Correction", url: "https://asdetailing.org/#services" },
-    { "@type": "Service", name: "Ceramic Coating", url: "https://asdetailing.org/ceramic-coating" },
-    { "@type": "Service", name: "Fleet Care Programs", url: "https://asdetailing.org/fleet-detailing" },
+    { "@type": "Service", name: "Concierge Maintenance", url: "https://asdetailing.org/services/mobile-detailing" },
+    { "@type": "Service", name: "Interior Restoration", url: "https://asdetailing.org/services/interior-restoration" },
+    { "@type": "Service", name: "Paint Enhancement", url: "https://asdetailing.org/services/paint-correction" },
+    { "@type": "Service", name: "Ceramic Protection", url: "https://asdetailing.org/services/ceramic-coatings" },
+    { "@type": "Service", name: "Fleet Preservation", url: "https://asdetailing.org/services/fleet-care" },
   ],
 };
 

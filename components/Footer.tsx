@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const serviceLinks = [
-  { label: "Mobile Detailing", href: "/services/mobile-detailing" },
+  { label: "Concierge Maintenance", href: "/services/mobile-detailing" },
   { label: "Interior Restoration", href: "/services/interior-restoration" },
-  { label: "Paint Correction", href: "/services/paint-correction" },
-  { label: "Ceramic Coatings", href: "/services/ceramic-coatings" },
-  { label: "Fleet Care", href: "/services/fleet-care" },
+  { label: "Paint Enhancement", href: "/services/paint-correction" },
+  { label: "Ceramic Protection", href: "/services/ceramic-coatings" },
+  { label: "Fleet Preservation", href: "/services/fleet-care" },
 ];
 
 export default function Footer() {

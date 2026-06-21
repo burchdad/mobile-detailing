@@ -5,7 +5,7 @@ import { servicePages } from "@/lib/brandPages";
 const service = servicePages["paint-correction"];
 
 export const metadata: Metadata = {
-  title: "Paint Correction | A&S Detailing",
+  title: "Paint Enhancement | A&S Detailing",
   description: service.intro,
   alternates: { canonical: "/services/paint-correction" },
 };

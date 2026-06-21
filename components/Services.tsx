@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    name: "Signature Detail",
-    category: "Concierge Reset",
+    name: "Concierge Maintenance",
+    category: "Ownership Care",
     start: "From $259",
     description: "A complete interior and exterior restoration for drivers who want the vehicle to feel crisp, cared for, and ready for attention.",
     features: ["Paint-safe foam wash", "Interior extraction and conditioning", "Trim, glass, wheels, and tires finished by hand"],
     accent: "from-neon-pink to-neon-blue",
   },
   {
-    name: "Paint Correction",
+    name: "Paint Enhancement",
     category: "Clarity Restoration",
     start: "From $349",
     description: "Machine polishing designed to reduce swirls, haze, oxidation, and light defects before the finish is protected.",
@@ -20,8 +20,8 @@ const services = [
     accent: "from-neon-blue to-neon-pink",
   },
   {
-    name: "Ceramic Coatings",
-    category: "Long-Term Protection",
+    name: "Ceramic Protection",
+    category: "Specialist Service",
     start: "From $699",
     description: "Hydrophobic paint protection for gloss retention, easier washing, and a finish that stays impressive longer.",
     features: ["Decontamination and prep", "Professional coating application", "Maintenance guidance after delivery"],
@@ -29,15 +29,15 @@ const services = [
     featured: true,
   },
   {
-    name: "Interior Preservation",
-    category: "Cabin Recovery",
+    name: "Interior Restoration",
+    category: "Cabin Preservation",
     start: "From $189",
     description: "Deep cleaning for leather, carpet, plastics, touchpoints, and odor-prone surfaces without harsh shortcuts.",
     features: ["Steam and extraction workflow", "Leather and trim care", "Odor neutralization and final inspection"],
     accent: "from-neon-green to-neon-blue",
   },
   {
-    name: "Maintenance Memberships",
+    name: "Preservation Programs",
     category: "Ongoing Care",
     start: "From $99/mo",
     description: "Recurring upkeep for owners who want their finish, cabin, and protection plan managed all year.",
@@ -45,7 +45,7 @@ const services = [
     accent: "from-neon-blue to-neon-green",
   },
   {
-    name: "Fleet Care Programs",
+    name: "Fleet Preservation",
     category: "Business Presentation",
     start: "Custom",
     description: "Consistent mobile detailing for company vehicles where brand presentation and reliability matter.",
@@ -72,14 +72,14 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="eyebrow mb-4 text-neon-pink">Premium Service Showcase</p>
+            <p className="eyebrow mb-4 text-neon-pink">Specialist Services</p>
             <div className="section-line mb-6" />
             <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
               <h2 className="max-w-5xl text-5xl font-black tracking-tight text-white md:text-7xl">
-                Preservation Programs, Not Commodity Details
+                Protection-Led Services For Serious Owners
               </h2>
               <p className="text-lg leading-relaxed text-white/56">
-                Every service is positioned around trust, finish quality, and long-term vehicle care. The goal is not a quick clean. The goal is a vehicle that feels protected, maintained, and worth owning.
+                A&S leads with protection, preservation, and ownership pride. Cleaning is part of the process, but the real product is a vehicle that stays valuable, presentable, and easier to maintain.
               </p>
             </div>
           </motion.div>

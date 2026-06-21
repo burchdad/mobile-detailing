@@ -1,7 +1,7 @@
 export const servicePages = {
   "mobile-detailing": {
-    title: "Mobile Detailing",
-    eyebrow: "Concierge Service",
+    title: "Concierge Maintenance",
+    eyebrow: "Ownership Care",
     intro: "Premium exterior and cabin care delivered at your home, office, or private garage with a preservation-first process.",
     blocks: [
       {
@@ -36,7 +36,7 @@ export const servicePages = {
     points: ["Steam and extraction workflow", "Leather and trim conditioning", "Odor and stain-focused treatment"],
   },
   "paint-correction": {
-    title: "Paint Correction",
+    title: "Paint Enhancement",
     eyebrow: "Clarity Restoration",
     intro: "Swirl, haze, oxidation, and light defect reduction for owners who want depth, gloss, and true reflection back in the finish.",
     blocks: [
@@ -54,8 +54,8 @@ export const servicePages = {
     points: ["Paint inspection and defect review", "Single or multi-stage polishing", "Protection-ready finish refinement"],
   },
   "ceramic-coatings": {
-    title: "Ceramic Coatings",
-    eyebrow: "Long-Term Protection",
+    title: "Ceramic Protection",
+    eyebrow: "Specialist Protection",
     intro: "Hydrophobic paint protection for gloss retention, easier washing, Texas climate defense, and a finish that stays impressive longer.",
     blocks: [
       {
@@ -77,7 +77,7 @@ export const servicePages = {
     points: ["Decontamination and paint prep", "Correction options before coating", "Longevity, care, and maintenance guidance"],
   },
   "fleet-care": {
-    title: "Fleet Care",
+    title: "Fleet Preservation",
     eyebrow: "Business Presentation",
     intro: "Recurring vehicle appearance care for companies that need their fleet to represent the brand before anyone says a word.",
     blocks: [
@@ -99,7 +99,7 @@ export const servicePages = {
 export const journalArticles = [
   "How Texas heat damages unprotected paint",
   "Ceramic coating vs wax for long-term owners",
-  "How often should a premium vehicle be detailed?",
+  "How often should a premium vehicle be preserved?",
   "Maintaining a black vehicle without swirl marks",
   "Seasonal protection checklist for East Texas",
   "Customer spotlight: preserving a lifted truck finish",
