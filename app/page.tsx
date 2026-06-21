@@ -1,16 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import OwnerPresence from "@/components/OwnerPresence";
-import TrustStrip from "@/components/TrustStrip";
-import BeforeAfter from "@/components/BeforeAfter";
-import Services from "@/components/Services";
-import VisualImpact from "@/components/VisualImpact";
-import OwnerJournal from "@/components/OwnerJournal";
-import Testimonials from "@/components/Testimonials";
-import Membership from "@/components/Membership";
+import HomeEditorial from "@/components/HomeEditorial";
 import Footer from "@/components/Footer";
-import MobileCtaBar from "@/components/MobileCtaBar";
-import { FinalLuxuryCta } from "@/components/BrandPlatform";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -61,17 +52,8 @@ export default function Home() {
 
       <Navbar />
       <Hero />
-      <OwnerPresence />
-      <TrustStrip />
-      <BeforeAfter />
-      <Services />
-      <VisualImpact />
-      <OwnerJournal />
-      <Testimonials />
-      <Membership />
-      <FinalLuxuryCta title="Your Vehicle Deserves Better." />
+      <HomeEditorial />
       <Footer />
-      <MobileCtaBar />
     </main>
   );
 }
