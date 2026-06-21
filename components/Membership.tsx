@@ -25,7 +25,7 @@ const collection = [
 
 export default function Membership() {
   return (
-    <section id="membership" className="relative overflow-hidden bg-[#030304] px-5 py-28 md:px-8 md:py-40">
+    <section id="membership" className="relative overflow-hidden bg-[#030304] px-5 py-20 md:px-8 md:py-40">
       <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-white/14 to-transparent" />
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
@@ -33,15 +33,15 @@ export default function Membership() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-20 grid gap-10 lg:grid-cols-[0.68fr_0.32fr] lg:items-end"
+          className="mb-12 grid gap-8 md:mb-20 lg:grid-cols-[0.68fr_0.32fr] lg:items-end"
         >
           <div>
             <p className="eyebrow mb-5 text-neon-pink">The Preservation Collection</p>
-            <h2 className="max-w-5xl text-[clamp(3.5rem,7vw,8rem)] font-black leading-[0.9] tracking-tight text-white">
+            <h2 className="max-w-5xl text-[clamp(2.45rem,11vw,8rem)] font-black leading-[1] tracking-tight text-white md:leading-[0.9]">
               Care Plans For Vehicles That Deserve To Stay Ready
             </h2>
           </div>
-          <p className="text-lg leading-relaxed text-white/55">
+          <p className="text-base leading-relaxed text-white/55 md:text-lg">
             No pricing table. No commodity tiers. Each program starts with a condition review, ownership goals, parking environment, and the level of protection the vehicle deserves.
           </p>
         </motion.div>
@@ -60,11 +60,11 @@ export default function Membership() {
                 <p className="mb-5 text-sm font-black uppercase tracking-[0.24em] text-white/24">
                   {String(index + 1).padStart(2, "0")} / Preservation
                 </p>
-                <h3 className="text-5xl font-black leading-[0.94] tracking-tight text-white md:text-7xl">{item.name}</h3>
-                <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/58">{item.body}</p>
+                <h3 className="text-3xl font-black leading-tight tracking-tight text-white md:text-7xl md:leading-[0.94]">{item.name}</h3>
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-white/58 md:mt-7 md:text-xl">{item.body}</p>
               </div>
 
-              <div className="relative min-h-[360px] overflow-hidden rounded-[8px] bg-black md:min-h-[460px]">
+              <div className="relative min-h-[240px] overflow-hidden rounded-[8px] bg-black md:min-h-[460px]">
                 <Image src={item.image} alt={item.name} fill className="object-cover opacity-[0.78]" sizes="(min-width: 1024px) 56vw, 100vw" />
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.14),rgba(0,0,0,0.48))]" />
               </div>

@@ -2,74 +2,72 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { projectImages } from "@/lib/projectMedia";
+import { reviewProof } from "@/lib/projectMedia";
 
 const stories = [
   {
     vehicle: "Premium SUV",
     owner: "Whitehouse, TX",
-    quote:
-      "The paint correction on my white SUV is unreal. Deep scratches are gone, the gloss is insane. I have gotten compliments from complete strangers.",
+    quote: "The paint correction on my white SUV is unreal. Deep scratches are gone, the gloss is insane.",
   },
   {
     vehicle: "Work Truck",
     owner: "Tyler, TX",
-    quote:
-      "They came to my office and I picked up a vehicle that looked straight off the showroom floor. I will not go back to a traditional car wash.",
+    quote: "They came to my office and I picked up a vehicle that looked straight off the showroom floor.",
   },
   {
     vehicle: "Family Vehicle",
     owner: "Flint, TX",
-    quote:
-      "Monthly preservation has been a game changer. The vehicle is consistently clean, protected, and handled by someone who cares.",
+    quote: "Monthly preservation has been a game changer. The vehicle is consistently clean, protected, and handled by someone who cares.",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="relative overflow-hidden bg-deep-black px-5 py-28 md:px-8 md:py-40">
+    <section className="relative overflow-hidden bg-deep-black px-5 py-20 md:px-8 md:py-40">
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-16 grid gap-10 lg:grid-cols-[0.64fr_0.36fr] lg:items-end"
+          className="mb-12 grid gap-8 md:mb-16 lg:grid-cols-[0.64fr_0.36fr] lg:items-end"
         >
           <div>
             <p className="eyebrow mb-5 text-neon-blue">Client Stories</p>
-            <h2 className="text-[clamp(4rem,8vw,9rem)] font-black leading-[0.88] tracking-tight text-white">
+            <h2 className="text-[clamp(2.55rem,11vw,9rem)] font-black leading-[1] tracking-tight text-white md:leading-[0.88]">
               East Texas Owners Notice The Difference
             </h2>
           </div>
-          <div className="border-l border-white/10 pl-7">
-            <p className="text-5xl font-black text-white">5.0</p>
-            <p className="mt-3 text-sm font-black uppercase tracking-[0.22em] text-neon-pink">Local rating</p>
-            <p className="mt-5 text-lg leading-relaxed text-white/54">
-              The proof belongs higher than a small carousel. For A&S, trust is part of the experience.
+          <div className="border-t border-white/10 pt-6 md:border-l md:border-t-0 md:pl-7 md:pt-0">
+            <p className="text-4xl font-black text-white md:text-5xl">5.0</p>
+            <p className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-neon-pink md:mt-3">Local rating</p>
+            <p className="mt-4 text-base leading-relaxed text-white/54 md:mt-5 md:text-lg">
+              Trust is earned through finished vehicles, repeat clients, and public proof.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid gap-10 lg:grid-cols-[0.48fr_0.52fr] lg:items-stretch">
+        <div className="grid gap-10 lg:grid-cols-[0.44fr_0.56fr] lg:items-start">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75 }}
-            className="relative min-h-[640px] overflow-hidden rounded-[8px] bg-black"
+            transition={{ duration: 0.7 }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1"
           >
-            <Image src={projectImages.reviewJesus} alt="A&S client review proof" fill className="object-cover opacity-[0.8]" sizes="(min-width: 1024px) 48vw, 100vw" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.74))]" />
-            <div className="absolute bottom-8 left-8 right-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-neon-pink">Real Vehicles</p>
-              <p className="mt-3 max-w-md text-3xl font-black leading-tight text-white">
-                Interior restoration, paint clarity, and protection that can be seen after the appointment.
-              </p>
-            </div>
+            {reviewProof.map((proof) => (
+              <article key={proof.name} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-[6px] bg-black">
+                  <Image src={proof.image} alt={`${proof.name} review proof`} fill className="object-contain p-2" sizes="(min-width: 1024px) 44vw, 100vw" />
+                </div>
+                <p className="mt-4 text-sm font-black text-white">{proof.name}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-neon-blue">{proof.detail}</p>
+              </article>
+            ))}
           </motion.div>
 
-          <div className="flex flex-col justify-between gap-8">
+          <div className="divide-y divide-white/10">
             {stories.map((story, index) => (
               <motion.article
                 key={story.vehicle}
@@ -77,13 +75,13 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: index * 0.08 }}
-                className="border-t border-white/10 pt-8"
+                className="py-7 first:pt-0 last:pb-0 md:py-9"
               >
-                <div className="mb-6 flex items-center justify-between gap-5">
-                  <p className="text-sm font-black uppercase tracking-[0.2em] text-white/30">{story.vehicle}</p>
+                <div className="mb-4 flex items-center justify-between gap-5 md:mb-6">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-white/30 md:text-sm">{story.vehicle}</p>
                   <p className="text-sm font-semibold text-neon-blue/80">{story.owner}</p>
                 </div>
-                <p className="text-3xl font-black leading-tight tracking-tight text-white md:text-5xl">
+                <p className="text-2xl font-black leading-tight tracking-tight text-white md:text-5xl">
                   &ldquo;{story.quote}&rdquo;
                 </p>
               </motion.article>

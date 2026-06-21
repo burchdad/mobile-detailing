@@ -88,7 +88,7 @@ function HeroShowpiece() {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[108vh] items-center overflow-hidden bg-[#050504] pt-44 md:pt-48">
+    <section className="relative flex min-h-[96vh] items-center overflow-hidden bg-[#050504] pt-36 md:min-h-[108vh] md:pt-48">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_14%,rgba(200,169,106,0.16),transparent_34%),radial-gradient(circle_at_72%_20%,rgba(138,164,173,0.12),transparent_32%),linear-gradient(135deg,#050504_0%,#11100d_48%,#050605_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_42%,rgba(0,0,0,0.12)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-deep-black to-transparent" />
@@ -121,7 +121,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.9, ease: "easeOut" }}
-            className="max-w-5xl text-[clamp(3.25rem,7.6vw,7.4rem)] font-black leading-[0.94] tracking-tight text-white"
+            className="max-w-5xl text-[clamp(2.55rem,13vw,7.4rem)] font-black leading-[0.98] tracking-tight text-white md:leading-[0.94]"
           >
             Vehicle Preservation For Owners Who Notice Everything.
           </motion.h1>
@@ -129,7 +129,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.75 }}
-            className="mt-8 max-w-2xl text-base leading-relaxed text-white/68 md:text-xl"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-white/68 md:mt-8 md:text-xl"
           >
             A&S is owner-led concierge vehicle care for East Texas drivers who value craftsmanship, accountability, and a finish that keeps its presence.
           </motion.p>
@@ -138,7 +138,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.44, duration: 0.65 }}
-            className="mt-8 flex max-w-2xl flex-wrap gap-x-5 gap-y-3 border-y border-white/10 py-5"
+            className="mt-7 flex max-w-2xl flex-wrap gap-x-4 gap-y-2 border-y border-white/10 py-4 md:mt-8 md:gap-x-5 md:gap-y-3 md:py-5"
           >
             {trustBadges.map((badge) => (
               <span key={badge.text} className="text-[11px] font-black uppercase tracking-[0.18em] text-white/54">
@@ -151,7 +151,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.58, duration: 0.65 }}
-            className="mt-12 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center md:mt-12"
           >
             <motion.a
               href="/assessment"
@@ -176,7 +176,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.65 }}
-            className="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/10 pt-7 md:gap-8"
+            className="mt-8 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-6 md:mt-12 md:gap-8 md:pt-7"
           >
             {stats.map((s) => (
               <div key={s.label}>

@@ -70,7 +70,7 @@ function ReelFrame({ href, index }: { href: string; index: number }) {
 
 export default function BeforeAfter() {
   return (
-    <section id="before-after" className="relative overflow-hidden bg-surface px-5 py-28 md:px-8 md:py-36">
+    <section id="before-after" className="relative overflow-hidden bg-surface px-5 py-20 md:px-8 md:py-36">
       <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent" />
       <div className="absolute left-[-14%] top-[22%] h-[620px] w-[620px] rounded-full bg-neon-blue/7 blur-[170px]" />
       <div className="absolute right-[-14%] bottom-[4%] h-[580px] w-[580px] rounded-full bg-neon-pink/7 blur-[170px]" />
@@ -85,22 +85,22 @@ export default function BeforeAfter() {
         >
           <div>
             <p className="eyebrow mb-5 text-neon-blue">Craftsmanship Proof</p>
-            <h2 className="max-w-5xl text-[clamp(3.2rem,6vw,6.4rem)] font-black leading-[0.96] tracking-tight text-white">
+            <h2 className="max-w-5xl text-[clamp(2.35rem,11vw,6.4rem)] font-black leading-[1] tracking-tight text-white md:leading-[0.96]">
               Results That Make The Vehicle Feel Cared For Again
             </h2>
           </div>
-          <p className="max-w-2xl text-xl leading-relaxed text-white/58 md:text-2xl">
+          <p className="max-w-2xl text-base leading-relaxed text-white/58 md:text-2xl">
             Real client media matters because premium owners want evidence. Surfaces, trim, leather, paint, wheels, and touchpoints all tell the story of the standard.
           </p>
         </motion.div>
 
-        <div className="mt-18 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-12 grid gap-5 md:mt-18 lg:grid-cols-[1.15fr_0.85fr]">
           <motion.article
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="group relative min-h-[640px] overflow-hidden rounded-[8px] bg-black"
+            className="group relative min-h-[430px] overflow-hidden rounded-[8px] bg-black md:min-h-[640px]"
           >
             <Image
               src={projects[0].image}
@@ -113,8 +113,8 @@ export default function BeforeAfter() {
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.72))]" />
             <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
               <p className="eyebrow mb-3 text-neon-pink">{projects[0].label}</p>
-              <h3 className="text-4xl font-black tracking-tight text-white md:text-6xl">{projects[0].vehicle}</h3>
-              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/68">{projects[0].outcome}</p>
+              <h3 className="text-3xl font-black tracking-tight text-white md:text-6xl">{projects[0].vehicle}</h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/68 md:mt-4 md:text-lg">{projects[0].outcome}</p>
             </div>
           </motion.article>
 
@@ -126,7 +126,7 @@ export default function BeforeAfter() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.7 }}
-                className="group relative min-h-[310px] overflow-hidden rounded-[8px] bg-black"
+                className="group relative min-h-[240px] overflow-hidden rounded-[8px] bg-black md:min-h-[310px]"
               >
                 <Image
                   src={project.image}
@@ -156,10 +156,10 @@ export default function BeforeAfter() {
           <div className="grid gap-10 lg:grid-cols-[0.38fr_0.62fr] lg:items-center">
             <div>
               <p className="eyebrow text-neon-pink">Watch The Work</p>
-              <h3 className="mt-5 max-w-xl text-4xl font-black leading-[0.96] tracking-tight text-white md:text-6xl">
+              <h3 className="mt-5 max-w-xl text-3xl font-black leading-[1] tracking-tight text-white md:text-6xl md:leading-[0.96]">
                 See The Process In Motion
               </h3>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-white/52">
+              <p className="mt-5 max-w-md text-base leading-relaxed text-white/52 md:mt-6 md:text-lg">
                 Watch the work in motion: interiors being recovered, finishes being refined, and the owner-led process that turns a service into trust.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

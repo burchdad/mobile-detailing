@@ -34,7 +34,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative overflow-hidden bg-deep-black px-5 py-28 md:px-8 md:py-40">
+    <section id="services" className="relative overflow-hidden bg-deep-black px-5 py-20 md:px-8 md:py-40">
       <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-neon-pink/22 to-transparent" />
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
@@ -42,18 +42,18 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-24 max-w-5xl"
+          className="mb-14 max-w-5xl md:mb-24"
         >
           <p className="eyebrow mb-5 text-neon-pink">Specialist Services</p>
-          <h2 className="text-[clamp(3.6rem,7vw,7.6rem)] font-black leading-[0.9] tracking-tight text-white">
+          <h2 className="text-[clamp(2.55rem,11vw,7.6rem)] font-black leading-[0.98] tracking-tight text-white md:leading-[0.9]">
             Protection-Led Care, Not A Menu Of Details
           </h2>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-white/56">
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/56 md:mt-8 md:text-xl">
             The homepage only needs the core ownership paths. Everything else belongs deeper in the site, after the visitor understands that A&S preserves vehicles instead of simply cleaning them.
           </p>
         </motion.div>
 
-        <div className="space-y-28 md:space-y-36">
+        <div className="space-y-16 md:space-y-36">
           {services.map((service, index) => (
             <motion.article
               key={service.name}
@@ -63,7 +63,7 @@ export default function Services() {
               transition={{ duration: 0.75, ease: "easeOut" }}
               className="grid gap-10 lg:grid-cols-2 lg:items-center"
             >
-              <div className={`relative min-h-[520px] overflow-hidden rounded-[8px] bg-black ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+              <div className={`relative min-h-[280px] overflow-hidden rounded-[8px] bg-black md:min-h-[520px] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                 <Image
                   src={service.image}
                   alt={service.name}
@@ -76,10 +76,10 @@ export default function Services() {
 
               <div className="lg:px-10">
                 <p className="eyebrow mb-5 text-neon-blue">{service.eyebrow}</p>
-                <h3 className="max-w-xl text-5xl font-black leading-[0.95] tracking-tight text-white md:text-7xl">
+                <h3 className="max-w-xl text-3xl font-black leading-tight tracking-tight text-white md:text-7xl md:leading-[0.95]">
                   {service.name}
                 </h3>
-                <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/58">{service.description}</p>
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-white/58 md:mt-7 md:text-xl">{service.description}</p>
                 <Link
                   href={service.href}
                   className="mt-9 inline-flex rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-6 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white"
