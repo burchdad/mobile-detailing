@@ -52,11 +52,11 @@ export const featuredProjects: ProjectImage[] = [
     description: "Brown leather, cabin touchpoints, console surfaces, and rear seating restored for a truck owner who expects the interior to feel cared for.",
   },
   {
-    title: "Honda Daily Driver Reset",
-    vehicle: "Honda CR-V",
+    title: "Genesis Side Profile",
+    vehicle: "Genesis GV80",
     category: "Daily-driver preservation",
-    image: projectImages.hondaExterior,
-    description: "A practical East Texas daily driver brought back into a cleaner, easier-to-maintain state without losing the human proof of real work.",
+    image: projectImages.genesisSide,
+    description: "A clean finished side profile showing glass, wheels, paint, and exterior presentation after care.",
   },
 ];
 
@@ -84,11 +84,11 @@ export const galleryImages: ProjectImage[] = [
     description: "Wheels and lower-body areas brought into focus because small surfaces often reveal the real standard.",
   },
   {
-    title: "Ford Truck Exterior",
+    title: "Ford Truck Cabin",
     vehicle: "Ford F-150",
     category: "Truck preservation",
-    image: projectImages.fordTruckFinish,
-    description: "A working truck documented after exterior care, with chrome, paint, and front-end presence restored.",
+    image: projectImages.fordCabinWide,
+    description: "A working truck documented through the cabin, where leather, console, and daily-use surfaces carry the standard.",
   },
   {
     title: "Leather Console Restoration",

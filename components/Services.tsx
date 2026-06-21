@@ -11,7 +11,7 @@ const services = [
     eyebrow: "Ownership Care",
     description:
       "A mobile preservation cadence for owners who want their vehicle to stay presentable, protected, and easy to maintain without surrendering a day to a shop.",
-    image: projectImages.hondaExterior,
+    image: projectImages.mazdaSide,
     href: "/services/mobile-detailing",
   },
   {

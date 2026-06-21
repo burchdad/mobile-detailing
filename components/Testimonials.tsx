@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { reviewProof } from "@/lib/projectMedia";
+import { projectImages } from "@/lib/projectMedia";
 
 const stories = [
   {
@@ -54,17 +54,16 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1"
+            className="relative min-h-[360px] overflow-hidden rounded-[8px] bg-black md:min-h-[560px]"
           >
-            {reviewProof.map((proof) => (
-              <article key={proof.name} className="rounded-[8px] border border-white/10 bg-white/[0.03] p-4">
-                <div className="relative aspect-[16/9] overflow-hidden rounded-[6px] bg-black">
-                  <Image src={proof.image} alt={`${proof.name} review proof`} fill className="object-contain p-2" sizes="(min-width: 1024px) 44vw, 100vw" />
-                </div>
-                <p className="mt-4 text-sm font-black text-white">{proof.name}</p>
-                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-neon-blue">{proof.detail}</p>
-              </article>
-            ))}
+            <Image src={projectImages.fordCabinWide} alt="A&S restored vehicle cabin" fill className="object-cover opacity-[0.78]" sizes="(min-width: 1024px) 44vw, 100vw" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.72))]" />
+            <div className="absolute bottom-7 left-7 right-7">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-neon-pink">Real Vehicle Proof</p>
+              <h3 className="mt-3 max-w-sm text-2xl font-black leading-tight text-white md:text-4xl">
+                Finished surfaces make the client stories believable.
+              </h3>
+            </div>
           </motion.div>
 
           <div className="divide-y divide-white/10">

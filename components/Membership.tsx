@@ -8,7 +8,7 @@ import { projectImages } from "@/lib/projectMedia";
 const collection = [
   {
     name: "Silver Preservation",
-    image: projectImages.hondaExterior,
+    image: projectImages.mazdaWheel,
     body: "For daily drivers that need consistent interior order, gentle exterior maintenance, and enough protection to keep the vehicle from sliding backward between seasons.",
   },
   {
