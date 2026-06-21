@@ -1,257 +1,150 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-const categories = [
+const projects = [
   {
-    id: "paint-correction",
-    label: "Paint Correction",
-    icon: "PC",
-    before: { bg: "from-zinc-700 via-zinc-800 to-black", label: "Swirls + Haze" },
-    after: { bg: "from-slate-900 via-slate-800 to-black", label: "Mirror Clarity" },
-    result: "95% surface clarity recovered",
-    vehicle: "Black performance sedan",
-    time: "6 hours invested",
+    label: "Interior Restoration",
+    vehicle: "Premium SUV Cabin",
+    time: "Leather, console, carpets, touchpoints",
+    outcome: "Warm leather cabin restored with a cleaner, more cared-for ownership feel.",
+    image: "/media/as-suv-interior.png",
+    featured: true,
   },
   {
-    id: "interior-reset",
-    label: "Interior Transformation",
-    icon: "IN",
-    before: { bg: "from-amber-900 via-stone-800 to-black", label: "Stains + Odors" },
-    after: { bg: "from-slate-800 via-slate-900 to-black", label: "Factory Fresh" },
-    result: "Deep extraction with odor elimination",
-    vehicle: "Family SUV",
-    time: "4 hours invested",
+    label: "Client Media",
+    vehicle: "Genesis + GMC Detail Set",
+    time: "Interior and exterior documentation",
+    outcome: "Real client-photo proof from multiple surfaces, wheels, trim, seats, and cabin areas.",
+    image: "/media/as-client-collage.png",
   },
   {
-    id: "ceramic-shine",
-    label: "Ceramic Coating",
-    icon: "CC",
-    before: { bg: "from-neutral-700 via-zinc-800 to-black", label: "Unprotected Paint" },
-    after: { bg: "from-blue-950 via-slate-900 to-black", label: "Hydrophobic Shield" },
-    result: "Long-term gloss and protection layer",
-    vehicle: "Lifted truck",
-    time: "1 day invested",
-  },
-  {
-    id: "wheel-restore",
-    label: "Wheel Restoration",
-    icon: "WR",
-    before: { bg: "from-stone-700 via-zinc-700 to-black", label: "Brake Dust Build-Up" },
-    after: { bg: "from-slate-900 via-zinc-900 to-black", label: "Deep Satin Finish" },
-    result: "Wheels and tires reset to premium finish",
-    vehicle: "Luxury daily driver",
-    time: "2 hours invested",
+    label: "Service Guide",
+    vehicle: "Current A&S Package Reference",
+    time: "Express and executive tiers",
+    outcome: "Client-provided package collateral preserved as a reference, not the visual brand direction.",
+    image: "/media/as-service-guide.jpg",
   },
 ];
 
-type Category = (typeof categories)[0];
-
-function Slider({ category }: { category: Category }) {
-  const [position, setPosition] = useState(52);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const dragging = useRef(false);
-
-  const updatePosition = useCallback((clientX: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
-    setPosition(pct);
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="space-y-5"
-    >
-      <div
-        ref={containerRef}
-        className="relative w-full aspect-[17/10] md:aspect-[19/9] rounded-[1.8rem] md:rounded-[2rem] overflow-hidden select-none touch-none cursor-ew-resize group border border-white/15"
-        onMouseDown={(e) => {
-          dragging.current = true;
-          updatePosition(e.clientX);
-        }}
-        onMouseMove={(e) => {
-          if (dragging.current) updatePosition(e.clientX);
-        }}
-        onMouseUp={() => {
-          dragging.current = false;
-        }}
-        onMouseLeave={() => {
-          dragging.current = false;
-        }}
-        onTouchStart={(e) => {
-          dragging.current = true;
-          updatePosition(e.touches[0].clientX);
-        }}
-        onTouchMove={(e) => {
-          if (dragging.current) updatePosition(e.touches[0].clientX);
-        }}
-        onTouchEnd={() => {
-          dragging.current = false;
-        }}
-      >
-        <div className="absolute inset-0 glass-strong" />
-
-        <div className={`absolute inset-0 bg-gradient-to-br ${category.before.bg}`}>
-          <div
-            className="absolute inset-0 opacity-45"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 25% 42%, rgba(80,40,12,0.7) 0%, transparent 60%), linear-gradient(120deg, rgba(255,255,255,0.06), transparent 36%)",
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-[3rem] md:text-[5rem] font-black text-white/18 leading-none">BEFORE</div>
-              <div className="mt-2 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/55 font-bold">{category.before.label}</div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`absolute inset-0 bg-gradient-to-br ${category.after.bg}`}
-          style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-        >
-          <motion.div
-            className="absolute inset-0"
-            animate={{ x: ["-90%", "220%"] }}
-            transition={{ duration: 3.4, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
-            style={{ background: "linear-gradient(104deg, transparent 36%, rgba(255,255,255,0.12) 50%, transparent 65%)" }}
-          />
-          <div
-            className="absolute inset-0 opacity-45"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 70% 42%, rgba(80,180,255,0.45) 0%, transparent 62%), linear-gradient(120deg, rgba(255,255,255,0.09), transparent 34%)",
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-[3rem] md:text-[5rem] font-black text-white/20 leading-none">AFTER</div>
-              <div className="mt-2 text-[10px] md:text-xs uppercase tracking-[0.2em] text-neon-blue/80 font-bold">{category.after.label}</div>
-            </div>
-          </div>
-        </div>
-
-        <motion.div
-          className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-pink via-neon-blue to-neon-green pointer-events-none z-20"
-          style={{ left: `${position}%`, transform: "translateX(-50%)" }}
-          animate={{ boxShadow: ["0 0 14px rgba(255,0,127,0.55)", "0 0 24px rgba(0,207,255,0.7)", "0 0 14px rgba(255,0,127,0.55)"] }}
-          transition={{ duration: 2.4, repeat: Infinity }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-deep-black/90 border-2 border-neon-pink/70 backdrop-blur flex items-center justify-center z-30 shadow-[0_0_24px_rgba(255,0,127,0.45)] pointer-events-none"
-          style={{ left: `${position}%`, transform: "translate(-50%,-50%)" }}
-          whileHover={{ scale: 1.08 }}
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M10 8l-4 4 4 4m4-8l4 4-4 4" />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.2em] text-white/55 font-bold"
-          animate={{ opacity: [0.55, 1, 0.55], y: [0, 3, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          Drag to Compare
-        </motion.div>
-
-        <div className="absolute top-4 left-4 glass rounded-xl px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-white/60 font-semibold border border-white/10">
-          Before
-        </div>
-        <div className="absolute top-4 right-4 glass rounded-xl px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-neon-blue/75 font-semibold border border-neon-blue/20">
-          After
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.12, duration: 0.5 }}
-        className="glass rounded-2xl border border-neon-pink/30 px-4 py-4"
-      >
-        <div className="grid gap-3 text-center md:grid-cols-3">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-neon-pink">{category.vehicle}</p>
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-white/62">{category.label}</p>
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-neon-blue">{category.time}</p>
-        </div>
-        <p className="mt-3 text-center text-xs font-black uppercase tracking-[0.14em] text-white/70 md:text-sm">{category.result}</p>
-      </motion.div>
-    </motion.div>
-  );
-}
+const reels = [
+  "https://www.facebook.com/reel/1622783268783745",
+  "https://www.facebook.com/reel/1529964088921173",
+  "https://www.facebook.com/reel/1076405425364255",
+  "https://www.facebook.com/reel/1308712487680033",
+  "https://www.facebook.com/reel/27040195182280478",
+  "https://www.facebook.com/reel/1945697012821238",
+];
 
 export default function BeforeAfter() {
-  const [active, setActive] = useState(categories[0].id);
-  const category = categories.find((item) => item.id === active) ?? categories[0];
-
   return (
-    <section id="before-after" className="section-pad bg-surface relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[980px] h-px bg-gradient-to-r from-transparent via-neon-blue/35 to-transparent" />
-      <div className="absolute top-[30%] left-[10%] w-[560px] h-[320px] bg-neon-pink/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-[10%] right-[8%] w-[560px] h-[300px] bg-neon-blue/10 rounded-full blur-[140px]" />
-      <div className="absolute inset-0 speed-lines opacity-[0.22]" />
+    <section id="before-after" className="relative overflow-hidden bg-surface px-5 py-28 md:px-8 md:py-36">
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent" />
+      <div className="absolute left-[-14%] top-[22%] h-[620px] w-[620px] rounded-full bg-neon-blue/7 blur-[170px]" />
+      <div className="absolute right-[-14%] bottom-[4%] h-[580px] w-[580px] rounded-full bg-neon-pink/7 blur-[170px]" />
 
-      <div className="w-full px-5 md:px-8 relative z-10">
-        <div className="mx-auto max-w-7xl mb-12 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="grid gap-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end"
+        >
+          <div>
+            <p className="eyebrow mb-5 text-neon-blue">Real Client Media</p>
+            <h2 className="max-w-5xl text-[clamp(3.4rem,7vw,7.25rem)] font-black leading-[0.9] tracking-tight text-white">
+              Proof That Feels Human
+            </h2>
+          </div>
+          <p className="max-w-2xl text-xl leading-relaxed text-white/58 md:text-2xl">
+            Real photos and reels do more for trust than synthetic graphics ever will. This section now shows actual A&S work and social proof from the client&apos;s media library.
+          </p>
+        </motion.div>
+
+        <div className="mt-18 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <motion.article
+            initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
+            className="group relative min-h-[640px] overflow-hidden rounded-[8px] bg-black"
           >
-            <p className="eyebrow text-neon-blue mb-4">Proof Over Promises</p>
-            <div className="section-line mb-6" />
-            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 max-w-5xl">See the Transformation</h2>
-            <p className="text-white/52 max-w-3xl text-lg md:text-xl leading-relaxed">
-              Real restoration results from East Texas vehicles: paint correction, interior reset, ceramic protection, and wheel recovery.
-            </p>
-          </motion.div>
-        </div>
+            <Image
+              src={projects[0].image}
+              alt={`${projects[0].vehicle} ${projects[0].label}`}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.72))]" />
+            <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
+              <p className="eyebrow mb-3 text-neon-pink">{projects[0].label}</p>
+              <h3 className="text-4xl font-black tracking-tight text-white md:text-6xl">{projects[0].vehicle}</h3>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/68">{projects[0].outcome}</p>
+            </div>
+          </motion.article>
 
-        <div className="grid lg:grid-cols-[1.05fr_2fr] gap-6 lg:gap-8 items-start">
-          <div className="flex flex-col gap-3">
-            {categories.map((item) => (
-              <motion.button
-                key={item.id}
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setActive(item.id)}
-                className={`text-left px-5 py-3.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-250 flex items-center gap-3 ${
-                  active === item.id
-                    ? "bg-gradient-to-r from-neon-pink to-neon-blue text-white shadow-[0_0_30px_rgba(255,0,127,0.4)]"
-                    : "bg-black/30 backdrop-blur-md border border-white/15 text-white/70 hover:text-white hover:border-neon-blue/40 hover:bg-black/50"
-                }`}
+          <div className="grid gap-5">
+            {projects.slice(1).map((project, index) => (
+              <motion.article
+                key={project.label}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.7 }}
+                className="group relative min-h-[310px] overflow-hidden rounded-[8px] bg-black"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-[10px] tracking-wider font-black">{item.icon}</span>
-                <span>{item.label}</span>
-              </motion.button>
+                <Image
+                  src={project.image}
+                  alt={`${project.vehicle} ${project.label}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.74))]" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-neon-blue">{project.label}</p>
+                  <h3 className="mt-2 text-2xl font-black text-white">{project.vehicle}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/62">{project.outcome}</p>
+                </div>
+              </motion.article>
             ))}
           </div>
-
-          <div className="glass-strong rounded-[2rem] p-3 md:p-5 border border-white/12">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.32 }}
-              >
-                <Slider category={category} />
-              </motion.div>
-            </AnimatePresence>
-            <p className="text-center text-white/35 text-xs mt-4">Touch and mouse optimized comparison slider</p>
-          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mt-16 border-t border-white/8 pt-10"
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
+            <div>
+              <p className="eyebrow text-neon-pink">Watch The Work</p>
+              <p className="mt-4 max-w-sm text-lg leading-relaxed text-white/52">
+                Facebook reels are linked as live social proof. Native hosted clips can replace these once the video files are available in Blob.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+              {reels.map((href, index) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group rounded-[6px] border border-white/10 bg-white/[0.025] px-4 py-5 transition-colors hover:border-neon-pink/35 hover:bg-white/[0.045]"
+                >
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/36">Reel {String(index + 1).padStart(2, "0")}</span>
+                  <span className="mt-3 block text-sm font-black uppercase tracking-[0.12em] text-white group-hover:text-neon-pink">Open Facebook Reel</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
