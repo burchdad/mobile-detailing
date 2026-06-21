@@ -4,11 +4,9 @@ import TrustStrip from "@/components/TrustStrip";
 import BeforeAfter from "@/components/BeforeAfter";
 import Services from "@/components/Services";
 import VisualImpact from "@/components/VisualImpact";
-import Process from "@/components/Process";
 import OwnerJournal from "@/components/OwnerJournal";
 import Testimonials from "@/components/Testimonials";
 import Membership from "@/components/Membership";
-import ServiceArea from "@/components/ServiceArea";
 import Footer from "@/components/Footer";
 import MobileCtaBar from "@/components/MobileCtaBar";
 import { FinalLuxuryCta } from "@/components/BrandPlatform";
@@ -20,7 +18,7 @@ const localBusinessSchema = {
   description:
     "Premium mobile auto detailing in Tyler TX and East Texas. Ceramic coating, paint correction, interior restoration and fleet detailing.",
   areaServed: ["Tyler TX", "Whitehouse TX", "Lindale TX", "Longview TX"],
-  telephone: "+1-903-555-0000",
+  telephone: "+1-903-330-8955",
   url: "https://asdetailing.org",
   serviceType: [
     "Concierge Maintenance",
@@ -66,12 +64,10 @@ export default function Home() {
       <BeforeAfter />
       <Services />
       <VisualImpact />
-      <Process />
       <OwnerJournal />
       <Testimonials />
       <Membership />
-      <ServiceArea />
-      <FinalLuxuryCta />
+      <FinalLuxuryCta title="Your Vehicle Deserves Better." />
       <Footer />
       <MobileCtaBar />
     </main>

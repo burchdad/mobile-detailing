@@ -1,104 +1,86 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
-const tiers = [
+const collection = [
   {
     name: "Silver Preservation",
-    audience: "Daily-driver preservation",
-    price: "$99",
-    perks: ["Monthly maintenance detail", "Paint-safe wash process", "Interior touchpoint reset", "Priority seasonal scheduling"],
-    accent: "from-neon-blue to-neon-pink",
+    image: "/media/as-suv-interior.png",
+    body: "For daily drivers that need consistent interior order, gentle exterior maintenance, and enough protection to keep the vehicle from sliding backward between seasons.",
   },
   {
     name: "Gold Preservation",
-    audience: "Premium family and performance vehicles",
-    price: "$179",
-    perks: ["Two visits per month", "Ceramic-safe maintenance", "Leather and trim conditioning", "10% preferred-client add-on pricing", "First access appointment windows"],
-    accent: "from-neon-pink to-neon-blue",
-    featured: true,
+    image: "/media/as-client-collage.png",
+    body: "For family vehicles, premium SUVs, and performance cars that need a more deliberate cadence: finish-safe washing, cabin conditioning, and priority care.",
   },
   {
-    name: "Black Label Preservation",
-    audience: "Collectors, show vehicles, and high-value finishes",
-    price: "$299",
-    perks: ["Weekly or custom cadence", "Monthly finish inspection", "Ceramic maintenance boosters", "Seasonal protection plan", "Dedicated vehicle care records"],
-    accent: "from-neon-pink to-neon-green",
+    name: "Black Label",
+    image: "/media/as-service-guide.jpg",
+    body: "For owners who want the vehicle treated as an asset: finish inspections, ceramic maintenance, seasonal protection decisions, and a direct relationship with Steve.",
   },
 ];
 
 export default function Membership() {
   return (
-    <section id="membership" className="section-pad relative overflow-hidden bg-deep-black">
-      <div className="absolute left-1/2 top-0 h-px w-[900px] -translate-x-1/2 bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent" />
-      <div className="absolute left-[8%] top-[20%] h-[520px] w-[520px] rounded-full bg-neon-pink/6 blur-[150px]" />
-      <div className="absolute right-[10%] bottom-[12%] h-[420px] w-[420px] rounded-full bg-neon-blue/7 blur-[140px]" />
-
-      <div className="relative z-10 w-full px-5 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-14 max-w-4xl"
-          >
-            <p className="eyebrow mb-4 text-neon-pink">Vehicle Preservation Plans</p>
-            <div className="section-line mb-6" />
-            <h2 className="text-5xl font-black tracking-tight text-white md:text-7xl">A Vehicle That Stays Ready</h2>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/56">
-              Memberships are not subscriptions. They are managed care plans for owners who want priority scheduling, consistent protection, and a vehicle that never slides backward.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {tiers.map((tier, index) => (
-              <motion.article
-                key={tier.name}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -8 }}
-                className={`panel-edge shine-card relative overflow-hidden rounded-2xl border bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.018))] ${tier.featured ? "border-neon-pink/45 ring-1 ring-neon-pink/35" : "border-white/10"}`}
-              >
-                <div className={`h-1 bg-gradient-to-r ${tier.accent}`} />
-                {tier.featured ? (
-                  <div className="absolute right-5 top-5 rounded-full bg-neon-pink/12 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-neon-pink">
-                    Recommended
-                  </div>
-                ) : null}
-
-                <div className="p-7">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neon-blue">{tier.audience}</p>
-                  <h3 className="mt-3 text-3xl font-black text-white">{tier.name}</h3>
-                  <div className="mt-5 text-5xl font-black text-neon-pink">
-                    {tier.price}<span className="text-base font-medium text-white/35">/mo</span>
-                  </div>
-
-                  <ul className="mt-8 min-h-[210px] space-y-3">
-                    {tier.perks.map((perk) => (
-                      <li key={perk} className="flex gap-3 text-sm leading-relaxed text-white/68">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink" />
-                        {perk}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href="/assessment"
-                    className={`mt-8 inline-flex w-full justify-center rounded-xl bg-gradient-to-r ${tier.accent} px-5 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white`}
-                  >
-                    Discuss This Plan
-                  </a>
-                </div>
-              </motion.article>
-            ))}
+    <section id="membership" className="relative overflow-hidden bg-[#030304] px-5 py-28 md:px-8 md:py-40">
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-white/14 to-transparent" />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-20 grid gap-10 lg:grid-cols-[0.68fr_0.32fr] lg:items-end"
+        >
+          <div>
+            <p className="eyebrow mb-5 text-neon-pink">The Preservation Collection</p>
+            <h2 className="max-w-5xl text-[clamp(3.5rem,7vw,8rem)] font-black leading-[0.9] tracking-tight text-white">
+              Care Plans For Vehicles That Deserve To Stay Ready
+            </h2>
           </div>
-
-          <p className="mt-8 text-center text-xs text-white/32">
-            Plans are tailored after vehicle condition, coating status, parking environment, and driving habits are reviewed.
+          <p className="text-lg leading-relaxed text-white/55">
+            No pricing table. No commodity tiers. Each program starts with a condition review, ownership goals, parking environment, and the level of protection the vehicle deserves.
           </p>
+        </motion.div>
+
+        <div className="space-y-16">
+          {collection.map((item, index) => (
+            <motion.article
+              key={item.name}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.72, delay: index * 0.05 }}
+              className="grid gap-8 border-t border-white/10 pt-10 lg:grid-cols-[0.44fr_0.56fr] lg:items-center"
+            >
+              <div>
+                <p className="mb-5 text-sm font-black uppercase tracking-[0.24em] text-white/24">
+                  {String(index + 1).padStart(2, "0")} / Preservation
+                </p>
+                <h3 className="text-5xl font-black leading-[0.94] tracking-tight text-white md:text-7xl">{item.name}</h3>
+                <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/58">{item.body}</p>
+              </div>
+
+              <div className="relative min-h-[360px] overflow-hidden rounded-[8px] bg-black md:min-h-[460px]">
+                <Image src={item.image} alt={item.name} fill className="object-cover opacity-[0.78]" sizes="(min-width: 1024px) 56vw, 100vw" />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.14),rgba(0,0,0,0.48))]" />
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="mt-20 flex flex-col items-start justify-between gap-8 border-t border-white/10 pt-10 md:flex-row md:items-center">
+          <p className="max-w-2xl text-2xl font-bold leading-snug text-white/82 md:text-3xl">
+            The right plan is chosen after the vehicle is understood.
+          </p>
+          <Link
+            href="/assessment"
+            className="rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-7 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+          >
+            Request Assessment
+          </Link>
         </div>
       </div>
     </section>

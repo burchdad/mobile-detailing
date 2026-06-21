@@ -97,8 +97,8 @@ export function SplitFeature({
 }
 
 export function FinalLuxuryCta({
-  title = "Ready To Protect Your Vehicle?",
-  body = "Request a guided assessment and we will recommend the right preservation path for your vehicle, condition, and ownership goals.",
+  title = "Your Vehicle Deserves Better.",
+  body = "Request a guided assessment and Steve will recommend the right preservation path for your vehicle, condition, and ownership goals.",
 }: {
   title?: string;
   body?: string;

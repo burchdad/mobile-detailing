@@ -1,152 +1,94 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
     name: "Concierge Maintenance",
-    category: "Ownership Care",
-    start: "From $259",
-    description: "A complete interior and exterior restoration for drivers who want the vehicle to feel crisp, cared for, and ready for attention.",
-    features: ["Paint-safe foam wash", "Interior extraction and conditioning", "Trim, glass, wheels, and tires finished by hand"],
-    accent: "from-neon-pink to-neon-blue",
+    eyebrow: "Ownership Care",
+    description:
+      "A mobile preservation cadence for owners who want their vehicle to stay presentable, protected, and easy to maintain without surrendering a day to a shop.",
+    image: "/media/as-client-collage.png",
+    href: "/services/mobile-detailing",
   },
   {
     name: "Paint Enhancement",
-    category: "Clarity Restoration",
-    start: "From $349",
-    description: "Machine polishing designed to reduce swirls, haze, oxidation, and light defects before the finish is protected.",
-    features: ["Inspection under correction lighting", "Single or multi-stage polishing", "Gloss, depth, and reflection recovery"],
-    accent: "from-neon-blue to-neon-pink",
+    eyebrow: "Finish Clarity",
+    description:
+      "Correction-minded polishing and surface refinement for paint that deserves depth, reflection, and a cleaner foundation before protection.",
+    image: "/media/as-service-guide.jpg",
+    href: "/services/paint-correction",
   },
   {
     name: "Ceramic Protection",
-    category: "Specialist Service",
-    start: "From $699",
-    description: "Hydrophobic paint protection for gloss retention, easier washing, and a finish that stays impressive longer.",
-    features: ["Decontamination and prep", "Professional coating application", "Maintenance guidance after delivery"],
-    accent: "from-neon-pink to-neon-green",
-    featured: true,
-  },
-  {
-    name: "Interior Restoration",
-    category: "Cabin Preservation",
-    start: "From $189",
-    description: "Deep cleaning for leather, carpet, plastics, touchpoints, and odor-prone surfaces without harsh shortcuts.",
-    features: ["Steam and extraction workflow", "Leather and trim care", "Odor neutralization and final inspection"],
-    accent: "from-neon-green to-neon-blue",
-  },
-  {
-    name: "Preservation Programs",
-    category: "Ongoing Care",
-    start: "From $99/mo",
-    description: "Recurring upkeep for owners who want their finish, cabin, and protection plan managed all year.",
-    features: ["Priority scheduling", "Ceramic-safe maintenance", "Seasonal protection planning"],
-    accent: "from-neon-blue to-neon-green",
-  },
-  {
-    name: "Fleet Preservation",
-    category: "Business Presentation",
-    start: "Custom",
-    description: "Consistent mobile detailing for company vehicles where brand presentation and reliability matter.",
-    features: ["Route-based scheduling", "Standardized quality checklist", "Multi-vehicle service windows"],
-    accent: "from-neon-pink to-neon-blue",
+    eyebrow: "Long-Term Defense",
+    description:
+      "Hydrophobic protection, easier washing, gloss retention, and climate defense for owners who want their investment to age with intention.",
+    image: "/media/as-suv-interior.png",
+    href: "/services/ceramic-coatings",
   },
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } };
-const item = { hidden: { opacity: 0, y: 34 }, show: { opacity: 1, y: 0 } };
-
 export default function Services() {
   return (
-    <section id="services" className="section-pad relative overflow-hidden bg-deep-black">
-      <div className="absolute left-1/2 top-0 h-px w-[1000px] -translate-x-1/2 bg-gradient-to-r from-transparent via-neon-pink/35 to-transparent" />
-      <div className="absolute right-[-12%] top-[18%] h-[520px] w-[520px] rounded-full bg-neon-pink/7 blur-[150px]" />
-      <div className="absolute left-[-12%] bottom-[14%] h-[520px] w-[520px] rounded-full bg-neon-blue/7 blur-[150px]" />
-
-      <div className="relative z-10 w-full px-5 md:px-8">
-        <div className="mx-auto mb-16 max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="eyebrow mb-4 text-neon-pink">Specialist Services</p>
-            <div className="section-line mb-6" />
-            <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
-              <h2 className="max-w-5xl text-5xl font-black tracking-tight text-white md:text-7xl">
-                Protection-Led Services For Serious Owners
-              </h2>
-              <p className="text-lg leading-relaxed text-white/56">
-                A&S leads with protection, preservation, and ownership pride. Cleaning is part of the process, but the real product is a vehicle that stays valuable, presentable, and easier to maintain.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
+    <section id="services" className="relative overflow-hidden bg-deep-black px-5 py-28 md:px-8 md:py-40">
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-neon-pink/22 to-transparent" />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+          transition={{ duration: 0.7 }}
+          className="mb-24 max-w-5xl"
         >
+          <p className="eyebrow mb-5 text-neon-pink">Specialist Services</p>
+          <h2 className="text-[clamp(3.6rem,7vw,7.6rem)] font-black leading-[0.9] tracking-tight text-white">
+            Protection-Led Care, Not A Menu Of Details
+          </h2>
+          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-white/56">
+            The homepage only needs the core ownership paths. Everything else belongs deeper in the site, after the visitor understands that A&S preserves vehicles instead of simply cleaning them.
+          </p>
+        </motion.div>
+
+        <div className="space-y-28 md:space-y-36">
           {services.map((service, index) => (
             <motion.article
               key={service.name}
-              variants={item}
-              whileHover={{ y: -10, rotateX: 2, rotateY: index % 2 === 0 ? -2 : 2 }}
-              transition={{ duration: 0.32 }}
-              className={`preserve-3d panel-edge shine-card relative min-h-[430px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.018))] p-6 md:p-7 ${service.featured ? "ring-1 ring-neon-pink/45" : ""}`}
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.75, ease: "easeOut" }}
+              className="grid gap-10 lg:grid-cols-2 lg:items-center"
             >
-              <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.accent}`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(255,255,255,0.10),transparent_30%),linear-gradient(160deg,transparent_35%,rgba(0,0,0,0.34)_100%)]" />
-              <motion.div
-                className="absolute -right-20 top-16 h-52 w-52 rounded-full border border-white/10"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute -right-10 top-24 h-28 w-28 rounded-full border border-neon-pink/18"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-              />
+              <div className={`relative min-h-[520px] overflow-hidden rounded-[8px] bg-black ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <Image
+                  src={service.image}
+                  alt={service.name}
+                  fill
+                  className="object-cover opacity-[0.82] transition-transform duration-700 hover:scale-[1.025]"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.62))]" />
+              </div>
 
-              {service.featured ? (
-                <div className="absolute right-5 top-5 rounded-full border border-neon-pink/35 bg-neon-pink/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-neon-pink">
-                  Highest Value
-                </div>
-              ) : null}
-
-              <div className="relative z-10 flex h-full flex-col">
-                <div className="mb-8">
-                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-neon-blue">{service.category}</p>
-                  <h3 className="text-3xl font-black leading-tight tracking-tight text-white">{service.name}</h3>
-                  <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-white/58">{service.description}</p>
-                </div>
-
-                <div className="mb-7 text-xs font-semibold uppercase tracking-[0.18em] text-white/42">{service.start}</div>
-
-                <ul className="mb-8 flex-1 space-y-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-sm leading-relaxed text-white/70">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-pink shadow-neon-pink-sm" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="/assessment"
-                  className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-r ${service.accent} px-5 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition-transform hover:-translate-y-0.5`}
+              <div className="lg:px-10">
+                <p className="eyebrow mb-5 text-neon-blue">{service.eyebrow}</p>
+                <h3 className="max-w-xl text-5xl font-black leading-[0.95] tracking-tight text-white md:text-7xl">
+                  {service.name}
+                </h3>
+                <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/58">{service.description}</p>
+                <Link
+                  href={service.href}
+                  className="mt-9 inline-flex rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-6 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-white"
                 >
-                  Request Assessment
-                </a>
+                  Explore Service
+                </Link>
               </div>
             </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
