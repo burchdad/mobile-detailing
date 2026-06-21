@@ -9,7 +9,7 @@ import { featuredProjects, projectImages } from "@/lib/projectMedia";
 const programs = [
   {
     name: "Silver Preservation",
-    image: projectImages.mazdaWheel,
+    image: projectImages.genesisSide,
     body: "For the daily driver that still deserves intention: clean touchpoints, protected surfaces, and a steady cadence that keeps the vehicle from sliding backward.",
     benefits: ["Consistent presentation", "Paint-safe maintenance", "Priority seasonal care"],
   },
