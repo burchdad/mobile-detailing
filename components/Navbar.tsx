@@ -9,6 +9,7 @@ import logoImage from "../logo.png";
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Results", href: "/results" },
+  { label: "Media", href: "/media" },
   { label: "Membership", href: "/membership" },
   { label: "Journal", href: "/journal" },
 ];

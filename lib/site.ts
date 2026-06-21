@@ -11,6 +11,7 @@ export const staticMarketingRoutes = [
   "/services/fleet-care",
   "/membership",
   "/results",
+  "/media",
   "/journal",
   "/service-area",
   "/faq",

@@ -60,6 +60,7 @@ export default function Footer() {
               {[
                 ["About Steve", "/about"],
                 ["Results", "/results"],
+                ["Media", "/media"],
                 ["Journal", "/journal"],
                 ["FAQ", "/faq"],
               ].map(([label, href]) => (

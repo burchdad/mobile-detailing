@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { facebookEmbedUrl, homepageReels } from "@/lib/media";
 
 const projects = [
   {
@@ -28,19 +29,6 @@ const projects = [
   },
 ];
 
-const reels = [
-  "https://www.facebook.com/reel/1622783268783745",
-  "https://www.facebook.com/reel/1529964088921173",
-  "https://www.facebook.com/reel/1076405425364255",
-  "https://www.facebook.com/reel/1308712487680033",
-  "https://www.facebook.com/reel/27040195182280478",
-  "https://www.facebook.com/reel/1945697012821238",
-];
-
-function facebookEmbedUrl(url: string) {
-  return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&width=360&t=0`;
-}
-
 function ReelFrame({ href, index }: { href: string; index: number }) {
   return (
     <motion.div
@@ -63,15 +51,18 @@ function ReelFrame({ href, index }: { href: string; index: number }) {
             loading="lazy"
           />
         </div>
+        <div className="border-t border-white/10 bg-[#080808] px-4 py-3">
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-between rounded-[6px] bg-white/[0.04] px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white/72 transition-colors hover:bg-neon-pink/18 hover:text-white"
+          >
+            <span>Watch On Facebook</span>
+            <span className="text-neon-pink">Play</span>
+          </a>
+        </div>
       </div>
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-4 block text-center text-[10px] font-black uppercase tracking-[0.18em] text-white/42 transition-colors hover:text-neon-pink"
-      >
-        Open reel on Facebook
-      </a>
     </motion.div>
   );
 }
@@ -171,34 +162,19 @@ export default function BeforeAfter() {
                 The reels can play directly on the page using Facebook&apos;s embedded player. Once the source files are uploaded to Vercel Blob, these same frames can switch to native HTML video for faster playback and cleaner controls.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href={reels[0]} target="_blank" rel="noreferrer" className="rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white">
+                <a href={homepageReels[0]} target="_blank" rel="noreferrer" className="rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white">
                   Watch Owner Reel
                 </a>
-                <a href="/results" className="rounded-[6px] border border-white/12 bg-white/[0.03] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white/72">
+                <a href="/media" className="rounded-[6px] border border-white/12 bg-white/[0.03] px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white/72">
                   View Media Library
                 </a>
               </div>
             </div>
             <div className="grid gap-7 sm:grid-cols-2">
-              {reels.slice(0, 2).map((href, index) => (
+              {homepageReels.map((href, index) => (
                 <ReelFrame key={href} href={href} index={index} />
               ))}
             </div>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {reels.slice(2).map((href, index) => (
-                <a
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group rounded-[6px] border border-white/10 bg-white/[0.025] px-4 py-5 transition-colors hover:border-neon-pink/35 hover:bg-white/[0.045]"
-                >
-                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/36">More Reel {String(index + 3).padStart(2, "0")}</span>
-                <span className="mt-3 block text-sm font-black uppercase tracking-[0.12em] text-white group-hover:text-neon-pink">Open Clip</span>
-                </a>
-              ))}
           </div>
         </motion.div>
       </div>
