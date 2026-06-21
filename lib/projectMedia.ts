@@ -16,6 +16,7 @@ export const projectImages = {
   mazdaSide: "/media/projects/mazda-side-gloss.webp",
   mazdaWash: "/media/projects/mazda-wash-process.webp",
   hondaExterior: "/media/projects/honda-exterior-reset.webp",
+  hondaSideFinished: "/media/projects/honda-side-finished.webp",
   expeditionSeat: "/media/projects/expedition-leather-seat.webp",
   expeditionConsole: "/media/projects/expedition-console.webp",
   expeditionLeather: "/media/projects/expedition-leather-row.webp",
