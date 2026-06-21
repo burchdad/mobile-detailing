@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import OwnerPresence from "@/components/OwnerPresence";
 import TrustStrip from "@/components/TrustStrip";
 import BeforeAfter from "@/components/BeforeAfter";
 import Services from "@/components/Services";
@@ -60,6 +61,7 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+      <OwnerPresence />
       <TrustStrip />
       <BeforeAfter />
       <Services />

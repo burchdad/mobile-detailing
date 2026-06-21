@@ -10,6 +10,8 @@ export const staticMarketingRoutes = [
   "/services/ceramic-coatings",
   "/services/fleet-care",
   "/membership",
+  "/gallery",
+  "/reviews",
   "/results",
   "/media",
   "/journal",

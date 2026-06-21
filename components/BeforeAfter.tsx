@@ -83,13 +83,13 @@ export default function BeforeAfter() {
           className="grid gap-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end"
         >
           <div>
-            <p className="eyebrow mb-5 text-neon-blue">Real Client Media</p>
-            <h2 className="max-w-5xl text-[clamp(3.4rem,7vw,7.25rem)] font-black leading-[0.9] tracking-tight text-white">
-              Proof That Feels Human
+            <p className="eyebrow mb-5 text-neon-blue">Craftsmanship Proof</p>
+            <h2 className="max-w-5xl text-[clamp(3.2rem,6vw,6.4rem)] font-black leading-[0.96] tracking-tight text-white">
+              Results That Make The Vehicle Feel Cared For Again
             </h2>
           </div>
           <p className="max-w-2xl text-xl leading-relaxed text-white/58 md:text-2xl">
-            Real photos and reels do more for trust than synthetic graphics ever will. This section now shows actual A&S work and social proof from the client&apos;s media library.
+            Real client media matters because premium owners want evidence. Surfaces, trim, leather, paint, wheels, and touchpoints all tell the story of the standard.
           </p>
         </motion.div>
 
@@ -159,7 +159,7 @@ export default function BeforeAfter() {
                 See The Process In Motion
               </h3>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-white/52">
-                The reels can play directly on the page using Facebook&apos;s embedded player. Once the source files are uploaded to Vercel Blob, these same frames can switch to native HTML video for faster playback and cleaner controls.
+                Watch the work in motion: interiors being recovered, finishes being refined, and the owner-led process that turns a service into trust.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href={homepageReels[0]} target="_blank" rel="noreferrer" className="rounded-[6px] bg-gradient-to-r from-neon-pink to-neon-blue px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white">

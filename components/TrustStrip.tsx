@@ -21,7 +21,7 @@ const proof = ["Fully insured", "5-star local reputation", "Mobile concierge", "
 
 export default function TrustStrip() {
   return (
-    <section className="relative overflow-hidden bg-surface px-5 py-28 md:px-8 md:py-36">
+    <section className="relative overflow-hidden bg-[#151512] px-5 py-28 md:px-8 md:py-36">
       <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-white/12 to-transparent" />
       <div className="absolute right-[-18%] top-[18%] h-[620px] w-[620px] rounded-full bg-neon-blue/6 blur-[170px]" />
       <div className="absolute left-[-18%] bottom-[-20%] h-[620px] w-[620px] rounded-full bg-neon-pink/6 blur-[170px]" />
@@ -37,12 +37,12 @@ export default function TrustStrip() {
           <div>
             <p className="eyebrow mb-5 text-neon-pink">The A&S Standard</p>
             <h2 className="max-w-4xl text-[clamp(3.5rem,7vw,7.5rem)] font-black leading-[0.9] tracking-tight text-white">
-              Preservation Is The Process
+              Standards Before Shine
             </h2>
           </div>
           <div>
             <p className="max-w-2xl text-xl leading-relaxed text-white/58 md:text-2xl">
-              The difference is not a longer service menu. It is the discipline behind each decision: inspect the vehicle, choose the safest path, protect the finish, and deliver it with pride.
+              Premium care is quiet discipline: inspect the vehicle, choose the safest path, protect the finish, and deliver it with the owner fully informed.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
               {proof.map((item) => (

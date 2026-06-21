@@ -12,24 +12,24 @@ export default function AboutPage() {
     <BrandPage
       hero={{
         eyebrow: "Meet Steve",
-        title: "Quality Over Volume",
-        intro: "A&S exists for owners who want their vehicle treated with patience, pride, and standards that go beyond a quick detail.",
+        title: "The Owner Behind The Standard",
+        intro: "A&S is personal because the work is personal. Steve built the company for owners who want accountability, patience, and a vehicle cared for with intent.",
       }}
       blocks={[
         {
           eyebrow: "Founder Story",
-          title: "Built by someone who cares about the finish as much as the owner does.",
-          body: "Steve built A&S around a simple belief: a vehicle is personal. It carries work, family, weekends, memories, and investment. The service should honor that.",
+          title: "Every vehicle leaves with Steve's approval.",
+          body: "The brand is not built around speed. It is built around the final walkthrough, the surfaces most people miss, and the pride that comes from returning a vehicle correctly.",
         },
         {
           eyebrow: "Why A&S Exists",
-          title: "The market had enough fast details. It needed a preservation partner.",
-          body: "A&S is not structured around pushing as many vehicles through a day as possible. It is structured around inspection, communication, professional process, and a final result worth remembering.",
+          title: "East Texas did not need another car wash.",
+          body: "It needed a preservation partner for owners who notice shortcuts, value communication, and want the work handled by someone accountable for the result.",
         },
         {
           eyebrow: "Community",
-          title: "East Texas relationships matter.",
-          body: "The brand grows through trust, referrals, and repeat clients who want their vehicles maintained by someone they know will do the work correctly.",
+          title: "The business grows through trust, not volume.",
+          body: "Referrals, repeat clients, and long-term preservation programs matter because they prove something stronger than advertising: owners come back.",
         },
       ]}
       feature={{

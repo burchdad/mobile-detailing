@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import carImage from "../car.png";
 
-const particles = Array.from({ length: 34 }, (_, i) => ({
+const particles = Array.from({ length: 18 }, (_, i) => ({
   id: i,
   x: (i * 23) % 100,
   y: (i * 37) % 100,
@@ -13,15 +13,16 @@ const particles = Array.from({ length: 34 }, (_, i) => ({
 }));
 
 const stats = [
-  { value: "500+", label: "Vehicles Protected" },
-  { value: "100+", label: "Returning Clients" },
-  { value: "5.0", label: "Google Rating" },
+  { value: "5.0", label: "Local Rating" },
+  { value: "500+", label: "Vehicles Serviced" },
+  { value: "East TX", label: "Mobile Concierge" },
 ];
 
 const trustBadges = [
-  { id: "01", text: "Protection First", sub: "Finish-safe process" },
-  { id: "02", text: "Certified Mindset", sub: "Specialist-level care" },
-  { id: "03", text: "Mobile Concierge", sub: "Home, office, or garage" },
+  { text: "Owner-approved work" },
+  { text: "Fully insured" },
+  { text: "Finish-safe systems" },
+  { text: "Priority assessments" },
 ];
 
 const orbitLabels = ["Paint Enhancement", "Ceramic Protection", "Interior Restoration", "Preservation Programs"];
@@ -87,12 +88,10 @@ function HeroShowpiece() {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[112vh] items-center overflow-hidden bg-deep-black pt-44 md:pt-48">
-      <div className="absolute inset-0 mesh-bg opacity-55" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.66)_42%,rgba(0,0,0,0.18)_100%)]" />
+    <section className="relative flex min-h-[108vh] items-center overflow-hidden bg-[#050504] pt-44 md:pt-48">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_14%,rgba(200,169,106,0.16),transparent_34%),radial-gradient(circle_at_72%_20%,rgba(138,164,173,0.12),transparent_32%),linear-gradient(135deg,#050504_0%,#11100d_48%,#050605_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_42%,rgba(0,0,0,0.12)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-deep-black to-transparent" />
-      <div className="absolute left-[-12%] top-[-10%] h-[760px] w-[760px] rounded-full bg-neon-pink/12 blur-[190px]" />
-      <div className="absolute right-[-8%] top-[4%] h-[700px] w-[700px] rounded-full bg-neon-blue/10 blur-[180px]" />
 
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((p) => (
@@ -109,7 +108,7 @@ export default function Hero() {
       <HeroShowpiece />
 
       <div className="relative z-10 w-full px-5 pb-20 md:px-8">
-        <div className="max-w-[920px] lg:max-w-[760px] xl:max-w-[860px]">
+        <div className="max-w-[920px] lg:max-w-[780px] xl:max-w-[860px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -122,33 +121,29 @@ export default function Hero() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.9, ease: "easeOut" }}
-            className="max-w-5xl text-[clamp(3.5rem,9.4vw,8.7rem)] font-black leading-[0.88] tracking-tight text-white"
+            className="max-w-5xl text-[clamp(3.25rem,7.6vw,7.4rem)] font-black leading-[0.94] tracking-tight text-white"
           >
-            Protecting Vehicles. <span className="gradient-text block">Preserving</span> Value.
+            Vehicle Preservation For Owners Who Notice Everything.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.75 }}
-            className="mt-8 max-w-2xl text-base leading-relaxed text-white/66 md:text-xl"
+            className="mt-8 max-w-2xl text-base leading-relaxed text-white/68 md:text-xl"
           >
-            Specialist mobile vehicle preservation for owners who care about protection, appearance, convenience, and long-term pride of ownership.
+            A&S is owner-led concierge vehicle care for East Texas drivers who value craftsmanship, accountability, and a finish that keeps its presence.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.44, duration: 0.65 }}
-            className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3"
+            className="mt-8 flex max-w-2xl flex-wrap gap-x-5 gap-y-3 border-y border-white/10 py-5"
           >
             {trustBadges.map((badge) => (
-              <div key={badge.text} className="panel-edge rounded-xl border border-white/12 bg-black/35 px-4 py-3 backdrop-blur-md">
-                <span className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg border border-neon-pink/25 bg-white/5 text-[10px] font-black tracking-wider text-neon-pink">
-                  {badge.id}
-                </span>
-                <div className="text-xs font-bold uppercase tracking-wide text-white">{badge.text}</div>
-                <div className="mt-1 text-[11px] text-white/42">{badge.sub}</div>
-              </div>
+              <span key={badge.text} className="text-[11px] font-black uppercase tracking-[0.18em] text-white/54">
+                {badge.text}
+              </span>
             ))}
           </motion.div>
 
@@ -181,10 +176,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.65 }}
-            className="mt-12 grid max-w-2xl grid-cols-3 gap-3 md:gap-4"
+            className="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/10 pt-7 md:gap-8"
           >
             {stats.map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/10 bg-black/38 p-4 backdrop-blur-md md:p-5">
+              <div key={s.label}>
                 <div className="text-2xl font-black text-neon-pink md:text-4xl">{s.value}</div>
                 <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45">{s.label}</div>
               </div>

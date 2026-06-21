@@ -17,13 +17,13 @@ type EditorialBlock = {
 export function BrandHero({ eyebrow, title, intro, cta = "Request Your Assessment", ctaHref = "/assessment" }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-5 pb-24 pt-36 md:px-8 md:pb-32 md:pt-44">
-      <div className="absolute inset-0 mesh-bg opacity-45" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.9),rgba(0,0,0,0.5),rgba(0,0,0,0.18))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(200,169,106,0.16),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(138,164,173,0.12),transparent_30%),linear-gradient(135deg,#050504_0%,#151411_54%,#050605_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78),rgba(0,0,0,0.46),rgba(0,0,0,0.14))]" />
       <div className="absolute right-[-14%] top-[8%] h-[680px] w-[680px] rounded-full bg-neon-blue/8 blur-[170px]" />
       <div className="absolute left-[-12%] bottom-[-18%] h-[560px] w-[560px] rounded-full bg-neon-pink/8 blur-[160px]" />
       <div className="relative z-10 mx-auto max-w-7xl">
         <p className="eyebrow mb-6 text-neon-pink">{eyebrow}</p>
-        <h1 className="max-w-6xl text-[clamp(4rem,9vw,9.5rem)] font-black leading-[0.88] tracking-tight text-white">
+        <h1 className="max-w-6xl text-[clamp(3.4rem,7vw,7.4rem)] font-black leading-[0.96] tracking-tight text-white">
           {title}
         </h1>
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-end">
@@ -52,7 +52,7 @@ export function EditorialSections({ blocks }: { blocks: readonly EditorialBlock[
                 <p className="mt-5 text-6xl font-black leading-none text-white/8 md:text-8xl">{String(index + 1).padStart(2, "0")}</p>
               </div>
               <div>
-                <h2 className="max-w-4xl text-4xl font-black tracking-tight text-white md:text-6xl">{block.title}</h2>
+              <h2 className="max-w-4xl text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">{block.title}</h2>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/58 md:text-xl">{block.body}</p>
               </div>
             </article>
@@ -80,7 +80,7 @@ export function SplitFeature({
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="eyebrow mb-5 text-neon-pink">{eyebrow}</p>
-          <h2 className="text-5xl font-black tracking-tight text-white md:text-7xl">{title}</h2>
+          <h2 className="text-5xl font-black leading-tight tracking-tight text-white md:text-6xl">{title}</h2>
           <p className="mt-7 text-lg leading-relaxed text-white/58">{body}</p>
         </div>
         <div className="space-y-5">
@@ -108,7 +108,7 @@ export function FinalLuxuryCta({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(200,169,106,0.12),transparent_42%)]" />
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         <p className="eyebrow mb-5 text-neon-pink">A&S Detailing</p>
-        <h2 className="text-5xl font-black tracking-tight text-white md:text-8xl">{title}</h2>
+        <h2 className="text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">{title}</h2>
         <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/58">{body}</p>
         <Link
           href="/assessment"

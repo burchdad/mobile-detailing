@@ -7,18 +7,18 @@ import { useEffect, useState } from "react";
 import logoImage from "../logo.png";
 
 const navLinks = [
-  { label: "Services", href: "/services" },
-  { label: "Results", href: "/results" },
-  { label: "Media", href: "/media" },
+  { label: "About Steve", href: "/about" },
+  { label: "Ceramic", href: "/services/ceramic-coatings" },
+  { label: "Paint Correction", href: "/services/paint-correction" },
   { label: "Membership", href: "/membership" },
-  { label: "Journal", href: "/journal" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Reviews", href: "/reviews" },
 ];
 
 const mobileLinks = [
-  { label: "About Steve", href: "/about" },
+  { label: "Home", href: "/" },
   ...navLinks,
-  { label: "Service Area", href: "/service-area" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Media", href: "/media" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -57,12 +57,12 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/52 transition-colors hover:text-white"
+              className="text-[10px] font-bold uppercase tracking-[0.17em] text-white/54 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
