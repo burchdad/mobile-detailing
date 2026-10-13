@@ -1,31 +1,65 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import type { InputHTMLAttributes } from "react";
+import { assessmentServices, assessmentConditions, isAssessmentReceipt, validateAssessment } from "@/lib/assessment";
 
-const services = [
-  "Signature Detail",
-  "Paint Enhancement",
-  "Ceramic Protection",
-  "Interior Preservation",
-  "Vehicle Preservation Plan",
-  "Fleet Care Program",
-  "Not sure yet",
-];
-
-const conditions = ["Well maintained", "Needs a reset", "Heavy interior use", "Paint swirls or haze", "New vehicle protection", "Show / collector vehicle"];
-
-export default function Booking() {
-  const [submitted, setSubmitted] = useState(false);
+export default function Booking({ available = false }: { available?: boolean }) {
+  const [receipt, setReceipt] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const pending = useRef(false);
+  const lastAttempt = useRef<{ payload: string; key: string } | null>(null);
+  const activeRequest = useRef<AbortController | null>(null);
+  const successHeading = useRef<HTMLHeadingElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => () => activeRequest.current?.abort(), []);
+  useEffect(() => { if (error) errorRef.current?.focus(); }, [error]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (pending.current || !available) return;
+    const formData = new FormData(event.currentTarget);
+    const values = Object.fromEntries(formData.entries());
+    const validation = validateAssessment(values);
+    if (!validation.ok) { setError(validation.message); return; }
+    const payload = JSON.stringify({ ...validation.data, website: values.website ?? "" });
+    const attempt = lastAttempt.current?.payload === payload
+      ? lastAttempt.current
+      : { payload, key: crypto.randomUUID() };
+    lastAttempt.current = attempt;
+    pending.current = true;
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+    const controller = new AbortController();
+    activeRequest.current = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch("/api/assessment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Idempotency-Key": attempt.key },
+        body: payload,
+        signal: controller.signal,
+      });
+      const result: unknown = await response.json();
+      if (response.ok && isAssessmentReceipt(result)) {
+        setReceipt(result.inquiryId);
+      } else {
+        setError(response.status === 503
+          ? "Online requests are temporarily unavailable. Your request has not been sent. Please use the contact page."
+          : "We couldn't confirm receipt. Your details are still here. You can retry or use the contact page.");
+      }
+    } catch {
+      setError("We couldn't confirm receipt. Your details are still here. You can retry or use the contact page.");
+    } finally {
+      window.clearTimeout(timeout);
+      activeRequest.current = null;
+      pending.current = false;
       setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    }
   };
 
   return (
@@ -71,9 +105,10 @@ export default function Booking() {
             <div className="h-1 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-green" />
             <div className="p-7 md:p-9">
               <AnimatePresence mode="wait">
-                {submitted ? (
+                {receipt ? (
                   <motion.div
                     key="success"
+                    onAnimationComplete={() => successHeading.current?.focus()}
                     initial={{ opacity: 0, scale: 0.94 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45 }}
@@ -84,44 +119,66 @@ export default function Booking() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h3 className="mb-3 text-3xl font-black text-white">Assessment Request Received</h3>
+                    <h3 ref={successHeading} tabIndex={-1} className="mb-3 text-3xl font-black text-white">Assessment Request Received</h3>
                     <p className="mx-auto max-w-md text-sm leading-relaxed text-white/58">
-                      We will review the vehicle details and reach out to confirm the right service path, timing, and expectations.
+                      Your request has been saved for review. Your preferred date is not a confirmed appointment. A&amp;S will confirm service details and availability with you.
                     </p>
+                    <p className="mt-4 text-xs text-white/58">Reference: {receipt}</p>
                   </motion.div>
                 ) : (
-                  <motion.form key="form" onSubmit={handleSubmit} className="space-y-6">
+                  <motion.form key="form" method="post" action="/api/assessment" onSubmit={handleSubmit} aria-busy={loading} className="space-y-6">
+                    <noscript><p className="text-sm text-white/80">JavaScript is required for online requests. Please <a href="/contact" className="underline">contact A&amp;S directly</a>.</p></noscript>
+                    {!available ? (
+                      <div role="status" className="rounded-xl border border-neon-blue/40 bg-black/30 p-4 text-sm text-white/80">
+                        Online requests are temporarily unavailable. Please <Link href="/contact" className="underline">contact A&amp;S directly</Link>.
+                      </div>
+                    ) : null}
+                    {error ? (
+                      <div ref={errorRef} tabIndex={-1} role="alert" className="rounded-xl border border-neon-pink/50 bg-black/30 p-4 text-sm text-white/80">
+                        {error} <Link href="/contact" className="underline">Contact A&amp;S</Link>
+                      </div>
+                    ) : null}
+                    <fieldset disabled={loading || !available} className="space-y-6">
+                    <legend className="sr-only">Vehicle assessment request</legend>
+                    <div hidden aria-hidden="true">
+                      <label htmlFor="assessment-website">Leave this blank</label>
+                      <input id="assessment-website" name="website" tabIndex={-1} autoComplete="off" />
+                    </div>
                     <div>
                       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/36">Owner Details</p>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Field label="Full Name" placeholder="John Smith" required />
-                        <Field label="Phone" placeholder="(903) 555-0000" type="tel" required />
+                        <Field name="fullName" autoComplete="name" maxLength={100} label="Full Name" placeholder="John Smith" required />
+                        <Field name="phone" autoComplete="tel" maxLength={30} label="Phone" placeholder="Your phone number" type="tel" required />
+                        <Field name="email" autoComplete="email" maxLength={254} label="Email (optional)" type="email" />
                       </div>
                     </div>
 
                     <div>
                       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/36">Vehicle Information</p>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Field label="Vehicle" placeholder="2022 Ford F-150 Platinum" required />
-                        <Select label="Desired Service" options={services} required />
+                        <Field name="vehicle" maxLength={150} label="Vehicle" placeholder="2022 Ford F-150 Platinum" required />
+                        <Select name="service" label="Desired Service" options={assessmentServices} required />
                       </div>
                     </div>
 
                     <div>
                       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/36">Condition And Outcome</p>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <Select label="Current Condition" options={conditions} required />
-                        <Field label="Preferred Date" type="date" required />
+                        <Select name="condition" label="Current Condition" options={assessmentConditions} required />
+                        <Field name="preferredDate" label="Preferred Date (not confirmed)" type="date" required />
                       </div>
                     </div>
 
                     <div>
-                      <Field label="Service Location" placeholder="Tyler, TX address or area" required />
+                      <Field name="location" maxLength={250} label="Service Location" placeholder="Tyler, TX address or area" required />
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold text-white/52">What should we know before assessing the vehicle?</label>
+                      <label htmlFor="assessment-notes" className="mb-1.5 block text-xs font-semibold text-white/52">What should we know before assessing the vehicle?</label>
                       <textarea
+                        id="assessment-notes"
+                        name="notes"
+                        maxLength={2000}
                         rows={4}
                         placeholder="Paint concerns, interior condition, coating goals, garage access, timeline..."
                         className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/25 transition-all duration-200 focus:border-neon-pink/55 focus:outline-none focus:shadow-neon-pink-sm"
@@ -137,12 +194,14 @@ export default function Booking() {
 
                     <button
                       type="submit"
-                      disabled={loading}
+                      disabled={loading || !available}
                       className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-neon-pink to-neon-blue py-4 text-base font-black uppercase tracking-[0.13em] text-white shadow-neon-pink-sm disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      <span className="relative z-10">{loading ? "Sending Assessment..." : "Request Vehicle Assessment"}</span>
+                      <span className="relative z-10">{loading ? "Sending Assessment..." : !available ? "Online Requests Unavailable" : "Request Vehicle Assessment"}</span>
                       <span className="absolute inset-0 -skew-x-12 translate-x-[-150%] bg-white/16 transition-transform duration-700 group-hover:translate-x-[250%]" />
                     </button>
+                    <p className="text-xs leading-relaxed text-white/50">Submitting shares these details with A&amp;S to respond to this request. Please do not include payment details or other sensitive information.</p>
+                    </fieldset>
                   </motion.form>
                 )}
               </AnimatePresence>
@@ -154,14 +213,17 @@ export default function Booking() {
   );
 }
 
-function Field({ label, placeholder, type = "text", required = false }: { label: string; placeholder?: string; type?: string; required?: boolean }) {
+function Field({ label, name, type = "text", required = false, ...props }: InputHTMLAttributes<HTMLInputElement> & { label: string; name: string }) {
+  const id = `assessment-${name}`;
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-semibold text-white/52">{label} {required ? "*" : ""}</label>
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-white/52">{label} {required ? "*" : ""}</label>
       <input
+        {...props}
+        id={id}
+        name={name}
         required={required}
         type={type}
-        placeholder={placeholder}
         className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/25 transition-all duration-200 focus:border-neon-pink/55 focus:outline-none focus:shadow-neon-pink-sm"
         style={type === "date" ? { colorScheme: "dark" } : undefined}
       />
@@ -169,12 +231,16 @@ function Field({ label, placeholder, type = "text", required = false }: { label:
   );
 }
 
-function Select({ label, options, required = false }: { label: string; options: string[]; required?: boolean }) {
+function Select({ label, name, options, required = false }: { label: string; name: string; options: readonly string[]; required?: boolean }) {
+  const id = `assessment-${name}`;
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-semibold text-white/52">{label} {required ? "*" : ""}</label>
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-white/52">{label} {required ? "*" : ""}</label>
       <select
+        id={id}
+        name={name}
         required={required}
+        defaultValue=""
         className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white transition-all duration-200 focus:border-neon-pink/55 focus:outline-none focus:shadow-neon-pink-sm"
         style={{ colorScheme: "dark" }}
       >

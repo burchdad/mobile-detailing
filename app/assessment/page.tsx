@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { readIntakeConfig } from "@/lib/assessment-intake";
 import Booking from "@/components/Booking";
 import { BrandHero } from "@/components/BrandPlatform";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Request Your Vehicle Assessment | A&S Detailing",
@@ -14,11 +17,11 @@ export default function AssessmentPage() {
       <BrandHero
         eyebrow="Assessment"
         title="Request Your Vehicle Assessment"
-        intro="This is the beginning of the preservation relationship: vehicle information, condition, desired services, photo context, and a consultation request."
+        intro="This is the beginning of the preservation relationship: vehicle information, condition, desired services, and a consultation request."
         cta="Begin Below"
         ctaHref="#booking"
       />
-      <Booking />
+      <Booking available={readIntakeConfig(process.env) !== null} />
     </main>
   );
 }

@@ -1,7 +1,5 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HomeEditorial from "@/components/HomeEditorial";
-import Footer from "@/components/Footer";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -50,10 +48,8 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
       </div>
 
-      <Navbar />
       <Hero />
       <HomeEditorial />
-      <Footer />
     </main>
   );
 }
