@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import MobileCtaBar from "@/components/MobileCtaBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -67,7 +70,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-        {children}
+        <a href="#page-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded focus:bg-white focus:p-3 focus:text-black">Skip to content</a>
+        <Navbar />
+        <div id="page-content" tabIndex={-1}>{children}</div>
+        <Footer />
+        <MobileCtaBar />
       </body>
     </html>
   );

@@ -14,8 +14,8 @@ export default function AssessmentPage() {
       <BrandHero
         eyebrow="Assessment"
         title="Request Your Vehicle Assessment"
-        intro="This is the beginning of the preservation relationship: vehicle information, condition, desired services, photo context, and a consultation request."
-        cta="Begin Below"
+        intro="Online assessment requests are temporarily unavailable. See the notice below and use our contact options to discuss your vehicle."
+        cta="View Request Status"
         ctaHref="#booking"
       />
       <Booking />

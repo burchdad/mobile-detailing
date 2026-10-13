@@ -9,6 +9,7 @@ type HeroProps = {
 };
 
 type EditorialBlock = {
+  id?: string;
   eyebrow: string;
   title: string;
   body: string;
@@ -46,7 +47,7 @@ export function EditorialSections({ blocks }: { blocks: readonly EditorialBlock[
       <div className="mx-auto max-w-7xl">
         <div className="divide-y divide-white/8">
           {blocks.map((block, index) => (
-            <article key={block.title} className="grid gap-8 py-14 first:pt-0 last:pb-0 lg:grid-cols-[0.36fr_0.64fr]">
+            <article id={block.id} key={block.title} className="scroll-mt-24 grid gap-8 py-14 first:pt-0 last:pb-0 lg:grid-cols-[0.36fr_0.64fr]">
               <div>
                 <p className="eyebrow text-neon-blue">{block.eyebrow}</p>
                 <p className="mt-5 text-6xl font-black leading-none text-white/8 md:text-8xl">{String(index + 1).padStart(2, "0")}</p>

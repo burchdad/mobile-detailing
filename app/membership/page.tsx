@@ -17,16 +17,19 @@ export default function MembershipPage() {
       }}
       blocks={[
         {
+          id: "silver",
           eyebrow: "Silver Preservation",
           title: "For daily drivers that deserve consistent care.",
           body: "Monthly maintenance keeps the vehicle from sliding backward, with paint-safe washing, cabin upkeep, and priority seasonal scheduling.",
         },
         {
+          id: "gold",
           eyebrow: "Gold Preservation",
           title: "For premium vehicles that need a higher cadence.",
           body: "Gold supports family, luxury, and performance vehicles with more frequent visits, ceramic-safe maintenance, and preferred add-on access.",
         },
         {
+          id: "black-label",
           eyebrow: "Black Label Preservation",
           title: "For high-value finishes and owners who want the details managed.",
           body: "Black Label is a bespoke maintenance experience for collectors, show vehicles, ceramic-coated vehicles, and owners who expect elevated care.",

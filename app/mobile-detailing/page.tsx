@@ -69,7 +69,7 @@ export default function MobileDetailingIndexPage() {
                 Request Assessment
               </a>
               <a
-                href="/#services"
+                href="/services"
                 className="px-6 py-3.5 rounded-xl font-bold text-white/80 glass border border-white/15 hover:border-neon-blue/40 transition-colors"
               >
                 View Services

@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { projectImages } from "../lib/projectMedia";
 
 const primaryLinks = [
@@ -52,6 +53,9 @@ const preservationPaths = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(preservationPaths[0].image);
@@ -63,11 +67,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+
   useEffect(() => {
+    if (!menuOpen) return;
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = menuOpen ? "hidden" : previousOverflow;
+    const trigger = menuButtonRef.current;
+    document.body.style.overflow = "hidden";
+    const focusable = () => Array.from(menuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []).filter((element) => element.getClientRects().length > 0);
+    focusable()[0]?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { event.preventDefault(); setMenuOpen(false); }
+      if (event.key !== "Tab") return;
+      const controls = focusable();
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !menuRef.current?.contains(document.activeElement))) {
+        event.preventDefault(); last?.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !menuRef.current?.contains(document.activeElement))) {
+        event.preventDefault(); first?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
     };
   }, [menuOpen]);
 
@@ -85,10 +110,12 @@ export default function Navbar() {
       >
         <div className="mx-auto grid h-full max-w-[1720px] grid-cols-[1fr_auto_1fr] items-center px-5 md:px-10">
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={menuOpen}
+            aria-controls="navigation-dialog"
             className="flex w-fit items-center gap-3 text-sm font-medium text-white transition-colors hover:text-white/72"
           >
             <span className="flex h-4 w-4 flex-col justify-center gap-[5px]" aria-hidden="true">
@@ -127,6 +154,11 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
+            ref={menuRef}
+            id="navigation-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

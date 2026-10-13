@@ -294,3 +294,6 @@ body::after {
 @layer utilities {
   .text-balance { text-wrap: balance; }
 }
+
+/* Keep fragment targets clear of the shared fixed header. */
+[id] { scroll-margin-top: 6rem; }
