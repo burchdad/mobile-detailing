@@ -70,8 +70,11 @@ BEGIN
   PERFORM public.as_claim_outbox(1);
   ASSERT (SELECT count(*) FROM as_private.outbox WHERE status='failed')=1, 'Exhausted expired lease becomes visible failure';
 
+  ASSERT (public.as_outbox_health(token)->>'accepted')::integer=1, 'Health counts provider acceptance';
+  ASSERT (public.as_outbox_health(token)->>'failed')::integer=1, 'Health counts failures';
   UPDATE as_private.staff SET active=false WHERE id=u;
   ASSERT public.as_session(token) IS NULL, 'Disable immediately revokes session';
+  ASSERT public.as_outbox_health(token)->>'error'='unauthorized', 'Health requires active session';
   ASSERT public.as_update_lead(token,lead,4,'completed',NULL,'',false)->>'error'='unauthorized';
   UPDATE as_private.staff SET active=true WHERE id=u;
   ASSERT public.as_session(token) IS NULL, 'Re-enabling must not revive old sessions';
@@ -87,5 +90,33 @@ BEGIN
   ASSERT (SELECT count(*) FROM as_private.leads)=2, 'Rollback removes newly inserted lead';
   ASSERT (SELECT count(*) FROM as_private.receipts)=2, 'Rollback leaves no success receipt';
   DROP TRIGGER fail_outbox ON as_private.outbox;
+END $$;
+-- Retention-window acceptance: synthetic only; every mutation is rolled back.
+DO $$
+DECLARE oid uuid; claim jsonb; first_at timestamptz;
+BEGIN
+  UPDATE as_private.outbox SET status='sent';
+  SELECT id INTO oid FROM as_private.outbox ORDER BY id LIMIT 1;
+  -- A never-attempted old item still gets its first delivery opportunity.
+  UPDATE as_private.outbox SET status='pending',attempts=0,first_attempt_at=NULL,
+    created_at=now()-interval '3 days',available_at=now()-interval '1 second' WHERE id=oid;
+  claim := public.as_claim_outbox(1);
+  ASSERT jsonb_array_length(claim)=1, 'Old never-sent job can be claimed';
+  SELECT first_attempt_at INTO first_at FROM as_private.outbox WHERE id=oid;
+  ASSERT first_at IS NOT NULL AND claim->0->>'firstAttemptAt' IS NOT NULL;
+  UPDATE as_private.outbox SET lease_until=now()-interval '1 second' WHERE id=oid;
+  claim := public.as_claim_outbox(1);
+  ASSERT (SELECT first_attempt_at FROM as_private.outbox WHERE id=oid)=first_at, 'Reclaim preserves first attempt';
+  -- Pending retry cannot escape provider retention after a prolonged outage.
+  UPDATE as_private.outbox SET status='pending',first_attempt_at=now()-interval '23 hours',available_at=now() WHERE id=oid;
+  ASSERT public.as_claim_outbox(1)='[]'::jsonb;
+  ASSERT (SELECT status='failed' AND last_error='delivery_window_expired' FROM as_private.outbox WHERE id=oid);
+  -- Expired processing leases fail closed, but valid in-flight leases are not stolen.
+  UPDATE as_private.outbox SET status='processing',lease_until=now()+interval '1 minute',lease_token=gen_random_uuid() WHERE id=oid;
+  ASSERT public.as_claim_outbox(1)='[]'::jsonb;
+  ASSERT (SELECT status='processing' FROM as_private.outbox WHERE id=oid);
+  UPDATE as_private.outbox SET lease_until=now()-interval '1 second' WHERE id=oid;
+  ASSERT public.as_claim_outbox(1)='[]'::jsonb;
+  ASSERT (SELECT status='failed' AND last_error='delivery_window_expired' FROM as_private.outbox WHERE id=oid);
 END $$;
 ROLLBACK;

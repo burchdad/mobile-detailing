@@ -134,7 +134,7 @@ export default function StaffDashboard({ initiallySignedIn }: { initiallySignedI
           {leads.map(lead => <button key={lead.id} type="button" aria-pressed={selected === lead.id} onClick={() => { if (lead.id === selected || canDiscard()) setSelected(lead.id); }}
             className={`w-full rounded-xl border p-4 text-left ${selected === lead.id ? "border-amber-300 bg-zinc-800" : "border-zinc-700 bg-zinc-900"}`}>
             <span className="block text-lg font-semibold">{lead.fullName}</span><span className="mt-1 block text-sm text-zinc-300">{lead.vehicle} · {lead.service}</span>
-            <span className="mt-3 block text-sm text-amber-200">{stageLabels[lead.stage]} · alert {lead.notification}</span>
+            <span className="mt-3 block text-sm text-amber-200">{stageLabels[lead.stage]} · alert {lead.notification === "sent" ? "accepted by email provider" : lead.notification}</span>
             {lead.followUpDueAt && <span className={`mt-1 block text-sm ${Date.parse(lead.followUpDueAt) <= Date.now() ? "text-red-300" : "text-zinc-400"}`}>Follow up: {dateLabel(lead.followUpDueAt)}</span>}
           </button>)}
           <div className="flex justify-between gap-3"><button disabled={offset === 0 || loading} className="rounded-lg border border-zinc-600 px-4 py-3 disabled:opacity-40" onClick={() => { if (canDiscard()) setOffset(Math.max(0, offset-25)); }}>Previous</button>

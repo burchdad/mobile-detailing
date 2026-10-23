@@ -81,7 +81,7 @@ CREATE TABLE as_private.outbox (
   status text NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','processing','sent','failed')),
   attempts integer NOT NULL DEFAULT 0 CHECK(attempts BETWEEN 0 AND 5), available_at timestamptz NOT NULL DEFAULT now(),
   lease_token uuid, lease_until timestamptz, provider_id text, last_error text,
-  created_at timestamptz NOT NULL DEFAULT now(), sent_at timestamptz,
+  created_at timestamptz NOT NULL DEFAULT now(), first_attempt_at timestamptz, sent_at timestamptz,
   UNIQUE(tenant,lead_id), FOREIGN KEY (tenant,lead_id) REFERENCES as_private.leads(tenant,id)
 );
 CREATE INDEX outbox_pending ON as_private.outbox(tenant,status,available_at);
@@ -242,14 +242,19 @@ BEGIN
   IF p_limit NOT BETWEEN 1 AND 10 THEN RETURN '{"error":"invalid"}'; END IF;
   UPDATE as_private.outbox SET status='failed',lease_token=NULL,lease_until=NULL,last_error='retry_limit'
     WHERE tenant='as-detailing' AND status='processing' AND lease_until<=now() AND attempts>=5;
+  -- Never retry beyond provider deduplication retention (24h); reserve an hour of margin.
+  UPDATE as_private.outbox SET status='failed',lease_token=NULL,lease_until=NULL,last_error='delivery_window_expired'
+    WHERE tenant='as-detailing' AND first_attempt_at<=now()-interval '23 hours'
+      AND (status='pending' OR (status='processing' AND lease_until<=now()));
   WITH picked AS (
     SELECT id FROM as_private.outbox WHERE tenant='as-detailing' AND attempts<5 AND
+      (first_attempt_at IS NULL OR first_attempt_at>now()-interval '23 hours') AND
       ((status='pending' AND available_at<=now()) OR (status='processing' AND lease_until<=now()))
       ORDER BY available_at,id LIMIT p_limit FOR UPDATE SKIP LOCKED
   ), claimed AS (
-    UPDATE as_private.outbox o SET status='processing',attempts=attempts+1,lease_token=gen_random_uuid(),lease_until=now()+interval '2 minutes'
+    UPDATE as_private.outbox o SET status='processing',attempts=attempts+1,first_attempt_at=COALESCE(first_attempt_at,now()),lease_token=gen_random_uuid(),lease_until=now()+interval '2 minutes'
     FROM picked WHERE o.id=picked.id AND o.tenant='as-detailing' RETURNING o.*
-  ) SELECT COALESCE(jsonb_agg(jsonb_build_object('id',o.id,'tenant',o.tenant,'inquiryId',o.lead_id,'leaseToken',o.lease_token,'attempts',o.attempts,
+  ) SELECT COALESCE(jsonb_agg(jsonb_build_object('id',o.id,'tenant',o.tenant,'inquiryId',o.lead_id,'leaseToken',o.lease_token,'attempts',o.attempts,'firstAttemptAt',o.first_attempt_at,
       'payload',jsonb_build_object('fullName',l.assessment->>'fullName','service',l.assessment->>'service'))),'[]'::jsonb)
     INTO result FROM claimed o JOIN as_private.leads l ON l.tenant=o.tenant AND l.id=o.lead_id;
   RETURN result;
@@ -265,6 +270,24 @@ BEGIN
     available_at=now()+make_interval(secs => least(3600,(30*power(2,attempts-1))::integer)),lease_token=NULL,lease_until=NULL
   WHERE tenant='as-detailing' AND id=p_id AND lease_token=p_lease_token AND lease_until>now() AND status='processing';
   RETURN FOUND;
+END $$;
+
+-- Read-only operational snapshot for authenticated staff. No recipient/customer PII.
+CREATE FUNCTION public.as_outbox_health(p_session_hash text) RETURNS jsonb
+LANGUAGE plpgsql SECURITY INVOKER SET search_path = '' AS $$
+DECLARE result jsonb;
+BEGIN
+  IF public.as_session(p_session_hash) IS NULL THEN RETURN '{"error":"unauthorized"}'; END IF;
+  SELECT jsonb_build_object(
+    'pending',count(*) FILTER (WHERE status='pending'),
+    'processing',count(*) FILTER (WHERE status='processing'),
+    'accepted',count(*) FILTER (WHERE status='sent'),
+    'failed',count(*) FILTER (WHERE status='failed'),
+    'expiredLeases',count(*) FILTER (WHERE status='processing' AND lease_until<=now()),
+    'oldestUnresolvedAt',min(created_at) FILTER (WHERE status<>'sent'),
+    'snapshotAt',now()) INTO result
+  FROM as_private.outbox WHERE tenant='as-detailing';
+  RETURN result;
 END $$;
 
 -- No anonymous/authenticated browser role receives table/function access. Only this

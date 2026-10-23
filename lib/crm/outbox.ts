@@ -2,9 +2,10 @@ import type { OutboxJob, Rpc } from "./types";
 import { TENANT } from "./types";
 export interface EmailProvider {
   // A production provider MUST persistently deduplicate this key across retries and timeouts.
-  send(input: { idempotencyKey: string; inquiryId: string; fullName: string; service: string; signal: AbortSignal }): Promise<{ messageId: string }>;
+  send(input: { idempotencyKey: string; inquiryId: string; fullName: string; service: string; firstAttemptAt?: string; signal: AbortSignal }): Promise<{ messageId: string }>;
 }
 export async function processOutbox(db: Rpc, provider: EmailProvider, timeoutMs = 10_000) {
+  if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 30_000) throw new Error("Invalid worker timeout.");
   const jobs = await db.call<OutboxJob[]>("as_claim_outbox", { p_limit: 1 });
   // Claim only immediately actionable work: the 2-minute lease must not wait behind a batch.
   if (jobs.length > 1) throw new Error("Unexpected outbox batch size.");
@@ -17,7 +18,7 @@ export async function processOutbox(db: Rpc, provider: EmailProvider, timeoutMs 
     try {
       const delivered = await Promise.race([
         provider.send({ idempotencyKey: `as-outbox-${job.id}`, inquiryId: job.inquiryId,
-          ...job.payload, signal: controller.signal }),
+          ...job.payload, firstAttemptAt: job.firstAttemptAt, signal: controller.signal }),
         new Promise<never>((_, reject) => { timer = setTimeout(() => { controller.abort(); reject(new Error("timeout")); }, timeoutMs); }),
       ]);
       if (typeof delivered.messageId !== "string" || !/^[\w.-]{1,200}$/.test(delivered.messageId)) throw new Error("Invalid provider receipt.");

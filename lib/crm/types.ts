@@ -13,7 +13,7 @@ export type Lead = {
   history: { at: string; kind: string; note: string; stage: Stage }[];
 };
 export type DurableReceipt = { stored: true; notificationQueued: true; inquiryId: string };
-export type OutboxJob = { id: string; tenant: typeof TENANT; inquiryId: string; leaseToken: string; attempts: number; payload: { fullName: string; service: string } };
+export type OutboxJob = { id: string; tenant: typeof TENANT; inquiryId: string; leaseToken: string; attempts: number; firstAttemptAt?: string; payload: { fullName: string; service: string } };
 export interface Rpc { call<T>(name: string, args: Record<string, unknown>): Promise<T> }
 export class CrmError extends Error {
   status: number;
