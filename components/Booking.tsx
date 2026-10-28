@@ -9,7 +9,7 @@ export default function Booking() {
         <p className="eyebrow text-neon-blue">Vehicle Assessments</p>
         <h2 className="mt-4 text-3xl font-black md:text-4xl">Discuss your vehicle with A&amp;S</h2>
         <p className="mt-5 text-lg leading-relaxed text-white/70">
-          Online requests are temporarily unavailable. This page does not collect or send an assessment request. Call or email A&amp;S using the options below.
+          Online requests are temporarily unavailable. This page does not collect or send an assessment request. Call, text, or email A&amp;S using the options below.
         </p>
         <p className="mt-4 text-sm leading-relaxed text-white/60">
           An appointment is only confirmed after you arrange it directly with A&amp;S.
@@ -19,13 +19,17 @@ export default function Booking() {
             <span className="block text-sm text-white/60">Call A&amp;S</span>
             <span className="mt-2 block text-lg font-bold">(903) 330-8955</span>
           </a>
+          <a href="sms:+19033308955" className="rounded-xl border border-white/20 p-5 transition-colors hover:border-neon-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+            <span className="block text-sm text-white/60">Text A&amp;S</span>
+            <span className="mt-2 block text-lg font-bold">(903) 330-8955</span>
+          </a>
           <a href="mailto:hello@asmobiledetail.com" className="rounded-xl border border-white/20 p-5 transition-colors hover:border-neon-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
             <span className="block text-sm text-white/60">Email A&amp;S</span>
             <span className="mt-2 block break-all text-lg font-bold">hello@asmobiledetail.com</span>
           </a>
         </div>
         <p className="mt-4 text-sm leading-relaxed text-white/60">
-          Have your vehicle year, make and model, condition, service needs, and preferred timing ready. Email opens your mail app; you will need to send the message there.
+          Have your vehicle year, make and model, condition, service needs, and preferred timing ready. Text and email links open your messaging app; you will need to send the message there.
         </p>
         <Link href="/contact#contact-options" className="mt-7 inline-flex rounded-xl bg-gradient-to-r from-neon-pink to-neon-blue px-6 py-4 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
           View contact options

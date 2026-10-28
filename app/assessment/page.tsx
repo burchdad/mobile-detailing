@@ -14,8 +14,8 @@ export default function AssessmentPage() {
       <BrandHero
         eyebrow="Assessment"
         title="Request Your Vehicle Assessment"
-        intro="Call or email A&S to discuss your vehicle, its condition, and the services you need. Online assessment requests are temporarily unavailable."
-        cta="Call or Email A&S"
+        intro="Call, text, or email A&S to discuss your vehicle, its condition, and the services you need. Online assessment requests are temporarily unavailable."
+        cta="View Contact Options"
         ctaHref="#booking"
       />
       <Booking />
