@@ -21,13 +21,18 @@ export type Assessment = {
 };
 
 export type AssessmentReceipt = { status: "accepted"; messageId: string };
-export const receiptIdPattern = /^[A-Za-z0-9_-]{1,100}$/;
+// Provider message IDs are opaque UUIDs, not request UUIDv4 keys.
+// Accept standard UUID versions 1–8 (including UUIDv7) with the RFC variant.
+export function isProviderMessageId(value: unknown): value is string {
+  return typeof value === "string" && value.length === 36 &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
 export const requestIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export function isAssessmentReceipt(value: unknown): value is AssessmentReceipt {
   if (!value || typeof value !== "object") return false;
   const receipt = value as Record<string, unknown>;
-  return receipt.status === "accepted" && typeof receipt.messageId === "string" && receiptIdPattern.test(receipt.messageId);
+  return receipt.status === "accepted" && isProviderMessageId(receipt.messageId);
 }
 
 // Conservative single ASCII mailbox for use in a Reply-To header.

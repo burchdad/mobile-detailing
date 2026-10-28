@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validateAssessment, isAssessmentReceipt, isReplyToEmail } from '../lib/assessment.ts';
+import { validateAssessment, isAssessmentReceipt, isReplyToEmail, isProviderMessageId, requestIdPattern } from '../lib/assessment.ts';
 import { handleAssessmentRequest, readIntakeConfig, createAssessmentLimiter } from '../lib/assessment-intake.ts';
 
 const now = 1800000000000;
@@ -139,4 +139,30 @@ test('rejects malformed, multiple and header-injection Reply-To values before pr
     assert.equal(isReplyToEmail(email),false,email);
     assert.equal((await run(request({...valid,email}),env,never)).status,400,email);
   }
+});
+
+test('provider UUIDv7 and UUIDv4 acknowledgements yield accepted receipts',async()=>{
+  for(const messageId of ['01a1840a-d140-739f-965f-8bb33ddac44d',id]) {
+    assert.equal(isProviderMessageId(messageId),true);
+    const response=await run(request(),env,async()=>Response.json({id:messageId}));
+    assert.equal(response.status,202);
+    const receipt=await response.json();
+    assert.deepEqual(receipt,{status:'accepted',messageId});
+    assert.equal(isAssessmentReceipt(receipt),true);
+  }
+});
+test('shared provider ID validation rejects malformed IDs on server and client',async()=>{
+  for(const messageId of [null,42,'', 'not-a-uuid','01a1840a-d140-739f-965f-8bb33ddac44',
+    '01a1840a-d140-739f-765f-8bb33ddac44d','01a1840a-d140-939f-965f-8bb33ddac44d',
+    '01a1840a-d140-739f-965f-8bb33ddac44g',id+'\n',' '+id]) {
+    assert.equal(isProviderMessageId(messageId),false);
+    assert.equal(isAssessmentReceipt({status:'accepted',messageId}),false);
+    assert.equal((await run(request(),env,async()=>Response.json({id:messageId}))).status,502);
+  }
+});
+test('provider UUIDv7 support does not broaden request UUIDv4 validation',async()=>{
+  const v7='01a1840a-d140-739f-965f-8bb33ddac44d';
+  assert.equal(requestIdPattern.test(key),true);
+  assert.equal(requestIdPattern.test(v7),false);
+  assert.equal((await run(request(valid,{'idempotency-key':v7}),env,never)).status,409);
 });

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { requestIdPattern, validateAssessment } from "./assessment";
+import { isProviderMessageId, requestIdPattern, validateAssessment } from "./assessment";
 
 type Environment = Record<string, string | undefined>;
 type Config = { apiKey: string; from: string; to: string; origin: string };
@@ -107,7 +107,7 @@ export async function handleAssessmentRequest(
     if (!response.ok) return json({ error: unconfirmedMessage }, 502);
     const result = await readLimitedJson(response);
     if (!result || typeof result !== "object" || !("id" in result) ||
-        typeof result.id !== "string" || !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(result.id))
+        !isProviderMessageId(result.id))
       return json({ error: unconfirmedMessage }, 502);
     return json({ status: "accepted", messageId: result.id }, 202);
   } catch {
