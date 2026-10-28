@@ -25,3 +25,14 @@ test('contact fallback preserves existing published phone and email', () => {
   assert.match(contact, /ctaHref="#contact-options"/);
   assert.doesNotMatch(contact, /555-0000|19035550000/);
 });
+
+test('assessment offers the existing contact destinations without claiming receipt', () => {
+  const booking = read('components/Booking.tsx');
+  for (const href of ['tel:+19033308955', 'mailto:hello@asmobiledetail.com']) {
+    assert.ok(booking.includes(`href="${href}"`));
+  }
+  assert.match(booking, /Email opens your mail app/);
+  assert.match(booking, /An appointment is only confirmed after/);
+  assert.doesNotMatch(booking, /Request Received|successfully sent/);
+  assert.match(read('app/assessment/page.tsx'), /ctaHref="#booking"/);
+});
