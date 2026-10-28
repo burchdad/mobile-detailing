@@ -30,6 +30,16 @@ export function isAssessmentReceipt(value: unknown): value is AssessmentReceipt 
   return receipt.status === "accepted" && typeof receipt.messageId === "string" && receiptIdPattern.test(receipt.messageId);
 }
 
+// Conservative single ASCII mailbox for use in a Reply-To header.
+// Display names, address lists, quoted locals, whitespace, and CR/LF are unsupported.
+export function isReplyToEmail(value: string): boolean {
+  if (value.length > 254 || /[^\x21-\x7e]/.test(value)) return false;
+  const parts = value.split("@");
+  if (parts.length !== 2 || parts[0].length > 64) return false;
+  return /^[A-Za-z0-9!#$%&'*+/=?^`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^`{|}~-]+)*$/.test(parts[0]) &&
+    /^(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/.test(parts[1]);
+}
+
 export function validateAssessment(value: unknown):
   | { ok: true; data: Assessment }
   | { ok: false; message: string } {
@@ -43,7 +53,7 @@ export function validateAssessment(value: unknown):
   const data = {} as Assessment;
   for (const field of Object.keys(limits) as (keyof Assessment)[]) {
     const raw = input[field] ?? "";
-    if (typeof raw !== "string" || raw.length > limits[field] || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(raw)) {
+    if (typeof raw !== "string" || raw.length > limits[field] || (field === "email" && /[\r\n]/.test(raw)) || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(raw)) {
       return invalid("Check your assessment details and shorten any very long entries.");
     }
     data[field] = raw.trim();
@@ -53,7 +63,7 @@ export function validateAssessment(value: unknown):
   if (!/^[+\d\s().-]+$/.test(data.phone) || !/^\d{10,15}$/.test(data.phone.replace(/\D/g, ""))) {
     return invalid("Enter a valid phone number, including the area code.");
   }
-  if (data.email && (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) || /[?&#%\r\n]/.test(data.email))) return invalid("Enter a valid email address or leave email blank.");
+  if (data.email && !isReplyToEmail(data.email)) return invalid("Enter a single valid email address or leave email blank.");
   if (!(assessmentServices as readonly string[]).includes(data.service) || !(assessmentConditions as readonly string[]).includes(data.condition)) {
     return invalid("Choose a service and the current vehicle condition.");
   }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validateAssessment, isAssessmentReceipt } from '../lib/assessment.ts';
+import { validateAssessment, isAssessmentReceipt, isReplyToEmail } from '../lib/assessment.ts';
 import { handleAssessmentRequest, readIntakeConfig, createAssessmentLimiter } from '../lib/assessment-intake.ts';
 
 const now = 1800000000000;
@@ -70,7 +70,7 @@ test('success waits for provider acknowledgement, uses fixed headers and plain t
     const body=JSON.parse(options.body);
     assert.deepEqual(body.to,['owner@example.com']); assert.equal(body.from,'sender@example.com');
     assert.equal(body.subject,'A&S vehicle assessment request');
-    assert.equal(body.html,undefined); assert.equal(body.reply_to,undefined);
+    assert.equal(body.html,undefined); assert.equal(body.reply_to,valid.email);
     assert.match(body.text,/Synthetic Test/); assert.match(body.text,/not a confirmed appointment/);
     return Response.json({id});
   });
@@ -113,4 +113,30 @@ test('client only accepts the email acceptance contract, not old CRM receipts',(
   assert.equal(isAssessmentReceipt({status:'accepted',messageId:id}),true);
   for(const receipt of [{status:'received',inquiryId:id},{ok:true},{status:'accepted'}, {status:'accepted',messageId:'<script>'}])
     assert.equal(isAssessmentReceipt(receipt),false);
+});
+
+test('Reply-To supports one validated optional customer address without changing routing',async()=>{
+  for(const email of ['customer+details@example.com','first.last@example.co.uk','']) {
+    let sent;
+    const result=await run(request({...valid,email}),env,async(_url,options)=>{
+      sent=JSON.parse(options.body);return Response.json({id});
+    });
+    assert.equal(result.status,202);
+    assert.deepEqual(sent.to,['owner@example.com']);assert.equal(sent.from,'sender@example.com');
+    assert.equal(sent.subject,'A&S vehicle assessment request');
+    assert.equal(sent.reply_to,email || undefined);
+    assert.equal(Object.hasOwn(sent,'reply_to'),Boolean(email));
+  }
+});
+test('rejects malformed, multiple and header-injection Reply-To values before provider calls',async()=>{
+  const emails=['one@example.com,two@example.com','one@example.com;two@example.com',
+    'Name <one@example.com>','one@example.com\r\nBcc: two@example.com',
+    'one@example.com\r\n','\none@example.com','one@example.com\nReply-To: two@example.com',
+    'one..two@example.com','.one@example.com','one.@example.com','one@-example.com',
+    'one@example-.com','one@exam_ple.com','one@example..com','one@localhost',
+    'one@@example.com','"one"@example.com','oné@example.com','a'.repeat(65)+'@example.com'];
+  for(const email of emails) {
+    assert.equal(isReplyToEmail(email),false,email);
+    assert.equal((await run(request({...valid,email}),env,never)).status,400,email);
+  }
 });

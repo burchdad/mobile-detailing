@@ -12,7 +12,7 @@ Never prefix these with NEXT_PUBLIC_. Preview must not silently inherit producti
 Read-only provider inspection found no A&S domain among the sending domains. An existing verified Ghost domain may be used only if its precise sender and use for this client are explicitly approved. Other clients' domains must never be borrowed. Account connector access is not an application API credential. There are currently no assessment credentials configured on this Vercel project.
 
 ## Receipt and privacy
-POST /api/assessment validates bounded JSON and the existing service/condition/date/phone fields. Only the fixed server recipient gets a plain-text message. Visitor input cannot set recipients, sender, subject, HTML, or reply-to. Browser details stay only in page memory; no localStorage/sessionStorage, database, admin UI, payload logging, or customer acknowledgement email is added.
+POST /api/assessment validates bounded JSON and the existing service/condition/date/phone fields. Only the fixed server recipient gets a plain-text message. Visitor input cannot set recipients, sender, subject, or HTML. An optional customer email sets Reply-To only after strict single-mailbox ASCII validation. CR/LF is rejected before trimming; display names, lists, quoted local parts, malformed domain labels and overlong local parts are rejected. No customer autoresponder is sent. Browser details stay only in page memory; no localStorage/sessionStorage, database, admin UI, payload logging, or customer acknowledgement email is added.
 The only success is HTTP 202 with {status:"accepted",messageId} after Resend returns a valid message ID. The page says the email service accepted the request for delivery. This is not inbox receipt, durable CRM storage, booking, or payment confirmation. Provider failures, timeouts, invalid responses, and uncertain acknowledgement preserve form values and never claim receipt.
 A disabled form returns the existing honest contact fallback before rendering input fields.
 
@@ -31,6 +31,7 @@ Run with Node 24:
 Mock tests inject the provider transport and clock; no test contacts Resend. They cover disabled/malformed configuration, routing injection, validation/honeypot, origins/types, malformed/oversized input, retry expiry, stable keys and payload, rate bounds/reset, malformed provider acknowledgements, 409/429/500/timeouts, and exact accepted contract.
 Browser QA in that workspace must mock /api/assessment and exercise keyboard labels/focus, no fields while disabled, success focus, double-click prevention, error retention, retry keys, no-JavaScript fallback, and mobile layout.
 Before a real test: approve exact sender and destination, secure credential configuration, confirm the prior one-test allowance remains unused, agree exact harmless test data and count, and use the approved non-production target. Match the returned provider message ID to delivery status and actual destination receipt. No such test has occurred here.
+For distributed abuse-control prerequisites and a proposed scoped rule, see [the activation gate](assessment-abuse-gate.md).
 Production publication remains on hold until explicit approval after these checks.
 
 References checked 2026-10-28:

@@ -100,8 +100,9 @@ export async function handleAssessmentRequest(
       method: "POST", redirect: "error", cache: "no-store", signal: AbortSignal.timeout(8000),
       headers: { Authorization: "Bearer " + config.apiKey, "Content-Type": "application/json",
         "Idempotency-Key": "as-assessment-" + key },
-      // No visitor-controlled recipients, sender, subject, HTML, or reply-to headers.
-      body: JSON.stringify({ from: config.from, to: [config.to], subject: "A&S vehicle assessment request", text }),
+      // Recipient, sender, subject and HTML stay fixed. Reply-To is one validated mailbox.
+      body: JSON.stringify({ from: config.from, to: [config.to], subject: "A&S vehicle assessment request", text,
+        ...(a.email ? { reply_to: a.email } : {}) }),
     });
     if (!response.ok) return json({ error: unconfirmedMessage }, 502);
     const result = await readLimitedJson(response);
