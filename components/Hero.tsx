@@ -24,7 +24,7 @@ export default function Hero() {
       >
         <div className="mx-auto w-full max-w-7xl">
           <p className="eyebrow mb-6 text-neon-pink">East Texas Vehicle Preservation</p>
-          <h1 className="max-w-5xl text-[clamp(3.35rem,10.4vw,9.2rem)] font-black uppercase leading-[0.9] tracking-tight text-white md:leading-[0.86]">
+          <h1 className="max-w-5xl text-[clamp(1.75rem,8vw,8rem)] [overflow-wrap:anywhere] font-black uppercase leading-[0.9] tracking-tight text-white md:leading-[0.86]">
             Vehicle Preservation For Owners Who Notice Everything
           </h1>
           <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
