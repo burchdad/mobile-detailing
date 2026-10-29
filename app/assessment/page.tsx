@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { readIntakeConfig } from "@/lib/assessment-intake";
 import Booking from "@/components/Booking";
 import { BrandHero } from "@/components/BrandPlatform";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Request Your Vehicle Assessment | A&S Detailing",
@@ -9,16 +12,17 @@ export const metadata: Metadata = {
 };
 
 export default function AssessmentPage() {
+  const available = readIntakeConfig(process.env) !== null;
   return (
     <main className="min-h-screen bg-deep-black text-white">
       <BrandHero
         eyebrow="Assessment"
         title="Request Your Vehicle Assessment"
-        intro="Online assessment requests are temporarily unavailable. See the notice below and use our contact options to discuss your vehicle."
-        cta="View Request Status"
+        intro={available ? "Tell us about your vehicle and service needs. A&S will confirm details and availability directly with you." : "Online assessment requests are temporarily unavailable. Use the contact options below to discuss your vehicle."}
+        cta={available ? "Begin Below" : "View Contact Options"}
         ctaHref="#booking"
       />
-      <Booking />
+      <Booking available={available} />
     </main>
   );
 }
